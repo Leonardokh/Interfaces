@@ -30,7 +30,8 @@ body {
 ========================================= */
 .overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0, 0, 0, 0.45); z-index: 2;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
 }
 
 /* Tarjeta transparente */
@@ -38,6 +39,7 @@ body {
     background: rgba(20, 30, 45, 0.45);
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
+    z-index: 1;
     -webkit-backdrop-filter: blur(12px); /* Soporte para Safari/iOS */
 }
 
