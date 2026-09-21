@@ -1,182 +1,52 @@
-html, body {
+body {
     margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    font-family: Arial, sans-serif;
     overflow: hidden;
-    display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center;     /* Centrado vertical */
+    background-color: #080b12; /* Color de respaldo */
 }
 
-
-
-.bg-slider {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -2;
-}
-
-
-
+/* =========================================
+   1. ANIMACIÓN DEL FONDO (SLIDER)
+========================================= */
+.bg-slider { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; }
 .bg-slider div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center; opacity: 0;
     animation: slider 12s infinite ease-in-out;
 }
+.bg-slider div:nth-child(1) { background-image: url('https://imgs.search.brave.com/hlye_a3xUoiAlrm5GIOHoPdTwlBHA-qMPzFSppeDeQ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE2MDEz/NjY3LnBuZw'); animation-delay: 0s; }
+.bg-slider div:nth-child(2) { background-image: url('https://imgs.search.brave.com/IHX9WO6TG20_tkxsH8G_H0V5A2Ar1HtFdJRlMg1JlH0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5lc3BvcnRzLmdn/L3VwbG9hZHMvMjAy/NC8wNy9Ib3ctdG8t/dGFrZS1waWN0dXJl/cy1pbi1aWlotWmVu/bGVzcy1ab25lLVpl/cm8tOTY4eDU0NC5q/cGc'); animation-delay: 4s; }
+.bg-slider div:nth-child(3) { background-image: url('https://imgs.search.brave.com/uV0k379CebSVx79pYRNwukV2OY24WsLDFh_6H6Rhvqw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9md21l/ZGlhLmZhbmRvbXdp/cmUuY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzA5LzE5/MDgwNDQyL2ltYWdl/LTdkYTFlN2U5LTEw/MjR4NTc2LnBuZw'); animation-delay: 8s; }
 
-
-
-/*imagenes de fondo */
-
-.bg-slider div:nth-child(1) {
-    background-image: url('https://imgs.search.brave.com/hlye_a3xUoiAlrm5GIOHoPdTwlBHA-qMPzFSppeDeQ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE2MDEz/NjY3LnBuZw');
-    animation-delay: 0s;
+@keyframes slider { 
+    0% { opacity: 0; transform: scale(1); } 
+    10% { opacity: 1; } 
+    33% { opacity: 1; } 
+    43% { opacity: 0; transform: scale(1.05); } 
+    100% { opacity: 0; } 
 }
 
-.bg-slider div:nth-child(2) {
-    background-image: url('https://imgs.search.brave.com/IHX9WO6TG20_tkxsH8G_H0V5A2Ar1HtFdJRlMg1JlH0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5lc3BvcnRzLmdn/L3VwbG9hZHMvMjAy/NC8wNy9Ib3ctdG8t/dGFrZS1waWN0dXJl/cy1pbi1aWlotWmVu/bGVzcy1ab25lLVpl/cm8tOTY4eDU0NC5q/cGc');
-    animation-delay: 4s;
-}
-
-.bg-slider div:nth-child(3) {
-    background-image: url('https://imgs.search.brave.com/uV0k379CebSVx79pYRNwukV2OY24WsLDFh_6H6Rhvqw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9md21l/ZGlhLmZhbmRvbXdp/cmUuY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzA5LzE5/MDgwNDQyL2ltYWdl/LTdkYTFlN2U5LTEw/MjR4NTc2LnBuZw');
-    animation-delay: 8s;
-}
-
-
-
-/* Animación de transición en bucle entre imágenes */
-
-@keyframes slider {
-
-    0% {
-        opacity: 0;
-        transform: scale(1);
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    33% {
-        opacity: 1;
-    }
-
-    43% {
-        opacity: 0;
-        transform: scale(1.05);
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-
-
-/* Capa de filtro oscuro sobre la imagen para legibilidad */
+/* =========================================
+   2. CAPA OSCURA Y EFECTOS CRISTAL
+========================================= */
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: -1;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.45); z-index: 2;
 }
 
-.login-container {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    box-sizing: border-box;
-}
-/* 1. Fondo del contenedor principal */
-
-.login-container .ui-panel,
-.login-container .ui-widget-content {
-    background: rgba(15, 20, 30, 0.65) !important; /* Cristal oscuro */
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 12px !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-
+/* Tarjeta transparente */
+.glass-panel {
+    background: rgba(20, 30, 45, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Soporte para Safari/iOS */
 }
 
-/* 2. Encabezado del panel */
-
-.login-container .ui-panel .ui-panel-titlebar {
-    background: transparent !important;
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #ffffff !important;
-    text-align: center;
-    font-size: 1.25rem;
-    padding: 0.8rem 1rem !important;
+/* Cajas de texto ligeramente transparentes para que combinen */
+.custom-input {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: none;
 }
-
-/* 3. Cuerpo interno del panel */
-
-.login-container .ui-panel .ui-panel-content {
-    background: transparent !important;
-    border: none !important;
-    color: #ffffff !important;
-    padding: 1.5rem !important;
-
-}
-
-/* 4. Textos de labels en blanco */
-.login-container .ui-outputlabel {
-    color: #ffffff !important;
-    font-weight: bold;
-}
-
-/* 5. Estilo de los inputs */
-
-.login-container .ui-inputfield {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-radius: 6px !important;
-
-}
-
-/* Destruye el fondo blanco inyectado por las clases internas de PrimeFaces */
-.glass-panel.ui-panel,
-.glass-panel.ui-panel .ui-panel-content,
-.glass-panel.ui-panel .ui-panel-titlebar,
-.glass-panel.ui-panel .ui-widget-content {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-}
-
-/* Aplica el efecto cristal oscuro solo al contenedor exterior */
-.glass-panel.ui-panel {
-    background: rgba(20, 30, 45, 0.5) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    border-radius: 12px !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
-}
-
-/* Ajusta el borde y el color del texto del encabezado */
-.glass-panel.ui-panel .ui-panel-titlebar {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-    text-align: center;
-    color: white !important;
+.custom-input:focus {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
 }
