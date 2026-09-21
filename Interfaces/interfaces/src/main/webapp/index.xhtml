@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Build Characters</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/index.css" />
+    </h:head>
+    <h:body>
+        <!-- Fondos -->
+        <div class="bg-slider">
+            <div></div><div></div><div></div>
+        </div>
+        <div class="overlay"></div>
+        
+        
+
+        <div class="login-wrapper">
+            <h:form id="Login">
+                <p:panel header="Inicio de Sesion" styleClass="glass-panel">
+
+                    <div>
+                        <p:outputLabel for="usuario" value="Usuario:" style="color: white; font-weight: bold;"/>
+                        <p:inputText id="usuario" placeholder="Ingresa tu usuario" style="width: 100%"/>
+                    </div>
+
+                    <div>
+                        <p:outputLabel for="password" value="Contraseña:" style="color: white; font-weight: bold;"/>
+                        <p:password id="password" placeholder="Ingresa tu contraseña" style="width: 100%"/>
+                    </div>
+
+                    <p:commandButton value="Iniciar Sesion" action="uid?faces-redirect=true" style="width: 100%; margin-top: 1rem;"/>
+                </p:panel>    
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
