@@ -1,40 +1,41 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <title>Panel Principal</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <title>Build Characters</title>
-        <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
- 
-</head>
+  </head>
   <body>
+      <!-- fondo animado -->
+    <div class="bg-slider">
+        <div></div><div></div><div></div>
+    </div>
+    <div class="overlay"></div>
 
-    <!-- Fondos -->
-        <div class="bg-slider">
-            <div></div><div></div><div></div>
+    <!-- Contenedor principal que ocupa toda la pantalla -->
+    <div class="d-flex vh-100 vw-100 position-relative z-3 p-3">
+        <!-- Panel de navegación lateral -->
+        <div class="bg-dark text-white p-3, glass-panel p-4">
+            <h4>Panel de Navegación</h4>
+            <ul class="nav flex-column" uid="navPanel">
+                <li class="nav-item"><a href="#" class="nav-link text-white">Nueva Build</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-white">Mis Builds</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-white">Glosario</a></li>
+            </ul>
         </div>
-        <div class="overlay"></div>
 
-        <div class="d-flex justify-content-center align-items-center vh-100">
-            <div class="glass-panel p-4" style="width: 300px;">
-                <h3 class="text-center text-white mb-4">Inicia en tu juego</h3>
-            <form action="dashboard.html" method="get">
-                <div class="mb-3">
-                    <label for="UID" class="form-label text-white font-weight-bold">UID:</label>
-                    <input type="text" class="form-control" id="UID" name="UID" placeholder="Ingresa tu uid">
-                </div>
-               
-                <div class="mb3">
-                    <button type="submit" class="btn btn-primary btn-block" action="uid.html">Ingresar</button>
-                </div>    
-             </panel>    
-            </form>
-        </div>  
+        <!-- Contenido principal -->
+        <div class="flex-grow-1 p-3">
+            <h1>Bienvenido al Panel Principal</h1>
+            <p>Este es el contenido principal de la aplicación.</p>
+        </div>
+
+
+
 
       
     <!-- Optional JavaScript -->
