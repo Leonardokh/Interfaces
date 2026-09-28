@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Build Characters</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Fondos -->
+    <div class="bg-slider">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="overlay"></div>
+
+    <nav class="navbar">
+        <div class="container-fluid">
+            <img class="navbar-brand" src="https://i.pinimg.com/236x/02/ae/1d/02ae1d3659a2cc95536498ee818895d7.jpg"
+                id="Logo" alt="logotipo">
+            <span class="navbar-brand text-white">PROTO BUILDER</span>
+        </div>
+    </nav>
+
+    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+        <div class=" container glass-panel p-4" style="width: 400px;">
+            <h3 class="text-center text-white mb-4">Inicio de Sesión</h3>
+            <form action="dashboard.html" method="post" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label for="usuario" class="form-label text-white font-weight-bold">Usuario:</label>
+                    <input type="text" class="form-control" id="user" name="user" placeholder="Ingresa tu usuario"
+                        required>
+                    <div class="valid-feedback">
+                        Válido
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label text-white font-weight-bold">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Ingresa tu contraseña" required>
+                    <div class="invalid-feedback">
+                        Contraseña incorrecta
+                    </div>
+                </div>
+                <div class="mb-4 d-grid">
+                    <button type="submit" class="btn btn-primary ">Acceder</button>
+                </div>
+                <div class="mb-2 d-flex justify-content-between align-items-center">
+                    <span class="text-white">¿Has olvidado tu contraseña?</span>
+                    <a class="btn btn-primary " href="#" role="button">Recuperar</a>
+                </div>
+            </form>
+        </div>
+        <div class="mt-4 container glass-panel p-4" style="width: 400px;">
+
+            <h5 class="text-center text-white mb-3">¿No estás registrado?</h5>
+
+            <div class="d-grid">
+                <a class="btn btn-primary" href="register.html" role="button">Registrarse</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="validacion.js"></script>
+
+</body>
+
+</html>

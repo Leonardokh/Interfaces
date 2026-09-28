@@ -1,6 +1,7 @@
-*{
-    /*border: 1px solid black;*/
-}
+
+
+
+
 body {
     margin: 0;
     overflow: hidden;
@@ -22,6 +23,15 @@ body {
     width: 40px;
     margin-left: 8px;
 }
+
+.imgDash{
+  height: 400px;
+  object-fit: cover;
+}
+.list-group-item {
+    border-color: #333 !important;
+}
+
 
 
 /* =========================================
