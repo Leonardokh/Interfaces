@@ -17,8 +17,7 @@
 
         <div class=" d-flex align-items-center ms-3">
             <a href="dashboard.html">
-                <img id="Logo" class="navbar-brand"
-                    src="ProtoBuildLogo.png" alt="logotipo">
+                <img id="Logo" class="navbar-brand" src="ProtoBuildLogo.png" alt="logotipo">
             </a>
             <span class="navbar-brand text-white">PROTO BUILDER</span>
         </div>
@@ -46,7 +45,7 @@
         <div class="bg-dark text-white p-3 glass-panel col-2 me-3">
             <h4>Panel de Navegación</h4>
 
-             <ul class="nav mt-4" id="navPanel">
+            <ul class="nav mt-4" id="navPanel">
                 <div class="d-grid gap-3 w-100">
                     <a class="btn btn-primary" href="newbuild.html">
                         Nueva build
@@ -94,159 +93,109 @@
                     <div class="col-lg-2 col-md-6">
                         <div class="build-equipment border border-light text-white p-3">
                             <h3 class="h5 border-bottom pb-2 mb-3">Arma</h3>
-                            <div class="build-weapon-preview">
-                                <img src="https://img.game8.co/4390819/10c376d900a6330c12aa0cbb0a064910.png/show"
-                                    alt="Arma equipada">
+
+                            <!-- Añadimos una clase específica "selector-arma" para el CSS -->
+                            <div class="build-weapon-preview selector-arma">
+
+                                <!-- 1. Radios ocultos para saber qué arma está activa -->
+                                <input type="radio" name="arma-activa" id="arma1" checked>
+                                <input type="radio" name="arma-activa" id="arma2">
+                                <input type="radio" name="arma-activa" id="arma3">
+
+                                <!-- 2. Checkbox oculto para abrir/cerrar el menú -->
+                                <input type="checkbox" id="toggle-arma-menu">
+
+                                <!-- 3. Contenedor de la imagen principal. Al clicar, activa el menú -->
+                                <label for="toggle-arma-menu" class="arma-principal">
+                                    <!-- Se cargan todas, pero el CSS oculta las que no están seleccionadas -->
+                                    <img src="https://img.game8.co/4390819/10c376d900a6330c12aa0cbb0a064910.png/show"
+                                        class="img-arma1" alt="Arma equipada">
+                                    <img src="https://img.game8.co/4390786/56ed8181657221eddd347cee26ccf511.png/show"
+                                        class="img-arma2" alt="Opción 1">
+                                    <img src="https://img.game8.co/4390757/3dd737f22beb196a344c293e0d8143df.png/show"
+                                        class="img-arma3" alt="Opción 2">
+                                </label>
+
+                                <!-- 4. Menú de opciones flotante -->
+                                <div class="arma-menu-opciones">
+                                    <!-- Cada label selecciona su "radio button" correspondiente y cambia la imagen -->
+                                    <label for="arma1">
+                                        <img src="https://img.game8.co/4390819/10c376d900a6330c12aa0cbb0a064910.png/show"
+                                            alt="Arma Original">
+                                    </label>
+                                    <label for="arma2">
+                                        <img src="https://img.game8.co/4390786/56ed8181657221eddd347cee26ccf511.png/show"
+                                            alt="Opción 1">
+                                    </label>
+                                    <label for="arma3">
+                                        <img src="https://img.game8.co/4390757/3dd737f22beb196a344c293e0d8143df.png/show"
+                                            alt="Opción 2">
+                                    </label>
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <div class="build-equipment border border-light text-white p-3">
-                            <h3 class="h5 border-bottom pb-2 mb-3">Artefactos</h3>
-                            <div class="build-artifact-grid">
-                                <img src="https://img.game8.co/4525416/0fb3033f51766269101e5e98edce9296.png/show" alt="Artefacto 1">
-                                <img src="https://img.game8.co/4525415/445d099a671844a5a96c601c8268ecd4.png/show" alt="Artefacto 2">
-                                <img src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show" alt="Artefacto 3">
-                                <img src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show" alt="Artefacto 4">
-                            </div>
-                        </div>
-                    </div>
+    <div class="build-equipment border border-light text-white p-3">
+        <h3 class="h5 border-bottom pb-2 mb-3">Artefactos</h3>
+        
+        <div class="selector-artefactos">
+            <!-- 1. Radios ocultos para controlar qué Set está activo -->
+            <input type="radio" name="set-activo" id="set1" checked>
+            <input type="radio" name="set-activo" id="set2">
+            
+            <!-- 2. Checkbox oculto para abrir/cerrar el menú -->
+            <input type="checkbox" id="toggle-artefactos-menu">
 
+            <!-- 3. Contenedor principal (Funciona como botón para abrir el menú) -->
+            <label for="toggle-artefactos-menu" class="artefactos-principales">
+                
+                <!-- GRUPO SET 1 -->
+                <div class="build-artifact-grid grid-set1">
+                    <img src="https://img.game8.co/4525416/0fb3033f51766269101e5e98edce9296.png/show" alt="Artefacto 1">
+                    <img src="https://img.game8.co/4525415/445d099a671844a5a96c601c8268ecd4.png/show" alt="Artefacto 2">
+                    <img src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show" alt="Artefacto 3">
+                    <img src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show" alt="Artefacto 4">
                 </div>
+
+                <!-- GRUPO SET 2 -->
+                <div class="build-artifact-grid grid-set2">
+                    <img src="https://img.game8.co/4393351/2dd942550fbfb437b8ffd3880dba471b.png/show" alt="Artefacto 1">
+                    <img src="https://img.game8.co/4393330/8a89b9971d03a409e35bff6563bf7f77.png/show" alt="Artefacto 2">
+                    <img src="https://img.game8.co/4393319/39946a6dec4cf6af8441456fea1a2d38.png/show" alt="Artefacto 3">
+                    <img src="https://img.game8.co/4393333/a27755f530751b9ca34235c2fe7603e6.png/show" alt="Artefacto 4">
+                </div>
+
+            </label>
+
+            <!-- 4. Menú de opciones flotante -->
+            <div class="artefactos-menu-opciones">
+                <!-- Opción 1: Muestra el Set 1 en miniatura -->
+                <label for="set1" class="opcion-set">
+                    <div class="mini-grid">
+                        <img src="https://img.game8.co/4525416/0fb3033f51766269101e5e98edce9296.png/show" alt="Set 1">
+                        <img src="https://img.game8.co/4525415/445d099a671844a5a96c601c8268ecd4.png/show" alt="Set 1">
+                        <img src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show" alt="Set 1">
+                        <img src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show" alt="Set 1">
+                    </div>
+                </label>
+                
+                <!-- Opción 2: Muestra el Set 2 en miniatura -->
+                <label for="set2" class="opcion-set">
+                    <div class="mini-grid">
+                        <img src="https://img.game8.co/4393351/2dd942550fbfb437b8ffd3880dba471b.png/show" alt="Set 2">
+                        <img src="https://img.game8.co/4393330/8a89b9971d03a409e35bff6563bf7f77.png/show" alt="Set 2">
+                        <img src="https://img.game8.co/4393319/39946a6dec4cf6af8441456fea1a2d38.png/show" alt="Set 2">
+                        <img src="https://img.game8.co/4393333/a27755f530751b9ca34235c2fe7603e6.png/show" alt="Set 2">
+                    </div>
+                </label>
             </div>
-
-            <!-- Armas-->
-            <div id="seccion2" class="contenido-seccion mt-4">
-                <h2 class="text-white border-bottom pb-2">Gestión de Armas</h2>
-                <div class="row mt-4">
-                    <div class="col-md-4">
-                        <div class="bg-transparent border border-light text-white" style="height: 250px;">
-                            <img src="https://img.game8.co/4390786/56ed8181657221eddd347cee26ccf511.png/show"
-                                class="w-100 h-100" style="object-fit: cover; object-position: center 40%;" alt="arma">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="bg-transparent border border-light text-white" style="height: 250px;">
-                            <img src="https://img.game8.co/4390757/3dd737f22beb196a344c293e0d8143df.png/show"
-                                class="w-100 h-100" style="object-fit: cover; object-position: center 40%;" alt="arma">
-                        </div>
-                    </div>
-                </div>
-                <!-- artefactos-->
-                <div id="seccion3" class="contenido-seccion mt-4">
-                    <h2 class="text-white border-bottom pb-2">Gestión de Artefactos</h2>
-                    <div class="row mt-4">
-
-                        <div class="col-4">
-
-                            <div class="col-8">
-
-                                <!-- cuadros artefactos-->
-                                <div class="row text-center" style="height: 200px;">
-
-
-                                    <!-- Cuadro 1: Arriba Izquierda -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;">
-                                            <img src="https://img.game8.co/4525416/0fb3033f51766269101e5e98edce9296.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;" alt="Artefacto">
-                                        </span>
-                                    </div>
-
-                                    <!-- Cuadro 2: Arriba Derecha -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;"><img
-                                                src="https://img.game8.co/4525415/445d099a671844a5a96c601c8268ecd4.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;"
-                                                alt="Artefacto"></span>
-                                    </div>
-
-                                    <!-- Cuadro 3: Abajo Izquierda -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;"><img
-                                                src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;"
-                                                alt="Artefacto"></span>
-                                    </div>
-
-                                    <!-- Cuadro 4: Abajo Derecha -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;"><img
-                                                src="https://img.game8.co/4525417/64becd8b829257d663e411a61ef87800.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;"
-                                                alt="Artefacto"></span>
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <div class="col-4">
-
-                            <div class="col-8 ">
-
-                                <!-- cuadros artefactos-->
-                                <div class="row text-center" style="height: 200px;">
-
-
-                                    <!-- Cuadro 1: Arriba Izquierda -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;">
-                                            <img src="https://img.game8.co/4393351/2dd942550fbfb437b8ffd3880dba471b.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;" alt="Artefacto">
-                                        </span>
-                                    </div>
-
-                                    <!-- Cuadro 2: Arriba Derecha -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;"><img
-                                                src="https://img.game8.co/4393330/8a89b9971d03a409e35bff6563bf7f77.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;"
-                                                alt="Artefacto"></span>
-                                    </div>
-
-                                    <!-- Cuadro 3: Abajo Izquierda -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;"><img
-                                                src="https://img.game8.co/4393319/39946a6dec4cf6af8441456fea1a2d38.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;"
-                                                alt="Artefacto"></span>
-                                    </div>
-
-                                    <!-- Cuadro 4: Abajo Derecha -->
-                                    <div class="col-6 border d-flex justify-content-center align-items-center">
-                                        <span style="font-size: 2rem;"><img
-                                                src="https://img.game8.co/4393333/a27755f530751b9ca34235c2fe7603e6.png/show"
-                                                class="w-100 h-100"
-                                                style="object-fit: cover; object-position: center 40%;"
-                                                alt="Artefacto"></span>
-                                    </div>
-
-                                </div>
-                                <div style="height: 100px; width: 100%;"></div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-
+            
+        </div>
+    </div>
+</div>
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
