@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Mis Builds</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+    <!--nav horixontal-->
+    <nav class="navbar d-flex ">
+
+        <div class=" d-flex align-items-center ms-3">
+            <a href="dashboard.html">
+                <img id="Logo" class="navbar-brand" src="ProtoBuildLogo.png" alt="logotipo">
+            </a>
+            <span class="navbar-brand text-white">PROTO BUILDER</span>
+        </div>
+
+        <div class="me-3">
+            Josepe67
+            <img id="ImgPerfil" class="rounded-circle"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxLtHUEY9x8UIUKuqwrFrCihMzGFDlxRYyagdQvNcXgd0zcXbHlhKe1acJ&s=10"
+                alt="">
+        </div>
+
+    </nav>
+
+    <!-- fondo animado -->
+    <div class="bg-slider">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Contenedor principal que ocupa toda la pantalla -->
+    <div class="d-flex vh-100 vw-100 position-relative z-3 p-3">
+        <!-- Panel de navegación lateral -->
+        <div class="bg-dark text-white p-3 glass-panel col-2 me-3">
+            <h4>Panel de Navegación</h4>
+
+            <ul class="nav mt-4" id="navPanel">
+                <div class="d-grid gap-3 w-100">
+                    <a class="btn btn-primary" href="newbuild.html">
+                        Nueva build
+                    </a>
+
+                    <a class="btn btn-primary" href="mybuilds.html">
+                        Mis builds
+                    </a>
+
+                    <a class="btn btn-primary" href="glosario.html">
+                        Glosario
+                    </a>
+                </div>
+            </ul>
+        </div>
+        <!-- Contenido principal de contenidp-->
+        <div class="glass-panel d-flex flex-column gap-4 flex-grow-1 p-4 rounded-4 align-items-center">
+         
+            <div class="container-fluid row gap-3 border-bottom p-3">
+                <a class="btn btn-primary col-3" href="">
+                    CHARACTERS
+                </a>
+                <a class="btn btn-primary col-3" href="">
+                    WEAPONS
+                </a>
+                <a class="btn btn-primary col-3" href="">
+                    ITEMS
+                </a>
+            </div>
+            <div class="container-fluid d-flex justify-content-around align-items-center gap-2 pb-3 border-bottom">
+                <input class="form-control flex-grow-1" type="text" placeholder="¿Qué está buscando?">
+                <button class="btn btn-primary flex-shrink-0">Buscar</button>
+            </div>
+            <div
+                class=" d-flex flex-wrap gap-3 align-items-start justify-content-start flex-grow-1 overflow-auto container-fluid pt-3 pb-3">
+                <!--ITEM-->
+                <div class="card bg-dark bg-opacity-20 rounded" style="width: 14rem;">
+
+                    <div style="height: 200px;;" class="border-bottom">
+                        <img src="https://img.game8.co/4525416/0fb3033f51766269101e5e98edce9296.png/show"
+                            class="w-100 h-100" style="object-fit:contain;">
+                    </div>
+
+                    <div class="p-1 text-center d-flex align-items-center justify-content-center"
+                        style="min-height: 48px;">
+                        <h5 class="card-title text-white mb-0">ITEM 1</h5>
+                    </div>
+
+                    <ul class="list-group list-group-flush text-center">
+                        <li class="list-group-item bg-dark text-light">Strenght</li>
+                        <li class="list-group-item bg-dark text-light">Will</li>
+                        <li class="list-group-item bg-dark text-light">DMG VS Staggered</li>
+                        <li class="list-group-item bg-dark text-light">"Tide Surge"</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
