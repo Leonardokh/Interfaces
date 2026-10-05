@@ -1,5 +1,14 @@
 
 
+.btn-primary {
+    background-color: #f0e051;
+    border-color: #ff6600;
+}
+
+.btn-primary:hover {
+    background-color: #f5df7f;
+    border-color: #fd883a;
+}
 
 
 body {
