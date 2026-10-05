@@ -148,6 +148,96 @@ body {
 }
 
 /* =========================================
+    PERSONAJE NEW BUILD
+========================================= */
+
+/* 1. Ocultar los inputs lógicos para que no ensucien la interfaz */
+.selector-personaje input[type="radio"],
+.selector-personaje input[type="checkbox"] {
+  display: none;
+}
+
+/* 2. El contenedor principal necesita posición relativa para que el menú flote justo debajo */
+.selector-personaje {
+  position: relative;
+  display: block;
+}
+
+/* 3. Estilos del contenedor de la imagen principal */
+.personaje-seleccionado {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.personaje-seleccionado:hover {
+  opacity: 0.8;
+}
+
+/* 4. Ocultar todas las imágenes por defecto y darles formato */
+.personaje-seleccionado img {
+  display: none;
+  width: 100%;
+  max-height: 350px; /* Ajusta esta altura máxima para que el personaje no desborde la pantalla */
+  object-fit: contain; /* Mantiene las proporciones del 'splash art' sin deformarlo ni cortarlo */
+  border-radius: 8px;
+}
+
+/* 5. LA MAGIA: Mostrar solo el personaje cuyo radio button esté marcado */
+#personaje1:checked ~ .personaje-seleccionado .img-pj1,
+#personaje2:checked ~ .personaje-seleccionado .img-pj2,
+#personaje3:checked ~ .personaje-seleccionado .img-pj3 {
+  display: block;
+}
+
+/* 6. Estilos del menú flotante (oculto por defecto) */
+.personaje-menu-opciones {
+  display: none;
+  position: absolute;
+  top: 100%; /* Aparece justo debajo de la imagen principal */
+  left: 0;
+  background: #343a40; /* Fondo oscuro */
+  border: 1px solid #f8f9fa; /* Borde claro */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  gap: 10px;
+  margin-top: 5px;
+  z-index: 1050; /* Z-index alto para sobreponerse a otros elementos */
+  min-width: 200px;
+}
+
+/* 7. Mostrar el menú flotante cuando el checkbox está activado */
+#toggle-personaje-menu:checked ~ .personaje-menu-opciones {
+  display: flex;
+  flex-wrap: wrap; /* Las opciones se acomodan en varias líneas si hay muchas */
+}
+
+/* 8. Estilos de las miniaturas en el menú */
+.personaje-menu-opciones label {
+  cursor: pointer;
+  margin: 0;
+}
+
+.personaje-menu-opciones label img {
+  width: 60px; /* Tamaño de la miniatura */
+  height: 60px; /* Hacemos que sea un cuadrado perfecto */
+  object-fit: cover; /* Recorta un poco si es necesario, ideal para iconos de personajes */
+  object-position: top; /* Centra la imagen en la cara/parte superior del personaje */
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: transform 0.2s, border-color 0.2s;
+  background-color: #212529; /* Fondo de apoyo por si la imagen tiene transparencias */
+}
+
+/* 9. Efecto al pasar el ratón sobre las opciones */
+.personaje-menu-opciones label:hover img {
+  border-color: #0d6efd;
+  transform: scale(1.05);
+}
+
+/* =========================================
     ARMAS
 ========================================= */
 
