@@ -17,8 +17,7 @@
 
         <div class=" d-flex align-items-center ms-3">
             <a href="dashboard.html">
-                <img id="Logo" class="navbar-brand"
-                    src="ProtoBuildLogo.png" alt="logotipo">
+                <img id="Logo" class="navbar-brand" src="ProtoBuildLogo.png" alt="logotipo">
             </a>
             <span class="navbar-brand text-white">PROTO BUILDER</span>
         </div>
@@ -43,7 +42,7 @@
     <!-- Contenedor principal que ocupa toda la pantalla -->
     <div class="d-flex vh-100 vw-100 position-relative z-3 p-3">
         <!-- Panel de navegación lateral -->
-        <div class="bg-dark text-white p-3 glass-panel col-2 me-3">
+         <div class="bg-dark text-white p-3 glass-panel col-2 me-3">
             <h4>Panel de Navegación</h4>
 
             <ul class="nav mt-4" id="navPanel">
@@ -62,17 +61,186 @@
                 </div>
             </ul>
         </div>
-        <div class="glass-panel d-flex flex-wrap gap-4 align-items-start justify-content-evenly flex-grow-1 p-4 rounded-4 overflow-auto container-fluid ">
 
 
+        <!-- Panel de contenido principal -->
+        <div class="glass-panel flex-grow-1 p-4 rounded-4 overflow-auto">
+
+            <!-- build -->
+            <div id="seccion1" class="contenido-seccion">
+                <h2 class="text-white border-bottom pb-2">Builds</h2>
+
+                <div class="row g-3 mt-2 build-overview">
+                    <div class="build-character-preview selector-personaje">
+
+                                <!-- 1. Radios ocultos para saber qué arma está activa -->
+                                <input type="radio" name="pj-activo" id="personaje1" checked>
+                                <input type="radio" name="pj-activo" id="personaje2">
+                                <input type="radio" name="pj-activo" id="personaje3">
+                        
+                                <!-- 2. Checkbox oculto para abrir/cerrar el menú -->
+                                <input type="checkbox" id="toggle-personaje-menu">
+
+                                <!-- 3. Contenedor de la imagen principal. Al clicar, activa el menú -->
+                                <label for="toggle-personaje-menu" class="personaje-seleccionado">
+                                    <!-- Se cargan todas, pero el CSS oculta las que no están seleccionadas -->
+                                    <img src="https://endfield.wiki.gg/images/thumb/Endministrator_%28Male%29_Splash_Art.png/1024px-Endministrator_%28Male%29_Splash_Art.png?b5fff7"
+                                        class="img-pj1" alt="Personaje 1">
+                                    <img src="https://endfield.wiki.gg/images/thumb/Zhuang_Fangyi_Splash_Art.png/1024px-Zhuang_Fangyi_Splash_Art.png?7d6a9c"
+                                        class="img-pj2" alt="Personaje 2">
+                                    <img src="https://endfield.wiki.gg/images/thumb/Lifeng_Splash_Art.png/1024px-Lifeng_Splash_Art.png?dd05e8"
+                                        class="img-pj3" alt="Personaje 3">
+                                </label>
+
+                                <!-- 4. Menú de opciones flotante -->
+                                <div class="personaje-menu-opciones">
+                                    <!-- Cada label selecciona su "radio button" correspondiente y cambia la imagen -->
+                                    <label for="personaje1">
+                                        <img src="https://endfield.wiki.gg/images/thumb/Endministrator_%28Male%29_Splash_Art.png/1024px-Endministrator_%28Male%29_Splash_Art.png?b5fff7"
+                                            alt="Personaje 1">
+                                    </label>
+                                    <label for="personaje2">
+                                        <img src="https://endfield.wiki.gg/images/thumb/Zhuang_Fangyi_Splash_Art.png/1024px-Zhuang_Fangyi_Splash_Art.png?7d6a9c"
+                                            alt="Personaje 2">
+                                    </label>
+                                    <label for="personaje3">
+                                        <img src="https://endfield.wiki.gg/images/thumb/Lifeng_Splash_Art.png/1024px-Lifeng_Splash_Art.png?dd05e8"
+                                            alt="Personaje 3">
+                                    </label>
+                                </div>
+
+                            </div>
+                
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="build-summary border border-light text-white p-3">
+                            <h3 class="h5 border-bottom pb-2 mb-3">Estadísticas</h3>
+                            <div class="row g-3">
+                                <div class="col-6"><strong>Vida (HP)</strong><br>15,200</div>
+                                <div class="col-6"><strong>Ataque (ATK)</strong><br>1,250</div>
+                                <div class="col-6"><strong>Defensa (DEF)</strong><br>800</div>
+                                <div class="col-6"><strong>Prob. CRIT</strong><br>45%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6">
+                        <div class="build-equipment border border-light text-white p-3">
+                            <h3 class="h5 border-bottom pb-2 mb-3">Arma</h3>
+
+                            <!-- Añadimos una clase específica "selector-arma" para el CSS -->
+                            <div class="build-weapon-preview selector-arma">
+
+                                <!-- 1. Radios ocultos para saber qué arma está activa -->
+                                <input type="radio" name="arma-activa" id="arma1" checked>
+                                <input type="radio" name="arma-activa" id="arma2">
+                                <input type="radio" name="arma-activa" id="arma3">
+
+                                <!-- 2. Checkbox oculto para abrir/cerrar el menú -->
+                                <input type="checkbox" id="toggle-arma-menu">
+
+                                <!-- 3. Contenedor de la imagen principal. Al clicar, activa el menú -->
+                                <label for="toggle-arma-menu" class="arma-principal">
+                                    <!-- Se cargan todas, pero el CSS oculta las que no están seleccionadas -->
+                                    <img src=""
+                                        class="img-arma1" alt="Arma equipada">
+                                    <img src=""
+                                        class="img-arma2" alt="Opción 1">
+                                    <img src=""
+                                        class="img-arma3" alt="Opción 2">
+                                </label>
+
+                                <!-- 4. Menú de opciones flotante -->
+                                <div class="arma-menu-opciones">
+                                    <!-- Cada label selecciona su "radio button" correspondiente y cambia la imagen -->
+                                    <label for="arma1">
+                                        <img src=""
+                                            alt="Arma Original">
+                                    </label>
+                                    <label for="arma2">
+                                        <img src=""
+                                            alt="Opción 1">
+                                    </label>
+                                    <label for="arma3">
+                                        <img src=""
+                                            alt="Opción 2">
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+    <div class="build-equipment border border-light text-white p-3">
+        <h3 class="h5 border-bottom pb-2 mb-3">Artefactos</h3>
+        
+        <div class="selector-artefactos">
+            <!-- 1. Radios ocultos para controlar qué Set está activo -->
+            <input type="radio" name="set-activo" id="set1" checked>
+            <input type="radio" name="set-activo" id="set2">
+            
+            <!-- 2. Checkbox oculto para abrir/cerrar el menú -->
+            <input type="checkbox" id="toggle-artefactos-menu">
+
+            <!-- 3. Contenedor principal (Funciona como botón para abrir el menú) -->
+            <label for="toggle-artefactos-menu" class="artefactos-principales">
+                
+                <!-- GRUPO SET 1 -->
+                <div class="build-artifact-grid grid-set1">
+                    <img src="" alt="Artefacto 1">
+                    <img src="" alt="Artefacto 2">
+                    <img src="" alt="Artefacto 3">
+                    <img src="" alt="Artefacto 4">
+                </div>
+
+                <!-- GRUPO SET 2 -->
+                <div class="build-artifact-grid grid-set2">
+                    <img src="" alt="Artefacto 1">
+                    <img src="" alt="Artefacto 2">
+                    <img src="" alt="Artefacto 3">
+                    <img src="" alt="Artefacto 4">
+                </div>
+
+            </label>
+
+            <!-- 4. Menú de opciones flotante -->
+            <div class="artefactos-menu-opciones">
+                <!-- Opción 1: Muestra el Set 1 en miniatura -->
+                <label for="set1" class="opcion-set">
+                    <div class="mini-grid">
+                        <img src="" alt="Set 1">
+                        <img src="" alt="Set 1">
+                        <img src="" alt="Set 1">
+                        <img src="" alt="Set 1">
+                    </div>
+                </label>
+                
+                <!-- Opción 2: Muestra el Set 2 en miniatura -->
+                <label for="set2" class="opcion-set">
+                    <div class="mini-grid">
+                        <img src="" alt="Set 2">
+                        <img src="" alt="Set 2">
+                        <img src="" alt="Set 2">
+                        <img src="" alt="Set 2">
+                    </div>
+                </label>
+            </div>
+            
         </div>
-
-
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+</div>
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
 </body>
 
 </html>
