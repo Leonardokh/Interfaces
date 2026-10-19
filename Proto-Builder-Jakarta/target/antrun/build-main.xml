@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <copy file="C:\Users\USUARIO\Desktop\DISENO DE INTERFACES\DDI\Interfaces\Proto-Builder-Jakarta\target/proto-builder.war" todir="C:/apache-tomcat-11.0.26/webapps" overwrite="true" />
+  </target>
+</project>

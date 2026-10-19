@@ -16,14 +16,13 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <h2>Login</h2>
-                    <h:outputText value="#{loginBean.mensaje}" id="mensajeLogin" />
                     <h:form id="login">                        
                         <p:panel header="Iniciar sesión">
                             <p:outputLabel for="username" value="Usuario:" />
                             <p:inputText id="username" value="#{loginBean.username}" />
                             <p:outputLabel for="password" value="Contraseña:" />
                             <p:password id="password" value="#{loginBean.password}" />
-                            <p:commandButton value="Login" action="#{loginBean.login}" update="@form mensajeLogin :mensajes" />
+                            <p:commandButton value="Login" action="#{loginBean.login}" update="@form :mensajes" />
                         </p:panel>
                     </h:form>
                 </div>
