@@ -12,66 +12,66 @@
 
     <ui:define name="content">
 
-        <!-- Fondos -->
-    <div class="bg-slider">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <div class="overlay"></div>
+        <h1>Jakarta Faces + PrimeFaces</h1>
 
-    <nav class="navbar">
-        <div class="container-fluid">
-            <img class="navbar-brand" src="ProtoBuildLogo.png"
-                id="Logo" alt="logotipo">
-            <span class="navbar-brand text-white">PROTO BUILDER</span>
-        </div>
-    </nav>
+    <h:form>
 
-    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class=" container glass-panel p-4" style="width: 400px;">
-            <h3 class="text-center text-white mb-4">Inicio de Sesión</h3>
-            <form action="dashboard.html" method="post" novalidate class="needs-validation">
-                <div class="mb-3">
-                    <label for="usuario" class="form-label text-white font-weight-bold">Usuario:</label>
-                    <input type="text" class="form-control" id="user" name="user" placeholder="Ingresa tu usuario"
-                        required>
-                    <div class="valid-feedback">
-                        Válido
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="password" class="form-label text-white font-weight-bold">Contraseña:</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Ingresa tu contraseña" required>
-                    <div class="invalid-feedback">
-                        Contraseña incorrecta
-                    </div>
-                </div>
-                <div class="mb-4 d-grid">
-                    <button type="submit" class="btn btn-primary ">Acceder</button>
-                </div>
-                <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <span class="text-white">¿Has olvidado tu contraseña?</span>
-                    <a class="btn btn-primary " href="#" role="button">Recuperar</a>
-                </div>
-            </form>
-        </div>
-        <div class="mt-4 container glass-panel p-4" style="width: 400px;">
+    <p:knob value="#{holaBean.value}">
+        <p:ajax listener="#{holaBean.onChange}"/>
+    </p:knob>
 
-            <h5 class="text-center text-white mb-3">¿No estás registrado?</h5>
+        <p:panel header="Prueba PrimeFaces">
 
-            <div class="d-grid">
-                <a class="btn btn-primary" href="register.html" role="button">Registrarse</a>
+            <p:outputLabel for="nombre"
+                           value="Nombre:" />
+
+            <h:outputText value="#{holaBean.saludo}" />
+
+            <p:inputText id="nombre"
+                         value="#{holaBean.nombre}" />
+
+            <p:commandButton value="Saludar"
+                             action="#{holaBean.saludar}"
+                             update="mensaje" />
+
+            <h:outputText id="mensaje"
+                          value="#{holaBean.mensaje}" />
+
+        </p:panel>
+
+    </h:form>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <h2>Página principal</h2>
+
+                <p:panel header="Bienvenido">
+                    Esta es la página principal.
+                </p:panel>
+
             </div>
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Información
+                        </h5>
+
+                        <p class="card-text">
+                            Ejemplo de una tarjeta Bootstrap.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="validacion.js"></script>
 
     </ui:define>
 
