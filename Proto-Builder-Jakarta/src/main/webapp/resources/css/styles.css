@@ -1,0 +1,421 @@
+
+
+.btn-primary {
+    background-color: #f0e051;
+    border-color: #ff6600;
+    color: #080b12;
+}
+
+.btn-primary:hover {
+    background-color: #f5df7f;
+    border-color: #fd883a;
+}
+
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #080b12; /* Color de respaldo */
+    color: #ffffff;
+}
+
+.navbar{
+    background-color: #181d2b;
+    color: #ffffff;
+}
+
+#Logo{
+    height: 64px;   
+}
+#ImgPerfil{
+    object-fit: cover;
+    height: 40px;
+    width: 40px;
+    margin-left: 8px;
+}
+
+.imgDash{
+  height: 400px;
+  object-fit: cover;
+}
+.list-group-item {
+    border-color: #333 !important;
+}   
+
+.build-character-image,
+.build-summary,
+.build-equipment {
+    height: 320px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.build-character-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+.build-weapon-preview {
+    height: 230px;
+}
+
+.build-weapon-preview img,
+.build-artifact-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.build-artifact-grid {
+    display: grid;
+    height: 230px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.build-artifact-grid img {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    object-fit: cover;
+}
+
+@media (max-width: 991.98px) {
+    .build-character-image,
+    .build-summary,
+    .build-equipment {
+        height: auto;
+        min-height: 280px;
+    }
+
+    .build-artifact-grid {
+        height: 190px;
+    }
+}
+
+
+
+
+/* =========================================
+   1. ANIMACIÓN DEL FONDO (SLIDER)
+========================================= */
+.bg-slider { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; }
+.bg-slider div {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center; opacity: 0;
+    animation: slider 12s infinite ease-in-out;
+}
+.bg-slider div:nth-child(1) { background-image: url('https://imgs.search.brave.com/hlye_a3xUoiAlrm5GIOHoPdTwlBHA-qMPzFSppeDeQ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE2MDEz/NjY3LnBuZw'); animation-delay: 0s; }
+.bg-slider div:nth-child(2) { background-image: url('https://imgs.search.brave.com/IHX9WO6TG20_tkxsH8G_H0V5A2Ar1HtFdJRlMg1JlH0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5lc3BvcnRzLmdn/L3VwbG9hZHMvMjAy/NC8wNy9Ib3ctdG8t/dGFrZS1waWN0dXJl/cy1pbi1aWlotWmVu/bGVzcy1ab25lLVpl/cm8tOTY4eDU0NC5q/cGc'); animation-delay: 4s; }
+.bg-slider div:nth-child(3) { background-image: url('https://imgs.search.brave.com/uV0k379CebSVx79pYRNwukV2OY24WsLDFh_6H6Rhvqw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9md21l/ZGlhLmZhbmRvbXdp/cmUuY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzA5LzE5/MDgwNDQyL2ltYWdl/LTdkYTFlN2U5LTEw/MjR4NTc2LnBuZw'); animation-delay: 8s; }
+
+@keyframes slider { 
+    0% { opacity: 0; transform: scale(1); } 
+    10% { opacity: 1; } 
+    33% { opacity: 1; } 
+    43% { opacity: 0; transform: scale(1.05); } 
+    100% { opacity: 0; } 
+}
+
+/* =========================================
+   CAPA OSCURA Y EFECTOS CRISTAL
+========================================= */
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+    
+}
+
+/* Tarjeta transparente */
+.glass-panel {
+    background: rgba(20, 30, 45, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    z-index: 1;
+    -webkit-backdrop-filter: blur(12px); /* Soporte para Safari/iOS */
+}
+
+/* Cajas de texto ligeramente transparentes para que combinen */
+.custom-input {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: none;
+}
+.custom-input:focus {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
+}
+
+/* =========================================
+    PERSONAJE NEW BUILD
+========================================= */
+
+/* 1. Ocultar los inputs lógicos para que no ensucien la interfaz */
+.selector-personaje input[type="radio"],
+.selector-personaje input[type="checkbox"] {
+  display: none;
+}
+
+/* 2. El contenedor principal necesita posición relativa para que el menú flote justo debajo */
+.selector-personaje {
+  position: relative;
+  display: block;
+}
+
+/* 3. Estilos del contenedor de la imagen principal */
+.personaje-seleccionado {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.personaje-seleccionado:hover {
+  opacity: 0.8;
+}
+
+/* 4. Ocultar todas las imágenes por defecto y darles formato */
+.personaje-seleccionado img {
+  display: none;
+  width: 100%;
+  max-height: 350px; /* Ajusta esta altura máxima para que el personaje no desborde la pantalla */
+  object-fit: contain; /* Mantiene las proporciones del 'splash art' sin deformarlo ni cortarlo */
+  border-radius: 8px;
+}
+
+/* 5. LA MAGIA: Mostrar solo el personaje cuyo radio button esté marcado */
+#personaje1:checked ~ .personaje-seleccionado .img-pj1,
+#personaje2:checked ~ .personaje-seleccionado .img-pj2,
+#personaje3:checked ~ .personaje-seleccionado .img-pj3 {
+  display: block;
+}
+
+/* 6. Estilos del menú flotante (oculto por defecto) */
+.personaje-menu-opciones {
+  display: none;
+  position: absolute;
+  top: 100%; /* Aparece justo debajo de la imagen principal */
+  left: 0;
+  background: #343a40; /* Fondo oscuro */
+  border: 1px solid #f8f9fa; /* Borde claro */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  gap: 10px;
+  margin-top: 5px;
+  z-index: 1050; /* Z-index alto para sobreponerse a otros elementos */
+  min-width: 200px;
+}
+
+/* 7. Mostrar el menú flotante cuando el checkbox está activado */
+#toggle-personaje-menu:checked ~ .personaje-menu-opciones {
+  display: flex;
+  flex-wrap: wrap; /* Las opciones se acomodan en varias líneas si hay muchas */
+}
+
+/* 8. Estilos de las miniaturas en el menú */
+.personaje-menu-opciones label {
+  cursor: pointer;
+  margin: 0;
+}
+
+.personaje-menu-opciones label img {
+  width: 60px; /* Tamaño de la miniatura */
+  height: 60px; /* Hacemos que sea un cuadrado perfecto */
+  object-fit: cover; /* Recorta un poco si es necesario, ideal para iconos de personajes */
+  object-position: top; /* Centra la imagen en la cara/parte superior del personaje */
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: transform 0.2s, border-color 0.2s;
+  background-color: #212529; /* Fondo de apoyo por si la imagen tiene transparencias */
+}
+
+/* 9. Efecto al pasar el ratón sobre las opciones */
+.personaje-menu-opciones label:hover img {
+  border-color: #0d6efd;
+  transform: scale(1.05);
+}
+
+/* =========================================
+    ARMAS
+========================================= */
+
+/* Ocultar los inputs que hacen la magia */
+.selector-arma input[type="radio"],
+.selector-arma input[type="checkbox"] {
+  display: none;
+}
+
+/* El contenedor necesita posición relativa para el menú flotante */
+.selector-arma {
+  position: relative;
+  display: block;
+}
+
+/* Aseguramos que el contenedor de la imagen principal ocupe bien el espacio */
+.arma-principal {
+  display: block;
+  width: 100%;
+}
+
+/* Ocultar todas las imágenes principales por defecto */
+.arma-principal img {
+  display: none;
+  width: 100%;
+  max-height: 220px; /* <--- ESTA ES LA CLAVE: Limita cuánto puede crecer a lo alto */
+  object-fit: contain; /* Encaja la imagen entera dentro de esas medidas sin deformarla */
+  cursor: pointer;
+  border-radius: 8px;
+  transition: opacity 0.2s;
+}
+
+#arma1:checked ~ .arma-principal .img-arma1,
+#arma2:checked ~ .arma-principal .img-arma2,
+#arma3:checked ~ .arma-principal .img-arma3 {
+  display: block;
+}
+
+/* Estilos del menú de miniaturas (oculto por defecto) */
+.arma-menu-opciones {
+  display: none; /* Se oculta inicialmente */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #343a40; /* Fondo oscuro tipo Bootstrap */
+  border: 1px solid #f8f9fa; /* Borde light para hacer match con el tuyo */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  gap: 10px;
+  margin-top: 5px;
+  z-index: 1050; /* Z-index alto para quedar por encima de otras columnas */
+}
+
+/* LA LÓGICA DEL MENÚ: Si el checkbox está marcado, el menú usa display: flex */
+#toggle-arma-menu:checked ~ .arma-menu-opciones {
+  display: flex;
+  flex-wrap: wrap; /* Por si añades muchas armas, pasen a otra línea */
+}
+
+/* Estilos de las imágenes pequeñitas del menú */
+.arma-menu-opciones label {
+  cursor: pointer;
+  margin: 0;
+}
+
+.arma-menu-opciones label img {
+  width: 60px; /* Tamaño de la miniatura */
+  height: auto;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+/* Efecto hover en las miniaturas */
+.arma-menu-opciones label:hover img {
+  border-color: #0d6efd; /* Borde azul al pasar el ratón */
+  transform: scale(1.05);
+}
+
+/* =========================================
+    ARTEFACTOS BUILD
+========================================= */
+/* Ocultar los inputs lógicos */
+.selector-artefactos input[type="radio"],
+.selector-artefactos input[type="checkbox"] {
+  display: none;
+}
+
+/* Contenedor relativo */
+.selector-artefactos {
+  position: relative;
+  display: block;
+}
+
+/* Estilos del contenedor principal */
+.artefactos-principales {
+  cursor: pointer;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.artefactos-principales:hover {
+  opacity: 0.8;
+}
+
+/* Ocultar todos los grids de artefactos por defecto */
+.artefactos-principales .build-artifact-grid {
+  display: none; 
+}
+
+/*  Mostrar el grid entero dependiendo de qué radio esté marcado */
+
+#set1:checked ~ .artefactos-principales .grid-set1,
+#set2:checked ~ .artefactos-principales .grid-set2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Divide el espacio en 2 columnas exactamente iguales */
+  gap: 10px; /* Separación entre los artefactos */
+}
+
+/* EVITAR DEFORMACIÓN */
+.artefactos-principales .build-artifact-grid img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1; /* Fuerza a que el ancho y el alto sean iguales (cuadrado) */
+  object-fit: cover; /* Evita que se aplasten; recorta un poquito si es necesario pero mantiene la forma */
+  border-radius: 4px; /* Suaviza las esquinas un poco */
+  display: block;
+}
+
+/* Menú de opciones (Oculto por defecto) */
+.artefactos-menu-opciones {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #343a40;
+  border: 1px solid #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  gap: 15px;
+  margin-top: 5px;
+  z-index: 1050;
+  min-width: 200px;
+}
+
+/* Mostrar menú si el checkbox está activo */
+#toggle-artefactos-menu:checked ~ .artefactos-menu-opciones {
+  display: flex;
+  flex-direction: column; /* Pone las opciones una debajo de otra */
+}
+
+/* Estilo para cada opción del menú */
+.opcion-set {
+  cursor: pointer;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.2s;
+  color: #ffffff;
+
+}
+
+.opcion-set:hover {
+  border-color: #0d6efd;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Pequeño grid dentro del menú para que el usuario vea qué set va a elegir */
+.mini-grid {
+  display: flex;
+  gap: 4px;
+}
+
+.mini-grid img {
+  width: 40px; /* Imágenes más pequeñas para el menú */
+  height: auto;
+  border-radius: 4px;
+}
