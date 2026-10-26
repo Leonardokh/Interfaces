@@ -431,12 +431,12 @@ html, body {
 
 /* 2. Contenedor y cuerpo del Panel transparente */
 .login-panel .ui-panel {
-    background: red;
+    background: rgba(255, 255, 255, 0.15)
 
 }
 body .login-panel .ui-panel-titlebar{
-    background: rgba(238, 6, 6, 0.75) !important;
+    background: rgba(255, 255, 255, 0.15)
 }
 body .login-panel .ui-panel-content{
-    background: rgba(238, 6, 6, 0.75) !important;
+    background: rgba(255, 255, 255, 0.15)
 }
