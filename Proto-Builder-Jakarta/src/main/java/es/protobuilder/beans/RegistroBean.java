@@ -1,4 +1,4 @@
-package es.proto;
+package es.protobuilder.beans;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
