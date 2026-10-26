@@ -11,11 +11,27 @@
 }
 
 
-body {
+html, body {
+    height: 100%;
     margin: 0;
-    overflow: hidden;
-    background-color: #080b12; /* Color de respaldo */
-    color: #ffffff;
+    padding: 0;
+}
+
+/* Configura el contenedor principal como Flexbox Vertical */
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* El contenido (cuerpo/login) absorbe todo el espacio disponible */
+.app-content {
+    flex: 1 0 auto;
+}
+
+/* El footer se mantiene abajo sin encogerse */
+.footer {
+    flex-shrink: 0;
 }
 
 .navbar{
@@ -418,4 +434,9 @@ body {
   width: 40px; /* Imágenes más pequeñas para el menú */
   height: auto;
   border-radius: 4px;
+}
+
+.login-panel{
+background-color: rgba(255, 1, 1, 0.85) !important;
+
 }
