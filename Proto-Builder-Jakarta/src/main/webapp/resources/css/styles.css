@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 .profile-avatar {
     width: 44px;
@@ -9,6 +10,8 @@
 }
 
 
+=======
+>>>>>>> bae9f5c5a1152a2a491d3dd74144ae56d5077504
 .btn-primary {
     background-color: #f0e051;
     border-color: #ff6600;
@@ -21,16 +24,43 @@
 }
 
 
-body {
+html, body {
+    height: 100%;
     margin: 0;
-    overflow: hidden;
-    background-color: #080b12; /* Color de respaldo */
-    color: #ffffff;
+    padding: 0;
+}
+
+/* Configura el contenedor principal como Flexbox Vertical */
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* El contenido (cuerpo/login) absorbe todo el espacio disponible */
+.app-content {
+    flex: 1 0 auto;
+}
+
+/* El footer se mantiene abajo sin encogerse */
+.footer {
+    flex-shrink: 0;
 }
 
 .navbar{
     background-color: #181d2b;
     color: #ffffff;
+}
+
+.app-navbar > .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.app-navbar .app-menubar {
+    margin-left: auto;
 }
 
 #Logo{
@@ -130,20 +160,11 @@ body {
 /* =========================================
    CAPA OSCURA Y EFECTOS CRISTAL
 ========================================= */
+
 .overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0, 0, 0, 0.45);
     z-index: -1;
-    
-}
-
-/* Tarjeta transparente */
-.glass-panel {
-    background: rgba(20, 30, 45, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
-    z-index: 1;
-    -webkit-backdrop-filter: blur(12px); /* Soporte para Safari/iOS */
 }
 
 /* Cajas de texto ligeramente transparentes para que combinen */
@@ -157,7 +178,7 @@ body {
 }
 
 /* =========================================
-    PERSONAJE NEW BUILD
+   PERSONAJE NEW BUILD
 ========================================= */
 
 /* 1. Ocultar los inputs lógicos para que no ensucien la interfaz */
@@ -247,7 +268,7 @@ body {
 }
 
 /* =========================================
-    ARMAS
+   ARMAS
 ========================================= */
 
 /* Ocultar los inputs que hacen la magia */
@@ -328,7 +349,7 @@ body {
 }
 
 /* =========================================
-    ARTEFACTOS BUILD
+   ARTEFACTOS BUILD
 ========================================= */
 /* Ocultar los inputs lógicos */
 .selector-artefactos input[type="radio"],
@@ -409,7 +430,6 @@ body {
   background: rgba(255,255,255,0.05);
   transition: all 0.2s;
   color: #ffffff;
-
 }
 
 .opcion-set:hover {
@@ -427,4 +447,9 @@ body {
   width: 40px; /* Imágenes más pequeñas para el menú */
   height: auto;
   border-radius: 4px;
+}
+
+.login-panel{
+background-color: rgba(255, 1, 1, 0.85) !important;
+
 }

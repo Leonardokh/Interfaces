@@ -201,6 +201,7 @@
                                             <includes>
                                                 <include>**/*.xhtml</include>
                                                 <include>**/*.css</include>
+                                                <include>resources/**</include>
                                             </includes>
 
                                         </resource>
