@@ -1,49 +1,53 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
-      xmlns:ui="jakarta.faces.facelets"
-      xmlns:p="primefaces">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
 
 <h:head>
     <title>
         <ui:insert name="title">Proto-Builder</ui:insert>
     </title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet" />
-    <h:outputStylesheet
-        library="css"
-        name="styles.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <h:outputStylesheet library="css" name="styles.css" />
 
 </h:head>
 
 <h:body>
-    
-    <p:growl id="mensajes" showDetail="true" life="60000" />
-
-    <!-- HEADER -->
     <header>
-        <h1>Mi aplicación Jakarta</h1>
 
-        <p:menubar>
-            <p:menuitem value="Inicio"
-                        outcome="/home"
-                        icon="pi pi-home"/>
 
-            <p:menuitem value="Usuarios"
-                        outcome="/usuarios"
-                        icon="pi pi-users"/>
-        </p:menubar>
+        <nav class="navbar">
+            <div class="container-fluid">
+
+                <img src="#{resource['img:ProtoBuildLogo.png']}" alt="Logo" style="width: 60px; height: auto;" />
+
+                <!-- Usuario con sesión iniciada -->
+                <h:panelGroup rendered="#{usuarioBean.autenticado}" styleClass="d-flex align-items-center ms-auto">
+
+                    <span class="text-white me-3">
+                        #{usuarioBean.nombre}
+                    </span>
+
+                    <img src="#{empty usuarioBean.fotoUrl
+                        ? resource['img:avatar-default.jpg']
+                        : usuarioBean.fotoUrl}" alt="Foto de perfil" class="profile-avatar" />
+
+                </h:panelGroup>
+
+                <!-- Visitante sin sesión -->
+                <h:panelGroup rendered="#{not usuarioBean.autenticado}" styleClass="ms-auto">
+
+                    <span class="navbar-brand text-white mb-0">
+                        PROTO BUILDER
+                    </span>
+
+                </h:panelGroup>
+
+            </div>
+        </nav>
+
+
     </header>
-
-    <nav class="navbar">
-        <div class="container-fluid">
-            <img class="navbar-brand" src="https://ethic.es/wp-content/uploads/2023/03/imagen.jpg"
-                id="Logo"></img>
-            <span class="navbar-brand text-white">PROTO BUILDER</span>
-        </div>
-    </nav>
 
 
     <!-- CONTENIDO DE CADA PÁGINA -->
@@ -56,10 +60,6 @@
 
     <!-- FOOTER -->
     <footer>
-        <hr/>
-        <p>
-            Aplicación de pruebas - FEMPA
-        </p>
     </footer>
 
     <!-- Bootstrap JS -->
