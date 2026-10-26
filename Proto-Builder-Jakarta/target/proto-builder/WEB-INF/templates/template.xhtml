@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
-<<<<<<< HEAD
     xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
-=======
-    xmlns:ui="jakarta.faces.facelets" xmlns:p="http://primefaces.org/ui">
->>>>>>> bae9f5c5a1152a2a491d3dd74144ae56d5077504
 
 <h:head>
     <!-- Bootstrap CSS -->
@@ -14,7 +10,6 @@
 </h:head>
 
 <h:body>
-<<<<<<< HEAD
     <header>
 
 
@@ -31,7 +26,7 @@
                     </span>
 
                     <img src="#{empty usuarioBean.fotoUrl
-                        ? resource['img:avatar-default.png']
+                        ? resource['img:avatar-default.jpg']
                         : usuarioBean.fotoUrl}" alt="Foto de perfil" class="profile-avatar" />
 
                 </h:panelGroup>
@@ -51,27 +46,6 @@
 
     </header>
 
-=======
-
-    <p:growl id="mensajes" showDetail="true" life="60000" />
-
-    <!-- HEADER -->
-    <header>
-        <nav class="navbar app-navbar">
-            <div class="container-fluid">
-                <h:graphicImage library="images" name="ProtoBuildLogo.png" styleClass="navbar-brand" id="Logo" />
-                <p:menubar id="headerMenu" styleClass="app-menubar">
-                    <p:menuitem value="Inicio" outcome="/home" icon="pi pi-home" />
-                    <p:menuitem value="Usuarios" outcome="/usuarios" icon="pi pi-users" />
-                </p:menubar>
-            </div>
-        </nav>
-
-    </header>
-
-
-
->>>>>>> bae9f5c5a1152a2a491d3dd74144ae56d5077504
 
     <!-- CONTENIDO DE CADA PÁGINA -->
     <main>
@@ -83,13 +57,6 @@
 
     <!-- FOOTER -->
     <footer>
-<<<<<<< HEAD
-=======
-        <hr />
-        <p>
-            Aplicación de pruebas - FEMPA
-        </p>
->>>>>>> bae9f5c5a1152a2a491d3dd74144ae56d5077504
     </footer>
 
     <!-- Bootstrap JS -->
