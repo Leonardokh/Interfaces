@@ -429,14 +429,45 @@ html, body {
 /* 1. Fondo de la página */
 
 
-/* 2. Contenedor y cuerpo del Panel transparente */
-.login-panel .ui-panel {
-    background: rgba(255, 255, 255, 0.15)
+/* 2. Contenedor y cuerpo del Panel transparente, adicional el contenido del panel en columna y centrado */
+body .ui-panel .ui-panel-titlebar {
+  background: rgba(255, 255, 255, 0.15);
+    color: rgb(30, 12, 221);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Centra los elementos horizontalmente */
+    justify-content: center !important;
+    gap: 12px; /* Espaciado uniforme entre cada campo */
+}
 
+body .ui-panel .ui-panel-content {
+  background: rgba(255, 255, 255, 0.15);
+    color: rgb(30, 12, 221);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Centra los elementos horizontalmente */
+    justify-content: center !important;
+    gap: 12px; /* Espaciado uniforme entre cada campo */
 }
-body .login-panel .ui-panel-titlebar{
-    background: rgba(255, 255, 255, 0.15)
+
+/* Alinea los textos e inputs */
+body .ui-panel .ui-outputlabel {
+  background: rgba(255, 255, 255, 0.15);
+    color: rgb(30, 12, 221);
+    align-self: flex-start; /* O usa 'center' si quieres los títulos centrados */
+    margin-bottom: -4px;
 }
-body .login-panel .ui-panel-content{
-    background: rgba(255, 255, 255, 0.15)
+
+body .ui-panel .ui-inputfield {
+  background: rgba(255, 255, 255, 0.15);
+    color: rgb(30, 12, 221);
+    width: 100% !important; /* Hace que el input ocupe el ancho adecuado */
+    max-width: 300px; /* Define un ancho máximo elegante */
+}
+
+/* Centra el botón de Login */
+body .ui-panel .ui-button {
+    width: 100% !important;
+    max-width: 300px;
+    margin-top: 10px;
 }
