@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 es\protobuilder\beans\UsuarioBean.class
+=======
+es\proto\LoginBean.class
+es\proto\RegistroBean.class
+es\proto\Main.class
+>>>>>>> a5b813844745d8b5863981295cee0a82a19f32b7
