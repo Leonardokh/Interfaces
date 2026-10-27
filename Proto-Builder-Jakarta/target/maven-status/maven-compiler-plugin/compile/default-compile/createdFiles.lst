@@ -1,3 +1,4 @@
-es\proto\LoginBean.class
+es\protobuilder\beans\RegistroBean.class
+es\protobuilder\beans\LoginBean.class
 es\protobuilder\beans\UsuarioBean.class
-es\proto\RegistroBean.class
+es\protobuilder\beans\VistaBean.class

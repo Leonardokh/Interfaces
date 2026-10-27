@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-
 .profile-avatar {
     width: 44px;
     height: 44px;
@@ -10,17 +8,15 @@
 }
 
 
-=======
->>>>>>> bae9f5c5a1152a2a491d3dd74144ae56d5077504
 .btn-primary {
-    background-color: #f0e051;
-    border-color: #ff6600;
-    color: #080b12;
+    background-color: #dfa321 !important;
+    border-color: #a31212 !important;
+    color: #080b12 !important;
 }
 
 .btn-primary:hover {
-    background-color: #f5df7f;
-    border-color: #fd883a;
+    background-color: #faf747 !important;
+    border-color: #dfa321 !important;
 }
 
 
@@ -452,4 +448,11 @@ html, body {
 .login-panel{
 background-color: rgba(255, 1, 1, 0.85) !important;
 
+}
+
+.glass-panel {
+    background-color: rgba(33, 37, 41, 0.75) !important;  /* Color de fondo oscuro semi transparente */
+    backdrop-filter: blur(10px);                            /* Efecto desenfoque de fondo */
+    -webkit-backdrop-filter: blur(10px);                    /* Soporte para Safari */
+    border: 1px solid rgba(255, 255, 255, 0.1);           /* Borde sutil */
 }

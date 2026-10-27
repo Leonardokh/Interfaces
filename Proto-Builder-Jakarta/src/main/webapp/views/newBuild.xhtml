@@ -1,0 +1,126 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces"
+                xmlns:f="jakarta.faces.core">
+
+    <div class="container-fluid">
+        <!-- Cabecera de la sección -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="text-white m-0">Nueva Build</h2>
+                <span class="text-muted small">Configura los parámetros, operador y equipamiento de combate</span>
+            </div>
+            <span class="badge bg-primary">Modo Edición</span>
+        </div>
+
+        <h:form id="formNuevaBuild">
+            <div class="row g-4">
+                
+                <!-- Columna Izquierda: Datos Generales y Personaje -->
+                <div class="col-lg-4">
+                    <div class="p-4 rounded glass-panel h-100 d-flex flex-column gap-3">
+                        <h5 class="text-warning border-bottom border-secondary pb-2">Información Básica</h5>
+                        
+                        <!-- Nombre de la build -->
+                        <div class="form-group">
+                            <h:outputLabel for="nombreBuild" value="Nombre de la Build:" styleClass="form-label text-white small" />
+                            <p:inputText id="nombreBuild" placeholder="Ej. Build DPS Crítico" styleClass="form-control bg-dark text-white border-secondary" />
+                        </div>
+
+                        <!-- Selección de Operador -->
+                        <div class="form-group">
+                            <h:outputLabel for="operador" value="Operador / Personaje:" styleClass="form-label text-white small" />
+                            <p:selectOneMenu id="operador" styleClass="form-control bg-dark text-white border-secondary w-100">
+                                <f:selectItem itemLabel="Selecciona un operador..." itemValue="" />
+                                <f:selectItem itemLabel="Perlica" itemValue="perlica" />
+                                <f:selectItem itemLabel="Endministrator" itemValue="endministrator" />
+                                <f:selectItem itemLabel="Xaihi" itemValue="xaihi" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <!-- Vista previa de imagen -->
+                        <div class="mt-auto pt-3 text-center">
+                            <div class="bg-black bg-opacity-50 p-2 rounded border border-secondary d-flex align-items-center justify-content-center" style="height: 160px;">
+                                <span class="text-muted small">Vista previa del Operador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Central: Equipamiento y Armas -->
+                <div class="col-lg-4">
+                    <div class="p-4 rounded glass-panel h-100 d-flex flex-column gap-3">
+                        <h5 class="text-warning border-bottom border-secondary pb-2">Equipamiento</h5>
+
+                        <!-- Selección de Arma -->
+                        <div class="form-group">
+                            <h:outputLabel for="arma" value="Arma / Motor-Amp:" styleClass="form-label text-white small" />
+                            <p:selectOneMenu id="arma" styleClass="form-control bg-dark text-white border-secondary w-100">
+                                <f:selectItem itemLabel="Selecciona un arma..." itemValue="" />
+                                <f:selectItem itemLabel="Espada de Aleación Industrial" itemValue="espada" />
+                                <f:selectItem itemLabel="Rifle de Pulso Táctico" itemValue="rifle" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <!-- Selección de Módulo / Artefacto -->
+                        <div class="form-group">
+                            <h:outputLabel for="modulo" value="Set de Módulos:" styleClass="form-label text-white small" />
+                            <p:selectOneMenu id="modulo" styleClass="form-control bg-dark text-white border-secondary w-100">
+                                <f:selectItem itemLabel="Selecciona el set..." itemValue="" />
+                                <f:selectItem itemLabel="Integridad Estructural" itemValue="set1" />
+                                <f:selectItem itemLabel="Sobrecarga Originium" itemValue="set2" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <!-- Notas adicionales -->
+                        <div class="form-group mt-auto">
+                            <h:outputLabel for="notas" value="Notas de rotación:" styleClass="form-label text-white small" />
+                            <p:inputTextarea id="notas" rows="3" placeholder="Describe la estrategia o sinergias..." styleClass="form-control bg-dark text-white border-secondary" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Estadísticas Estimadas -->
+                <div class="col-lg-4">
+                    <div class="p-4 rounded glass-panel h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="text-warning border-bottom border-secondary pb-2 mb-3">Estadísticas Base</h5>
+                            
+                            <div class="d-flex justify-content-between text-white mb-2 small">
+                                <span>Ataque Estimado:</span>
+                                <span class="text-info fw-bold">2,450</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-white mb-2 small">
+                                <span>Prob. Crítica:</span>
+                                <span class="text-info fw-bold">65.0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-white mb-2 small">
+                                <span>Daño Crítico:</span>
+                                <span class="text-info fw-bold">140.0%</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-white mb-2 small">
+                                <span>Maestría Elemental:</span>
+                                <span class="text-info fw-bold">320</span>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-secondary bg-dark text-muted border-secondary small mt-3 mb-0">
+                            * Los valores se calculan automáticamente según el nivel máximo del operador.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botones de Acción Inferiores -->
+            <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-end gap-2">
+                    <p:commandButton value="Limpiar Campos" type="reset" styleClass="btn btn-outline-light px-4" />
+                    <p:commandButton value="Guardar Build" action="#{buildView.guardarBuild}" styleClass="btn btn-primary px-4" />
+                </div>
+            </div>
+        </h:form>
+    </div>
+
+</ui:composition>
