@@ -470,3 +470,9 @@ body .ui-panel .ui-button {
     max-width: 300px;
     margin-top: 10px;
 }
+.glass-panel {
+    background-color: rgba(33, 37, 41, 0.75) !important;  /* Color de fondo oscuro semi transparente */
+    backdrop-filter: blur(10px);                            /* Efecto desenfoque de fondo */
+    -webkit-backdrop-filter: blur(10px);                    /* Soporte para Safari */
+    border: 1px solid rgba(255, 255, 255, 0.1);           /* Borde sutil */
+}
