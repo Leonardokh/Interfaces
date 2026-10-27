@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0078cbfefddfd6644ef623c4bc5c735b673ce26e
 .profile-avatar {
     width: 44px;
     height: 44px;
@@ -10,14 +13,14 @@
 
 
 .btn-primary {
-    background-color: #f0e051;
-    border-color: #ff6600;
-    color: #080b12;
+    background-color: #dfa321 !important;
+    border-color: #a31212 !important;
+    color: #080b12 !important;
 }
 
 .btn-primary:hover {
-    background-color: #f5df7f;
-    border-color: #fd883a;
+    background-color: #faf747 !important;
+    border-color: #dfa321 !important;
 }
 
 
@@ -428,6 +431,15 @@ html, body {
 
 /* 1. Fondo de la página */
 
+<<<<<<< HEAD
+}
+
+.glass-panel {
+    background-color: rgba(33, 37, 41, 0.75) !important;  /* Color de fondo oscuro semi transparente */
+    backdrop-filter: blur(10px);                            /* Efecto desenfoque de fondo */
+    -webkit-backdrop-filter: blur(10px);                    /* Soporte para Safari */
+    border: 1px solid rgba(255, 255, 255, 0.1);           /* Borde sutil */
+=======
 
 /* 2. Contenedor y cuerpo del Panel transparente, adicional el contenido del panel en columna y centrado */
 body .ui-panel .ui-panel-titlebar {
@@ -470,4 +482,5 @@ body .ui-panel .ui-button {
     width: 100% !important;
     max-width: 300px;
     margin-top: 10px;
+>>>>>>> 0078cbfefddfd6644ef623c4bc5c735b673ce26e
 }

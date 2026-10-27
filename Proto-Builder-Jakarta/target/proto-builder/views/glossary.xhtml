@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces">
+
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-white">Glosario Endfield</h2>
+            <span class="text-muted small">Base de datos de Operadores, Arm تجهیزات y Equipo</span>
+        </div>
+
+        <!-- Pestañas o Secciones del Glosario -->
+        <p:tabView styleClass="custom-tabview bg-transparent border-0 text-white">
+            
+            <!-- Pestaña 1: Operadores / Personajes -->
+            <p:tab title="Operadores">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-warning">Perlica</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Clase: Administradora / Soporte</h6>
+                                <p class="card-text small">Figura central de Endfield Industries. Coordina las operaciones logísticas y de campo en Talos-II.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-warning">Endministrator</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Clase: Vanguardia / DPS</h6>
+                                <p class="card-text small">El protagonista y líder de campo de la iniciativa Endfield. Capaz de adaptarse a múltiples roles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-warning">Xaihi</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Clase: Especialista / Sanadora</h6>
+                                <p class="card-text small">Experta en tecnología médica y de campo, vital para mantener al equipo operativo en zonas de alta peligrosidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p:tab>
+
+            <!-- Pestaña 2: Armas / Equipamiento -->
+            <p:tab title="Armas y Equipamiento">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-info">Espada de Aleación Industrial</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Tipo: Espada pesada</h6>
+                                <p class="card-text small">Arma de cuerpo a cuerpo estándar modificada para resistir entornos corrosivos y minerales hostiles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-info">Rifle de Pulso Táctico</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Tipo: Arma a distancia</h6>
+                                <p class="card-text small">Emite descargas de energía concentrada ideales para romper escudos energéticos de los Aggelos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p:tab>
+
+            <!-- Pestaña 3: Artefactos / Módulos -->
+            <p:tab title="Artefactos / Módulos">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-success">Set de Integridad Estructural</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Bonificación de 2 y 4 piezas</h6>
+                                <p class="card-text small">Aumenta la defensa física general y otorga un escudo temporal al entrar en combate.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-white border-secondary h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-success">Núcleo de Sobrecarga Originium</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Bonificación de 2 y 4 piezas</h6>
+                                <p class="card-text small">Incrementa masivamente el daño crítico y la velocidad de acumulación de efectos elementales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p:tab>
+
+        </p:tabView>
+    </div>
+
+</ui:composition>
