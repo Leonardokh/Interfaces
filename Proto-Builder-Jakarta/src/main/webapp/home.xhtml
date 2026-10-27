@@ -7,6 +7,7 @@
 
     <ui:define name="content">
 
+
         <!-- Fondos -->
         <div class="bg-slider">
             <div></div>
@@ -17,16 +18,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    <h2>Login</h2>
                     <h:form id="login">
-                        <p:panel header="Iniciar sesión" id="login-panel">
-                            <p:outputLabel for="username" value="Usuario:" />
-                            <p:inputText id="username" value="#{loginBean.username}" />
+                        <p:panel header="Iniciar sesión" id="login-panel" styleClass="panel-transparente">
+                            <div class="ui-fluid flex flex-column align-items-center gap-3">
 
-                            <p:outputLabel for="password" value="Contraseña:" />
-                            <p:password id="password" value="#{loginBean.password}" />
+                                <div class="w-full" style="max-width: 300px;">
+                                    <p:outputLabel for="username" value="Usuario:" styleClass="block mb-2" />
+                                    <p:inputText id="username" value="#{loginBean.username}" />
+                                </div>
 
-                            <p:commandButton value="Login" action="#{loginBean.login}" update="@form :mensajes" />
+                                <div class="w-full" style="max-width: 300px;">
+                                    <p:outputLabel for="password" value="Contraseña:" styleClass="block mb-2" />
+                                    <p:password id="password" value="#{loginBean.password}" />
+                                </div>
+
+                                <div class="w-full" style="max-width: 300px;">
+                                    <p:commandButton value="Login" action="#{loginBean.login}" update="@form :mensajes"
+                                        styleClass="w-full mt-2" />
+                                </div>
+
+                            </div>
                         </p:panel>
                     </h:form>
                 </div>
