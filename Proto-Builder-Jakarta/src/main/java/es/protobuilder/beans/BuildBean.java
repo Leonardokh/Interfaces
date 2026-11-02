@@ -151,4 +151,7 @@ public class BuildBean implements Serializable {
     // Métodos Getters y Setters añadidos para corregir el error en JSF
     public List<ArmaDTO> getListaArmasDisponibles() { return listaArmasDisponibles; }
     public void setListaArmasDisponibles(List<ArmaDTO> listaArmasDisponibles) { this.listaArmasDisponibles = listaArmasDisponibles; }
+
+
+
 }
