@@ -3,20 +3,25 @@
 
     <ui:define name="content">
 
+        <!-- Barra Móvil -->
         <div class="bg-dark text-white p-3 glass-panel container-fluid d-md-none d-block">
-            <ul class="nav" id="navPanelMovil">
-                <div class="d-flex gap-3 w-100">
-                    <a class="btn btn-primary col-3" href="">
-                        Nueva build
-                    </a>
-                    <a class="btn btn-primary col-3" href="">
-                        Mis builds
-                    </a>
-                    <a class="btn btn-primary col-3" href="">
-                        Glosario
-                    </a>
-                </div>
-            </ul>
+            <h:form id="formNavegacionMovil">
+                <ul class="nav" id="navPanelMovil">
+                    <div class="d-flex gap-3 w-100">
+                        <p:commandButton value="Probar perfil" action="#{usuarioBean.iniciarSesionPrueba}" process="@this"
+                            update="@all" styleClass="btn btn-primary col-2"/>
+
+                        <p:commandButton value="Nueva build" action="#{vistaBean.mostrarNuevaBuild}" update=":contenido"
+                            styleClass="btn btn-primary col-2" />
+
+                        <p:commandButton value="Mis builds" action="#{vistaBean.mostrarMisBuilds}" update=":contenido"
+                            styleClass="btn btn-primary col-2" />
+
+                        <p:commandButton value="Glosario" action="#{vistaBean.mostrarGlosario}" update=":contenido"
+                            styleClass="btn btn-primary col-2" />
+                    </div>
+                </ul>
+            </h:form>
         </div>
 
         <!-- fondo animado -->
@@ -30,7 +35,6 @@
         <!-- Contenedor principal que ocupa toda la pantalla -->
         <div class="d-flex vh-100 vw-100 position-relative z-3 p-3">
 
-            <!-- Menú lateral -->
             <!-- Menú lateral -->
             <div class="text-white p-3 glass-panel col-2 me-3 d-none d-md-block">
 

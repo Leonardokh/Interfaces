@@ -1,3 +1,9 @@
+es\protobuilder\beans\EndfieldServiceBean.class
+es\protobuilder\beans\RegistroBean.class
+es\protobuilder\beans\LoginBean.class
+es\protobuilder\endfield\Artifact.class
+es\protobuilder\endfield\Weapon.class
+es\protobuilder\endfield\Operator.class
 es\protobuilder\beans\LoginBean.class
 es\protobuilder\beans\RegistroBean.class
 es\protobuilder\beans\UsuarioBean.class
