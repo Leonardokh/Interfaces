@@ -15,35 +15,55 @@
         </div>
 
         <h:form id="formNuevaBuild">
+            <!-- Componente para mostrar mensajes de éxito o error al guardar -->
+            <p:messages id="messages" showDetail="true" closable="true" />
+
             <div class="row g-4">
-                
+
                 <!-- Columna Izquierda: Datos Generales y Personaje -->
                 <div class="col-lg-4">
                     <div class="p-4 rounded glass-panel h-100 d-flex flex-column gap-3">
                         <h5 class="text-warning border-bottom border-secondary pb-2">Información Básica</h5>
-                        
-                        <!-- Nombre de la build -->
+
+                        <!-- Nombre personalizado para la build -->
                         <div class="form-group">
                             <h:outputLabel for="nombreBuild" value="Nombre de la Build:" styleClass="form-label text-white small" />
-                            <p:inputText id="nombreBuild" placeholder="Ej. Build DPS Crítico" styleClass="form-control bg-dark text-white border-secondary" />
+                            <p:inputText id="nombreBuild"
+                                         value="#{buildBean.nombreCustomBuild}"
+                                         placeholder="Ej. Build DPS Crítico"
+                                         styleClass="form-control bg-dark text-white border-secondary"
+                                         required="true"
+                                         requiredMessage="El nombre de la build es obligatorio" />
                         </div>
 
-                        <!-- Selección de Operador -->
+                        <!-- Selección Dinámica de Operador/Personaje extraído de la API -->
                         <div class="form-group">
                             <h:outputLabel for="operador" value="Operador / Personaje:" styleClass="form-label text-white small" />
-                            <p:selectOneMenu id="operador" styleClass="form-control bg-dark text-white border-secondary w-100">
-                                <f:selectItem itemLabel="Selecciona un operador..." itemValue="" />
-                                <f:selectItem itemLabel="Perlica" itemValue="perlica" />
-                                <f:selectItem itemLabel="Endministrator" itemValue="endministrator" />
-                                <f:selectItem itemLabel="Xaihi" itemValue="xaihi" />
+                            <p:selectOneMenu id="operador"
+                                             value="#{buildBean.personajeSeleccionadoId}"
+                                             styleClass="form-control bg-dark text-white border-secondary w-100">
+                                <f:selectItem itemLabel="Selecciona un operador importado..." itemValue="" />
+                                <!-- Carga dinámicamente la lista de personajes obtenidos de Enka API -->
+                                <f:selectItems value="#{buildBean.listaPersonajesDisponibles}"
+                                               var="personaje"
+                                               itemLabel="#{personaje.nombreMostrar}"
+                                               itemValue="#{personaje.id}" />
+                                <!-- Evento AJAX para actualizar la imagen y stats al cambiar de personaje -->
+                                <p:ajax listener="#{buildBean.onPersonajeChange}" update="vistaPreviaImagen panelStats arma" />
                             </p:selectOneMenu>
                         </div>
 
-                        <!-- Vista previa de imagen -->
+                        <!-- Vista previa de imagen dinámica del personaje -->
                         <div class="mt-auto pt-3 text-center">
-                            <div class="bg-black bg-opacity-50 p-2 rounded border border-secondary d-flex align-items-center justify-content-center" style="height: 160px;">
-                                <span class="text-muted small">Vista previa del Operador</span>
-                            </div>
+                            <h:panelGroup id="vistaPreviaImagen" layout="block" styleClass="bg-black bg-opacity-50 p-2 rounded border border-secondary d-flex align-items-center justify-content-center" style="height: 160px;">
+                                <!-- Muestra la imagen si hay personaje seleccionado, o texto si no -->
+                                <h:graphicImage value="#{buildBean.urlImagenPersonaje}"
+                                                rendered="#{not empty buildBean.urlImagenPersonaje}"
+                                                style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+                                <h:outputText value="Vista previa del Operador"
+                                              rendered="#{empty buildBean.urlImagenPersonaje}"
+                                              styleClass="text-muted small" />
+                            </h:panelGroup>
                         </div>
                     </div>
                 </div>
@@ -53,60 +73,59 @@
                     <div class="p-4 rounded glass-panel h-100 d-flex flex-column gap-3">
                         <h5 class="text-warning border-bottom border-secondary pb-2">Equipamiento</h5>
 
-                        <!-- Selección de Arma -->
+                        <!-- Selección Dinámica de Arma -->
                         <div class="form-group">
-                            <h:outputLabel for="arma" value="Arma / Motor-Amp:" styleClass="form-label text-white small" />
-                            <p:selectOneMenu id="arma" styleClass="form-control bg-dark text-white border-secondary w-100">
+                            <h:outputLabel for="arma" value="Arma / W-Engine:" styleClass="form-label text-white small" />
+                            <p:selectOneMenu id="arma"
+                                             value="#{buildBean.armaSeleccionadaId}"
+                                             styleClass="form-control bg-dark text-white border-secondary w-100">
                                 <f:selectItem itemLabel="Selecciona un arma..." itemValue="" />
-                                <f:selectItem itemLabel="Espada de Aleación Industrial" itemValue="espada" />
-                                <f:selectItem itemLabel="Rifle de Pulso Táctico" itemValue="rifle" />
+                                <f:selectItems value="#{buildBean.listaArmasDisponibles}"
+                                               var="arma"
+                                               itemLabel="#{arma.nombre}"
+                                               itemValue="#{arma.id}" />
                             </p:selectOneMenu>
                         </div>
 
-                        <!-- Selección de Módulo / Artefacto -->
-                        <div class="form-group">
-                            <h:outputLabel for="modulo" value="Set de Módulos:" styleClass="form-label text-white small" />
-                            <p:selectOneMenu id="modulo" styleClass="form-control bg-dark text-white border-secondary w-100">
-                                <f:selectItem itemLabel="Selecciona el set..." itemValue="" />
-                                <f:selectItem itemLabel="Integridad Estructural" itemValue="set1" />
-                                <f:selectItem itemLabel="Sobrecarga Originium" itemValue="set2" />
-                            </p:selectOneMenu>
-                        </div>
-
-                        <!-- Notas adicionales -->
+                        <!-- Notas de estrategia -->
                         <div class="form-group mt-auto">
                             <h:outputLabel for="notas" value="Notas de rotación:" styleClass="form-label text-white small" />
-                            <p:inputTextarea id="notas" rows="3" placeholder="Describe la estrategia o sinergias..." styleClass="form-control bg-dark text-white border-secondary" />
+                            <p:inputTextarea id="notas"
+                                             value="#{buildBean.notasEstrategia}"
+                                             rows="3"
+                                             placeholder="Describe la estrategia o sinergias..."
+                                             styleClass="form-control bg-dark text-white border-secondary" />
                         </div>
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Estadísticas Estimadas -->
+                <!-- Columna Derecha: Estadísticas Obtenidas de la API -->
                 <div class="col-lg-4">
                     <div class="p-4 rounded glass-panel h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="text-warning border-bottom border-secondary pb-2 mb-3">Estadísticas Base</h5>
-                            
+                        <h:panelGroup id="panelStats" layout="block">
+                            <h5 class="text-warning border-bottom border-secondary pb-2 mb-3">Estadísticas Importadas</h5>
+
+                            <!-- Muestra los stats reales procesados del personaje desde el JSON -->
                             <div class="d-flex justify-content-between text-white mb-2 small">
-                                <span>Ataque Estimado:</span>
-                                <span class="text-info fw-bold">2,450</span>
+                                <span>Ataque:</span>
+                                <h:outputText value="#{buildBean.statAtaque}" styleClass="text-info fw-bold" />
                             </div>
                             <div class="d-flex justify-content-between text-white mb-2 small">
                                 <span>Prob. Crítica:</span>
-                                <span class="text-info fw-bold">65.0%</span>
+                                <h:outputText value="#{buildBean.statProbCritica}%" styleClass="text-info fw-bold" />
                             </div>
                             <div class="d-flex justify-content-between text-white mb-2 small">
                                 <span>Daño Crítico:</span>
-                                <span class="text-info fw-bold">140.0%</span>
+                                <h:outputText value="#{buildBean.statDanoCritico}%" styleClass="text-info fw-bold" />
                             </div>
                             <div class="d-flex justify-content-between text-white mb-2 small">
-                                <span>Maestría Elemental:</span>
-                                <span class="text-info fw-bold">320</span>
+                                <span>Impacto / Anomalía:</span>
+                                <h:outputText value="#{buildBean.statEspecial}" styleClass="text-info fw-bold" />
                             </div>
-                        </div>
+                        </h:panelGroup>
 
                         <div class="alert alert-secondary bg-dark text-muted border-secondary small mt-3 mb-0">
-                            * Los valores se calculan automáticamente según el nivel máximo del operador.
+                            Los valores son extraídos directamente de tu vitrina en Enka.Network.
                         </div>
                     </div>
                 </div>
@@ -117,7 +136,11 @@
             <div class="row mt-4">
                 <div class="col-12 d-flex justify-content-end gap-2">
                     <p:commandButton value="Limpiar Campos" type="reset" styleClass="btn btn-outline-light px-4" />
-                    <p:commandButton value="Guardar Build" action="#{buildView.guardarBuild}" styleClass="btn btn-primary px-4" />
+                    <!-- Llama al método del Bean para persistir la build en BD -->
+                    <p:commandButton value="Guardar Build"
+                                     action="#{buildBean.guardarBuild}"
+                                     update="formNuevaBuild"
+                                     styleClass="btn btn-primary px-4" />
                 </div>
             </div>
         </h:form>

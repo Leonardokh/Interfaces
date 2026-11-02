@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,6 +22,7 @@
         <jakarta.faces.version>4.1.4</jakarta.faces.version>
         <primefaces.version>15.0.9</primefaces.version>
         <weld.version>6.0.3.Final</weld.version>
+        <hibernate.version>6.6.1.Final</hibernate.version>
     </properties>
 
     <!-- =========================================================
@@ -77,9 +78,78 @@
             <version>${weld.version}</version>
         </dependency>
 
+
+        <!-- =====================================================
+             Jakarta Persistence API & Hibernate ORM
+             ===================================================== -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.4.Final</version>
+        </dependency>
+
+
+        <!-- =====================================================
+             Jakarta Transactions API (@Transactional)
+             ===================================================== -->
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+
+        <!-- =====================================================
+             Google Gson (Para procesar las respuestas JSON de Enka API)
+             ===================================================== -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+        <!-- =====================================================
+       Jakarta Mail API (Para el envío de correos de confirmación)
+        ===================================================== -->
+        <dependency>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <!-- Opción B: Si dependes de la API general de Jakarta EE -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>10.0.0</version> <!-- Jakarta EE 10 incluye Jakarta Faces 4.0 -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+
     </dependencies>
-
-
     <!-- =========================================================
          Build
          ========================================================= -->
@@ -143,9 +213,9 @@
                                 <configuration>
                                     <target>
                                         <copy
-                                            file="${project.build.directory}/${project.build.finalName}.war"
-                                            todir="C:/apache-tomcat-11.0.26/webapps"
-                                            overwrite="true"
+                                                file="${project.build.directory}/${project.build.finalName}.war"
+                                                todir="C:/apache-tomcat-11.0.26/webapps"
+                                                overwrite="true"
                                         />
                                     </target>
                                 </configuration>
@@ -223,5 +293,6 @@
 
         </profile>
     </profiles>
+
 
 </project>
