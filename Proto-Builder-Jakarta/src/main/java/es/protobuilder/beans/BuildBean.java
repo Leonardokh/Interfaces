@@ -2,9 +2,9 @@ package es.protobuilder.beans;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import es.protobuilder.dto.ArmaDTO;
 import es.protobuilder.dto.PersonajeDTO;
 import es.protobuilder.model.JuegoEnum;
-import es.protobuilder.model.Usuario;
 import es.protobuilder.service.EnkaApiService;
 
 import jakarta.annotation.PostConstruct;
@@ -37,17 +37,20 @@ public class BuildBean implements Serializable {
     private double statDanoCritico;
     private double statEspecial;
 
+    // Listas consumidas por los componentes <p:selectOneMenu>
     private List<PersonajeDTO> listaPersonajesDisponibles = new ArrayList<>();
+    private List<ArmaDTO> listaArmasDisponibles = new ArrayList<>();
 
     @PostConstruct
     public void init() {
         cargarPersonajesDesdeApi();
+        cargarArmasPrueba();
     }
 
     public void cargarPersonajesDesdeApi() {
         try {
             // Ejemplo: obtener el UID guardado en sesión para ZZZ
-            String uidUsuario = "1300025292"; // Puedes obtenerlo de la sesión con (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogueado")
+            String uidUsuario = "1300025292";
 
             if (uidUsuario != null && !uidUsuario.isEmpty()) {
                 String jsonRespuesta = enkaApiService.obtenerDatosJugador(JuegoEnum.ZZZ, uidUsuario);
@@ -82,6 +85,13 @@ public class BuildBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de API", e.getMessage()));
         }
+    }
+
+    private void cargarArmasPrueba() {
+        listaArmasDisponibles.clear();
+        listaArmasDisponibles.add(new ArmaDTO("101", "W-Engine - Motor de Prueba Alpha"));
+        listaArmasDisponibles.add(new ArmaDTO("102", "W-Engine - Restricción Severa"));
+        listaArmasDisponibles.add(new ArmaDTO("103", "W-Engine - Sombra de Acero"));
     }
 
     // Listener AJAX que se ejecuta al seleccionar un operador en el desplegable
@@ -136,5 +146,9 @@ public class BuildBean implements Serializable {
     public double getStatEspecial() { return statEspecial; }
 
     public List<PersonajeDTO> getListaPersonajesDisponibles() { return listaPersonajesDisponibles; }
+    public void setListaPersonajesDisponibles(List<PersonajeDTO> listaPersonajesDisponibles) { this.listaPersonajesDisponibles = listaPersonajesDisponibles; }
 
+    // Métodos Getters y Setters añadidos para corregir el error en JSF
+    public List<ArmaDTO> getListaArmasDisponibles() { return listaArmasDisponibles; }
+    public void setListaArmasDisponibles(List<ArmaDTO> listaArmasDisponibles) { this.listaArmasDisponibles = listaArmasDisponibles; }
 }
