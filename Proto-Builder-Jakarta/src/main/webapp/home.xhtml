@@ -1,5 +1,8 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-    xmlns:p="primefaces" template="/WEB-INF/templates/template.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces"
+                template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="title">
         Inicio
@@ -7,6 +10,8 @@
 
     <ui:define name="content">
 
+        <!-- Componente global para recibir y mostrar las alertas / errores -->
+        <p:growl id="mensajes" showDetail="true" keepAlive="true" />
 
         <!-- Fondos -->
         <div class="bg-slider">
@@ -34,7 +39,13 @@
 
                                 <div class="w-full" style="max-width: 300px;">
                                     <p:commandButton value="Login" action="#{loginBean.login}" update="@form :mensajes"
-                                        styleClass="w-full mt-2" />
+                                                     styleClass="w-full mt-2" />
+                                </div>
+
+                                <div class="w-full" style="max-width: 300px;">
+                                    <!-- Se añade process="@this" e immediate="true" para omitir las validaciones de los inputs de login al ir a registro -->
+                                    <p:commandButton value="Registrarse" action="#{loginBean.irARegistro}" process="@this" immediate="true" update=":mensajes"
+                                                     styleClass="w-full mt-2" />
                                 </div>
 
                             </div>

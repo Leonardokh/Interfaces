@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Interfaces.iml" filepath="$PROJECT_DIR$/.idea/Interfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Proto-Builder-Jakarta/proto-builder.iml" filepath="$PROJECT_DIR$/Proto-Builder-Jakarta/proto-builder.iml" />
     </modules>
   </component>
 </project>

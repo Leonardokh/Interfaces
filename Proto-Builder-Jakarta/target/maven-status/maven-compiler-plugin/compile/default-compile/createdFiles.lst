@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 es\protobuilder\beans\EndfieldServiceBean.class
 es\protobuilder\beans\RegistroBean.class
 es\protobuilder\beans\LoginBean.class
 es\protobuilder\endfield\Artifact.class
 es\protobuilder\endfield\Weapon.class
 es\protobuilder\endfield\Operator.class
+=======
+es\protobuilder\beans\LoginBean.class
+es\protobuilder\beans\RegistroBean.class
+>>>>>>> 7ed213966f507adee448160cdee8d8864c4b6818
 es\protobuilder\beans\UsuarioBean.class
 es\protobuilder\beans\VistaBean.class

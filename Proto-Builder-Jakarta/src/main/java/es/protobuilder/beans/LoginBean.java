@@ -1,11 +1,16 @@
 package es.protobuilder.beans;
 
+import es.protobuilder.model.Usuario;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Persistence;
 import java.io.Serializable;
 
 @Named("loginBean")
@@ -13,6 +18,9 @@ import java.io.Serializable;
 public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    // Unidad de persistencia declarada en tu persistence.xml
+    private static EntityManagerFactory emf;
 
     private String username;
     private String password;
@@ -23,26 +31,78 @@ public class LoginBean implements Serializable {
     public LoginBean() {
     }
 
-    public String login() {
-        // Simulación de autenticación (Reemplazar por servicio con hashing BCrypt/Argon2)
-        if ("admin".equals(username) && "1234".equals(password)) {
-            
-            // Mantiene el mensaje tras la redirección HTTP (Flash Scope)
-            ExternalContext externalContext = facesContext.getExternalContext();
-            externalContext.getFlash().setKeepMessages(true);
-            
-            facesContext.addMessage(null, 
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Bienvenido " + username));
-            
-            return "/dashboard.xhtml?faces-redirect=true"; 
+    // Método para obtener el EMF de forma segura (Singleton)
+    private synchronized EntityManagerFactory getEmf() {
+        if (emf == null || !emf.isOpen()) {
+            emf = Persistence.createEntityManagerFactory("ProtoBuilderPU");
+        }
+        return emf;
+    }
 
-        } else {
-            facesContext.addMessage(null, 
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuario o contraseña incorrectos"));
-            
-            // Retorna null para mantener el estado de la vista y renderizar el error
+    public String login() {
+        // 1. Validar campos vacíos en el lado del servidor
+        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            facesContext.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Por favor, complete todos los campos."));
             return null;
         }
+
+        EntityManager em = null;
+
+        try {
+            em = getEmf().createEntityManager();
+
+            // 2. Consultar el usuario en la base de datos por su username
+            Usuario usuario = em.createQuery(
+                            "SELECT u FROM Usuario u WHERE u.username = :user", Usuario.class)
+                    .setParameter("user", this.username.trim())
+                    .getSingleResult();
+
+            // 3. Validar la contraseña enviada contra la BD
+            if (usuario.getPassword().equals(this.password)) {
+
+                ExternalContext externalContext = facesContext.getExternalContext();
+
+                // Guardar la entidad Usuario en la sesión HTTP para usarla en el resto de la App
+                externalContext.getSessionMap().put("usuarioLogueado", usuario);
+
+                // Mantener el mensaje de éxito tras la redirección (Flash Scope)
+                externalContext.getFlash().setKeepMessages(true);
+
+                facesContext.addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Bienvenido " + usuario.getUsername()));
+
+                return "dashboard?faces-redirect=true";
+
+            } else {
+                // Contraseña incorrecta
+                facesContext.addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuario o contraseña incorrectos."));
+                return null;
+            }
+
+        } catch (NoResultException e) {
+            // El usuario no existe en la BD
+            facesContext.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuario o contraseña incorrectos."));
+            return null;
+
+        } catch (Exception e) {
+            facesContext.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error del sistema", "Ocurrió un problema: " + e.getMessage()));
+            return null;
+
+        } finally {
+            // Garantizar el cierre del EntityManager
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+    // Método para la redirección a la vista de Registro mediante regla de navegación de JSF
+    public String irARegistro() {
+        return "Registro?faces-redirect=true";
     }
 
     // --- Getters y Setters ---
