@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/Proto-Builder-Jakarta/src/main/webapp/home.xhtml" value="file://$PROJECT_DIR$/Proto-Builder-Jakarta/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/Proto-Builder-Jakarta/src/main/webapp/views/Registro.xhtml" value="file://$PROJECT_DIR$/Proto-Builder-Jakarta/src/main/webapp/views" />
+      </map>
+    </option>
+  </component>
+</project>

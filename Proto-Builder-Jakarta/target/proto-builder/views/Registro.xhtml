@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title">
+        Registro de Usuario
+    </ui:define>
+
+    <!-- Cambiado 'content' por 'contenido' para coincidir con la plantilla -->
+    <ui:define name="contenido">
+
+        <h:panelGroup layout="block" styleClass="p-4 d-flex justify-content-center">
+            <h:form id="formRegistro">
+                <p:panel header="Registro de Usuario">
+
+                    <p:messages id="msgRegistro" showDetail="true" closable="true"/>
+
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:outputLabel for="username" value="Nombre de usuario:"/>
+                        <p:inputText id="username"
+                                     value="#{registroBean.username}"
+                                     required="true"
+                                     requiredMessage="El nombre de usuario es obligatorio."/>
+
+                        <h:outputLabel for="email" value="Correo electrónico:"/>
+                        <p:inputText id="email"
+                                     value="#{registroBean.email}"
+                                     required="true"
+                                     requiredMessage="El correo electrónico es obligatorio."
+                                     validatorMessage="El formato del correo electrónico no es válido.">
+                            <f:validateRegex pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+                        </p:inputText>
+
+                        <h:outputLabel for="password" value="Contraseña:"/>
+                        <p:password id="password"
+                                    value="#{registroBean.password}"
+                                    required="true"
+                                    requiredMessage="La contraseña es obligatoria."
+                                    feedback="true"
+                                    promptLabel="Ingresa una contraseña"
+                                    weakLabel="Débil"
+                                    goodLabel="Media"
+                                    strongLabel="Fuerte"/>
+
+                        <h:outputLabel for="confirmPassword" value="Confirmar contraseña:"/>
+                        <p:password id="confirmPassword"
+                                    value="#{registroBean.confirmPassword}"
+                                    required="true"
+                                    requiredMessage="Debes confirmar tu contraseña."/>
+
+                    </h:panelGrid>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Crear Cuenta"
+                                         action="#{registroBean.registrarUsuario}"
+                                         update="formRegistro"
+                                         icon="pi pi-user-plus"/>
+                    </f:facet>
+
+                </p:panel>
+            </h:form>
+        </h:panelGroup>
+
+    </ui:define>
+</ui:composition>
