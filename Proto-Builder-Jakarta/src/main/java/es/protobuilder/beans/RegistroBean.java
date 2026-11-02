@@ -3,6 +3,8 @@ import es.protobuilder.model.Usuario;
 // import es.protobuilder.service.EmailService; // Temporalmente comentado
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
