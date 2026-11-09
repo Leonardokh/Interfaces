@@ -26,7 +26,7 @@
                 </p:tab>
 
                 <!-- Pestaña 2: Armas -->
-                <p:tab title="Armas y Equipamiento">
+                <p:tab title="Armas">
                     <div class="row g-3">
                         <ui:repeat value="#{endfieldService.weapons}" var="weapon">
                             <div class="col-md-4">
@@ -37,11 +37,11 @@
                 </p:tab>
 
                 <!-- Pestaña 3: Artefactos -->
-                <p:tab title="Artefactos / Módulos">
+                <p:tab title="Equipamiento">
                     <div class="row g-3">
-                        <ui:repeat value="#{endfieldService.artifacts}" var="artifact">
+                        <ui:repeat value="#{endfieldService.gears}" var="gear">
                             <div class="col-md-4">
-                                <app:artifactCard value="#{artifact}" />
+                                <app:gearCard value="#{gear}" />
                             </div>
                         </ui:repeat>
                     </div>

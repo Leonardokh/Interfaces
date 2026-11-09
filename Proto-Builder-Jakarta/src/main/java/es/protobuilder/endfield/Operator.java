@@ -51,4 +51,8 @@ public class Operator {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getImage(){
+        return "endfield/operators/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
+    }
 }

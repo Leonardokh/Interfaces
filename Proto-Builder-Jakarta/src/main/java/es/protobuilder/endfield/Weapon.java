@@ -40,4 +40,8 @@ public class Weapon {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getImage(){
+        return "endfield/weapons/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
+    }
 }

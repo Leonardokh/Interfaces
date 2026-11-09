@@ -1,0 +1,67 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="jakarta.faces.html"
+    xmlns:ui="jakarta.faces.facelets"
+    xmlns:cc="jakarta.faces.composite"
+    xmlns:app="jakarta.faces.composite/components">
+
+    <cc:interface>
+        <cc:attribute name="value"
+                      type="es.protobuilder.endfield.Build"
+                      required="true" />
+    </cc:interface>
+
+    <cc:implementation>
+
+        <div class="card bg-dark text-white border-secondary h-100">
+            <div class="card-body">
+
+                <!-- BUILD HEADER -->
+                <h4 class="card-title text-warning mb-4">
+                    Build de #{cc.attrs.value.operator.name}
+                </h4>
+
+                <!-- OPERATOR -->
+                <section class="mb-4">
+                    <h5 class="text-warning mb-3">Operator</h5>
+
+                    <app:operatorCard
+                        value="#{cc.attrs.value.operator}" />
+                </section>
+
+                <!-- WEAPON -->
+                <section class="mb-4">
+                    <h5 class="text-info mb-3">Weapon</h5>
+
+                    <app:weaponCard
+                        value="#{cc.attrs.value.weapon}" />
+                </section>
+
+                <!-- GEAR -->
+                <section class="mb-3">
+                    <h5 class="text-success mb-3">Gear</h5>
+
+                    <div class="row g-3">
+
+                        <ui:repeat
+                            value="#{cc.attrs.value.gear}"
+                            var="item">
+
+                            <div class="col-12 col-md-6 col-lg-4">
+
+                                <app:gearCard
+                                    value="#{item}" />
+
+                            </div>
+
+                        </ui:repeat>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+    </cc:implementation>
+
+</ui:composition>

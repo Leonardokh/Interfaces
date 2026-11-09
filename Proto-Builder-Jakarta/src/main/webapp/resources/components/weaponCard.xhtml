@@ -1,10 +1,10 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="jakarta.faces.html"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:cc="jakarta.faces.composite">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+    xmlns:cc="jakarta.faces.composite">
 
     <cc:interface>
         <cc:attribute name="value" type="es.protobuilder.endfield.Weapon" required="false" />
+
+        <cc:attribute name="image" type="java.lang.String" />
         <cc:attribute name="name" type="java.lang.String" />
         <cc:attribute name="type" type="java.lang.String" />
         <cc:attribute name="description" type="java.lang.String" />
@@ -13,6 +13,17 @@
     <cc:implementation>
         <div class="card bg-dark text-white border-secondary h-100">
             <div class="card-body">
+
+                <!--<h:outputText value="#{cc.attrs.value.image}" />-->
+
+                <div class="text-center mb-3">
+                    <h:graphicImage library="img"
+                        name="#{not empty cc.attrs.value ? cc.attrs.value.image : cc.attrs.image}"
+                        alt="#{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}"
+                        styleClass="img-fluid rounded"
+                        rendered="#{not empty cc.attrs.value or not empty cc.attrs.image}" />
+                </div>
+
                 <h5 class="card-title text-info">
                     #{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}
                 </h5>

@@ -1,14 +1,13 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="jakarta.faces.html"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:cc="jakarta.faces.composite">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+    xmlns:cc="jakarta.faces.composite">
 
     <!-- 1. INTERFAZ: Definimos los atributos que aceptará el componente -->
     <cc:interface>
         <!-- Objeto Operator completo -->
         <cc:attribute name="value" type="es.protobuilder.endfield.Operator" required="false" />
-        
+
         <!-- O atributos individuales por si se usan de forma aislada -->
+        <cc:attribute name="image" type="java.lang.String" />
         <cc:attribute name="name" type="java.lang.String" />
         <cc:attribute name="archetype" type="java.lang.String" />
         <cc:attribute name="element" type="java.lang.String" />
@@ -19,11 +18,23 @@
     <cc:implementation>
         <div class="card bg-dark text-white border-secondary h-100">
             <div class="card-body">
+
+                <!--<h:outputText value="#{cc.attrs.value.image}" />-->
+                
+                <!-- Imagen del operador -->
+                <div class="text-center mb-3">
+                    <h:graphicImage library="img"
+                        name="#{not empty cc.attrs.value ? cc.attrs.value.image : cc.attrs.image}"
+                        alt="#{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}"
+                        styleClass="img-fluid rounded"
+                        rendered="#{not empty cc.attrs.value or not empty cc.attrs.image}" />
+                </div>
+
                 <!-- Nombre del operador -->
                 <h5 class="card-title text-warning">
                     #{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}
                 </h5>
-                
+
                 <!-- Arquetipo -->
                 <h6 class="card-subtitle mb-1">
                     Arquetipo: #{not empty cc.attrs.value ? cc.attrs.value.archetype : cc.attrs.archetype}
