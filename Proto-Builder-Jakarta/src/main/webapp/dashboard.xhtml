@@ -6,7 +6,7 @@
         <!-- Barra Móvil -->
         <div class="bg-dark text-white p-3 glass-panel container-fluid d-md-none d-block">
             <h:form id="formNavegacionMovil">
-                <ul class="nav" id="navPanelMovil">
+                <div class="nav" id="navPanelMovil">
                     <div class="d-flex gap-3 w-100">
                         <p:commandButton value="Probar perfil" action="#{usuarioBean.iniciarSesionPrueba}" process="@this"
                             update="@all" styleClass="btn btn-primary col-2"/>
@@ -20,7 +20,7 @@
                         <p:commandButton value="Glosario" action="#{vistaBean.mostrarGlosario}" update=":contenido"
                             styleClass="btn btn-primary col-2" />
                     </div>
-                </ul>
+                </div>
             </h:form>
         </div>
 
@@ -42,9 +42,6 @@
 
                 <h:form id="formNavegacion">
                     <div class="d-grid gap-3 mt-4">
-
-                        <p:commandButton value="Probar perfil" action="#{usuarioBean.iniciarSesionPrueba}"
-                            process="@this" update="@all" />
 
                         <p:commandButton value="Nueva build" action="#{vistaBean.mostrarNuevaBuild}" update=":contenido"
                             styleClass="btn btn-primary w-100" />
@@ -85,8 +82,6 @@
 
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"></script>
+
     </ui:define>
 </ui:composition>
