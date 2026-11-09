@@ -1,7 +1,9 @@
 package es.protobuilder.beans;
+
 import es.protobuilder.model.Usuario;
 // import es.protobuilder.service.EmailService; // Temporalmente comentado
-
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -26,7 +28,8 @@ public class RegistroBean implements Serializable {
     private String password;
     private String confirmPassword;
 
-    // private EmailService emailService = new EmailService(); // Comentado para pruebas de BD directas
+    // private EmailService emailService = new EmailService(); // Comentado para
+    // pruebas de BD directas
 
     private synchronized EntityManagerFactory getEmf() {
         if (emf == null || !emf.isOpen()) {
@@ -57,7 +60,8 @@ public class RegistroBean implements Serializable {
 
             if (countUsername > 0) {
                 FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El nombre de usuario ya está registrado."));
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                                "El nombre de usuario ya está registrado."));
                 return null;
             }
 
@@ -68,7 +72,8 @@ public class RegistroBean implements Serializable {
 
             if (countEmail > 0) {
                 FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El correo electrónico ya está registrado."));
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                                "El correo electrónico ya está registrado."));
                 return null;
             }
 
@@ -83,10 +88,12 @@ public class RegistroBean implements Serializable {
             em.persist(nuevoUsuario);
             tx.commit(); // Aquip persiste físicamente en la base de datos
 
-            /* 5. SECCIÓN DE EMAIL TEMPORALMENTE DESACTIVADA
-            String tokenConfirmacion = UUID.randomUUID().toString();
-            emailService.enviarCorreoConfirmacion(this.email, this.username, tokenConfirmacion);
-            */
+            /*
+             * 5. SECCIÓN DE EMAIL TEMPORALMENTE DESACTIVADA
+             * String tokenConfirmacion = UUID.randomUUID().toString();
+             * emailService.enviarCorreoConfirmacion(this.email, this.username,
+             * tokenConfirmacion);
+             */
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Exitoso",
@@ -116,15 +123,35 @@ public class RegistroBean implements Serializable {
 
     // --- Getters y Setters ---
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getConfirmPassword() { return confirmPassword; }
-    public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }

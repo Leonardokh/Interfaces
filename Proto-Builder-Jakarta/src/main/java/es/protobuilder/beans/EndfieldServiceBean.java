@@ -9,6 +9,8 @@ import jakarta.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//Este Bean simula una base de datos de Endfield
 @Named("endfieldService")
 @RequestScoped
 public class EndfieldServiceBean {

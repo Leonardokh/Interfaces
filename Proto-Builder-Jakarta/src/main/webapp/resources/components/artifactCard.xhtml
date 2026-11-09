@@ -6,8 +6,8 @@
     <cc:interface>
         <cc:attribute name="value" type="es.protobuilder.endfield.Artifact" required="false" />
         <cc:attribute name="name" type="java.lang.String" />
-        <cc:attribute name="bonus" type="java.lang.String" />
-        <cc:attribute name="description" type="java.lang.String" />
+        <cc:attribute name="stat1" type="java.lang.String" />
+        <cc:attribute name="stat2" type="java.lang.String" />
     </cc:interface>
 
     <cc:implementation>
@@ -16,12 +16,12 @@
                 <h5 class="card-title text-success">
                     #{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}
                 </h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                    #{not empty cc.attrs.value ? cc.attrs.value.bonus : cc.attrs.bonus}
+                <h6 class="card-subtitle mb-2">
+                    #{not empty cc.attrs.value ? cc.attrs.value.stat1 : cc.attrs.stat1}
                 </h6>
-                <p class="card-text small">
-                    #{not empty cc.attrs.value ? cc.attrs.value.description : cc.attrs.description}
-                </p>
+                <h6 class="card-subtitle mb-2">
+                    #{not empty cc.attrs.value ? cc.attrs.value.stat2 : cc.attrs.stat2}
+                </h6>
             </div>
         </div>
     </cc:implementation>
