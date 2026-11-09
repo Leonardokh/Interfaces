@@ -14,26 +14,52 @@
     <header>
 
 
-        <nav class="navbar">
+        <nav class="navbar position-relative" style="z-index: 1050;">
             <div class="container-fluid">
 
                 <img src="#{resource['img:ProtoBuildLogo.png']}" alt="Logo" style="width: 60px; height: auto;" />
 
                 <!-- Usuario con sesión iniciada -->
-                <h:panelGroup rendered="#{usuarioBean.autenticado}" styleClass="d-flex align-items-center ms-auto">
+                <h:panelGroup rendered="#{usuarioBean.autenticado}">
+                    <div class="dropdown">
+                        <a href="#"
+                           role="button"
+                           class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                           id="dropdownUser"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                           style="cursor: pointer;">
 
-                    <span class="text-white me-3">
-                        #{usuarioBean.nombre}
-                    </span>
+                            <!-- Avatar -->
+                            <img src="#{resource['img:avatar-default.jpg']}"
+                                 alt="Avatar"
+                                 class="profile-avatar me-2" />
 
-                    <img src="#{empty usuarioBean.fotoUrl
-                        ? resource['img:avatar-default.jpg']
-                        : usuarioBean.fotoUrl}" alt="Foto de perfil" class="profile-avatar" />
+                            <!-- Nombre tomado directamente de usuarioBean -->
+                            <span class="fw-bold">
+                    #{usuarioBean.nombre}
+                </span>
+                        </a>
 
+                        <!-- Menú acoplable / desplegable -->
+                        <ul class="dropdown-menu dropdown-menu-dark shadow mt-2" aria-labelledby="dropdownUser">
+                            <li><hr class="dropdown-divider" /></li>
+                            <li class="px-3 py-1">
+                                <h:form id="formCerrarSesion">
+                                    <p:commandButton value="Cerrar Sesión"
+                                                     action="#{usuarioBean.cerrarSesion}"
+                                                     styleClass="btn btn-danger w-100 btn-sm"
+                                                     process="@this" />
+                                </h:form>
+                            </li>
+                        </ul>
+                    </div>
                 </h:panelGroup>
+
 
                 <!-- Visitante sin sesión -->
                 <h:panelGroup rendered="#{not usuarioBean.autenticado}" styleClass="ms-auto">
+
 
                     <span class="navbar-brand text-white mb-0">
                         PROTO BUILDER

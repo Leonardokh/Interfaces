@@ -25,9 +25,6 @@ public class LoginBean implements Serializable {
     private String username;
     private String password;
 
-    @Inject
-    private FacesContext facesContext;
-
     public LoginBean() {
     }
 
@@ -38,8 +35,12 @@ public class LoginBean implements Serializable {
         }
         return emf;
     }
+    @Inject
+    private UsuarioBean usuarioBean;
 
     public String login() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+
         // 1. Validar campos vacíos en el lado del servidor
         if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             facesContext.addMessage(null,
@@ -63,14 +64,16 @@ public class LoginBean implements Serializable {
 
                 ExternalContext externalContext = facesContext.getExternalContext();
 
-                // Guardar la entidad Usuario en la sesión HTTP para usarla en el resto de la App
+                // 4. Guardar el usuario en la sesión para mantener la autenticación
                 externalContext.getSessionMap().put("usuarioLogueado", usuario);
+                usuarioBean.iniciarSesion(usuario.getUsername(), null);
 
-                // Mantener el mensaje de éxito tras la redirección (Flash Scope)
-                externalContext.getFlash().setKeepMessages(true);
-
+                // PRIMERO añadimos el mensaje
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Bienvenido " + usuario.getUsername()));
+
+                // DESPUÉS mantenemos el mensaje tras la redirección (Flash Scope)
+                externalContext.getFlash().setKeepMessages(true);
 
                 return "dashboard?faces-redirect=true";
 
@@ -97,6 +100,32 @@ public class LoginBean implements Serializable {
             if (em != null && em.isOpen()) {
                 em.close();
             }
+        }
+    }
+
+
+    public boolean SesionIniciada() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        return facesContext.getExternalContext().getSessionMap().get("usuarioLogueado") != null;
+    }
+
+    // 2. Redirige al Dashboard si el usuario intenta entrar al Login teniendo la sesión abierta
+    public void comprobarSesionAlEntrar() {
+        if (SesionIniciada()) {
+            try {
+                FacesContext facesContext = FacesContext.getCurrentInstance();
+                facesContext.getExternalContext().redirect("dashboard.xhtml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void UsuarioLogueado() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        Usuario usuario = (Usuario) facesContext.getExternalContext().getSessionMap().get("usuarioLogueado");
+        if (usuario != null) {
+            this.username = usuario.getUsername();
         }
     }
 

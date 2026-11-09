@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 
 @Named("usuarioBean")
 @SessionScoped
@@ -34,9 +37,16 @@ public class UsuarioBean implements Serializable {
         return nombre != null && !nombre.isBlank();
     }
 
-    public void cerrarSesion() {
-        nombre = null;
-        fotoUrl = null;
+    // 3. Cierra la sesión activa
+    public String cerrarSesion() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        facesContext.getExternalContext().invalidateSession();
+        return "home?faces-redirect=true";
+    }
+
+    public void iniciarSesion(String nombre, String fotoUrl) {
+        this.nombre = nombre;
+        this.fotoUrl = fotoUrl;
     }
 
     public void iniciarSesionPrueba() {
