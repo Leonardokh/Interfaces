@@ -2,20 +2,20 @@ package es.protobuilder.endfield;
 
 public class Gear {
     
-    private String setName;
+    private String set;
     private String name;
     private String stat1;
     private String stat2;
 
     public Gear() {
         
-        this.setName = "";
+        this.set = "";
         this.name = "";
         this.stat1 = "";
         this.stat2 = "";
     }
-    public Gear(String setName, String name, String stat1, String stat2) {
-        this.setName = setName;
+    public Gear(String set, String name, String stat1, String stat2) {
+        this.set = set;
         this.name = name;
         this.stat1 = stat1;
         this.stat2 = stat2;
@@ -45,11 +45,11 @@ public class Gear {
         this.name = name;
     }
 
-    public String getSetName() {
-        return setName;
+    public String getSet() {
+        return set;
     }
-    public void setSetName(String setName) {
-        this.setName = setName;
+    public void setSet(String set) {
+        this.set = set;
     }
 
     public String getImage(){

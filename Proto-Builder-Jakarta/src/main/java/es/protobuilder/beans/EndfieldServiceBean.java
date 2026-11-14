@@ -1,17 +1,20 @@
+
 package es.protobuilder.beans;
 
 import es.protobuilder.endfield.Build;
 import es.protobuilder.endfield.Gear;
 import es.protobuilder.endfield.Operator;
 import es.protobuilder.endfield.Weapon;
+
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Named("endfieldService")
-@RequestScoped
+@SessionScoped
 public class EndfieldServiceBean {
 
     private List<Operator> operators;
@@ -19,50 +22,134 @@ public class EndfieldServiceBean {
     private List<Gear> gears;
     private List<Build> builds;
 
+    private Long buildId = 1L;
+
     @PostConstruct
     public void init() {
 
-        // Datos mock simulando respuesta de API
-        // ---- Operators ----
+        // OPERATORS
         operators = new ArrayList<>();
-       
-        Operator endministrator = new Operator("Endministrator", "Guard", "Physical",
-                "The protagonist of Endfield and the first operator you control. A key guardian who protects civilization on Talos-II.");
-        operators.add(endministrator);
-        
-        operators.add(new Operator("Perlica", "Caster", "Electric",
-                "Supervisor and official spokesperson of Endfield Industries, overseeing the development of Protocol-Originium technology."));
-        
-        operators.add(new Operator("Xaihi", "Supporter", "Cryo",
-                "A researcher dispatched from Laterano to Talos-II for technical study, who believes in computation and logical analysis."));
 
-        // ---- Weapons ----
+        Operator endministrator = new Operator(
+            "Endministrator",
+            "Guard",
+            "Physical",
+            "The protagonist of Endfield..."
+        );
+
+        operators.add(endministrator);
+
+        operators.add(new Operator(
+            "Perlica", "Caster", "Electric",
+            "Supervisor and official spokesperson..."
+        ));
+
+        operators.add(new Operator(
+            "Xaihi", "Supporter", "Cryo",
+            "A researcher dispatched from Laterano..."
+        ));
+
+        // WEAPONS
         weapons = new ArrayList<>();
 
-        Weapon complexedIndustry = new Weapon("Complexed Industry",
-                "Sword",
-                "An all-new product from the Northmarch Support Hub \"Pioneer\" series. Furnished with an excellent power component, it can easily cut down thick vegetation to clear a path. The weapon is highly recommended by many explorers.");
+        Weapon complexedIndustry = new Weapon(
+            "Complexed Industry",
+            "Sword",
+            "An all-new product from the Northmarch Support Hub..."
+        );
+
         weapons.add(complexedIndustry);
-        weapons.add(new Weapon ("Khravengger",
-                "Great Sword",
-                "A strange weapon released by Witching Hour. The blade body is chiseled out of an ordinary-looking block of ice, but its surface is infused with a special form of Originium Arts that made it literally indestructible."));
-         weapons.add(new Weapon ("Blessing of Lustrous Carmine",
-                "Polearm",
-                "One of the polearms produced by the Witching Hour. A special commemorative edition was released on Seš'qa Open Day. The body of the lance underwent a special plating technique to provide a finish that is both extremely functional and aesthetically pleasing."));
-        
-        // ---- Gears ----
+
+        weapons.add(new Weapon(
+            "Khravengger",
+            "Great Sword",
+            "A strange weapon released by Witching Hour..."
+        ));
+
+        weapons.add(new Weapon(
+            "Blessing of Lustrous Carmine",
+            "Polearm",
+            "One of the polearms produced by the Witching Hour..."
+        ));
+
+        // GEARS DISPONIBLES
         gears = new ArrayList<>();
-        gears.add(new Gear("Swordmancer ","Heavy Armor", "AGILITY", "STRENGTH"));
-        gears.add(new Gear("Swordmancer ","TAC Gloves", "STRENGTH", "WILL"));
-        gears.add(new Gear("Swordmancer ","TAC Gauntlets","AGILITY", "STRENGTH"));
-        gears.add(new Gear("Swordmancer ","Flint","AGILITY", "STRENGTH"));     
-        
-        // ---- Builds ----
+
+        gears.add(new Gear("Swordmancer", "Heavy Armor",
+            "AGILITY", "STRENGTH"));
+
+        gears.add(new Gear("Swordmancer", "TAC Gloves",
+            "STRENGTH", "WILL"));
+
+        gears.add(new Gear("Swordmancer", "TAC Gauntlets",
+            "AGILITY", "STRENGTH"));
+
+        gears.add(new Gear("Swordmancer", "Flint",
+            "AGILITY", "STRENGTH"));
+
+        // BUILD MOCK
+        List<Gear> gearsBuild = new ArrayList<>();
+
+        for (Gear gear : gears) {
+            gearsBuild.add(new Gear(
+                gear.getSet(),
+                gear.getName(),
+                gear.getStat1(),
+                gear.getStat2()
+            ));
+        }
+
         builds = new ArrayList<>();
-        Build build1 = new Build (endministrator, complexedIndustry, gears);
+
+        Build build1 = new Build(
+            buildId++,
+            endministrator,
+            complexedIndustry,
+            gearsBuild
+        );
+
         builds.add(build1);
     }
-    // Getters
+
+    // BUSCAR BUILD
+    public Build buscarBuild(Long id) {
+
+        return builds.stream()
+            .filter(b -> b.getId().equals(id))
+            .findFirst()
+            .orElse(null);
+    }
+
+    // GUARDAR BUILD
+    public void guardarBuild(Build build) {
+
+        if (build.getId() == null) {
+
+            build.setId(buildId++);
+            builds.add(build);
+
+        } else {
+
+            for (int i = 0; i < builds.size(); i++) {
+
+                if (builds.get(i).getId().equals(build.getId())) {
+                    builds.set(i, build);
+                    return;
+                }
+            }
+
+            builds.add(build);
+        }
+    }
+
+    // ELIMINAR BUILD
+    public void eliminarBuild(Long id) {
+
+        builds.removeIf(b -> b.getId().equals(id));
+    }
+
+    // GETTERS
+
     public List<Operator> getOperators() {
         return operators;
     }
@@ -75,7 +162,7 @@ public class EndfieldServiceBean {
         return gears;
     }
 
-    public List<Build> getBuilds(){
+    public List<Build> getBuilds() {
         return builds;
     }
 }

@@ -1,65 +1,128 @@
-<ui:composition
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="jakarta.faces.html"
-    xmlns:ui="jakarta.faces.facelets"
-    xmlns:cc="jakarta.faces.composite"
-    xmlns:app="jakarta.faces.composite/components">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:p="primefaces"
+    xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite">
 
     <cc:interface>
-        <cc:attribute name="value"
-                      type="es.protobuilder.endfield.Build"
-                      required="true" />
+        <cc:attribute name="value" type="es.protobuilder.endfield.Build" required="true" />
     </cc:interface>
 
     <cc:implementation>
 
         <div class="card bg-dark text-white border-secondary h-100">
+
+            <!-- HEADER -->
+            <div class="card-header bg-black border-secondary">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <h4 class="text-warning mb-0">
+                        #{cc.attrs.value.operator.name}
+                    </h4>
+
+                    <span class="badge bg-secondary">
+                        #{cc.attrs.value.operator.element}
+                    </span>
+
+                </div>
+
+            </div>
+
             <div class="card-body">
 
-                <!-- BUILD HEADER -->
-                <h4 class="card-title text-warning mb-4">
-                    Build de #{cc.attrs.value.operator.name}
-                </h4>
-
-                <!-- OPERATOR -->
+                <!-- OPERATOR + WEAPON -->
                 <section class="mb-4">
-                    <h5 class="text-warning mb-3">Operator</h5>
 
-                    <app:operatorCard
-                        value="#{cc.attrs.value.operator}" />
+                    <div class="row g-3 align-items-stretch">
+
+                        <!-- OPERATOR -->
+                        <div class="col-8">
+                            <div class="border border-secondary rounded p-2 h-100 d-flex align-items-center">
+
+                                <h:graphicImage library="img" name="#{cc.attrs.value.operator.image}"
+                                    styleClass="img-fluid w-100" style="object-fit: contain;" />
+
+                            </div>
+                        </div>
+
+                        <!-- WEAPON -->
+                        <div class="col-4">
+                            <div class="border border-secondary rounded p-2 h-100 d-flex align-items-center">
+
+                                <h:graphicImage library="img" name="#{cc.attrs.value.weapon.image}"
+                                    styleClass="img-fluid w-100" style="object-fit: contain;" />
+
+                            </div>
+                        </div>
+
+                    </div>
+
                 </section>
 
-                <!-- WEAPON -->
-                <section class="mb-4">
-                    <h5 class="text-info mb-3">Weapon</h5>
-
-                    <app:weaponCard
-                        value="#{cc.attrs.value.weapon}" />
-                </section>
+                <hr class="border-secondary" />
 
                 <!-- GEAR -->
-                <section class="mb-3">
-                    <h5 class="text-success mb-3">Gear</h5>
+                <section>
 
-                    <div class="row g-3">
+                    <h5 class="text-success mb-3">
+                        Gear
+                    </h5>
 
-                        <ui:repeat
-                            value="#{cc.attrs.value.gear}"
-                            var="item">
+                    <div class="row g-2">
 
-                            <div class="col-12 col-md-6 col-lg-4">
+                        <ui:repeat value="#{cc.attrs.value.gear}" var="item">
 
-                                <app:gearCard
-                                    value="#{item}" />
+                            <div class="col-6 col-md-3">
+
+                                <div
+                                    class="border border-secondary rounded p-2 h-100 text-center d-flex flex-column justify-content-between">
+
+                                    <h:graphicImage library="img" name="#{item.image}" alt="#{item.name}"
+                                        styleClass="img-fluid rounded mb-2" />
+
+                                    <h6 class="small text-success mb-2">
+                                        #{item.name}
+                                    </h6>
+
+                                    <div class="d-flex flex-column gap-1">
+
+                                        <span class="badge bg-secondary">
+                                            #{item.stat1}
+                                        </span>
+
+                                        <span class="badge bg-secondary">
+                                            #{item.stat2}
+                                        </span>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 
                         </ui:repeat>
 
                     </div>
+
+                </section>
+
+                <!-- ACTIONS -->
+                <section class="mt-4 pt-3 border-top border-secondary">
+
+                    <h:form>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <p:commandButton value="Edit" icon="pi pi-pencil" styleClass="btn btn-primary" />
+
+                            <p:commandButton value="Delete" icon="pi pi-trash" styleClass="btn btn-danger" />
+
+                        </div>
+
+                    </h:form>
+
                 </section>
 
             </div>
+
         </div>
 
     </cc:implementation>

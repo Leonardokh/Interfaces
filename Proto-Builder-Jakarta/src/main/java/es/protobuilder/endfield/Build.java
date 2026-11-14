@@ -1,25 +1,27 @@
 package es.protobuilder.endfield;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.inject.Inject;
 
 public class Build {
 
+    private Long id;
+
     private Operator operator;
     private Weapon weapon;
     private List<Gear> gear;
 
-    public Build(Operator operator, Weapon weapon, List<Gear> gears) {
+    public Build(Long id, Operator operator, Weapon weapon, List<Gear> gears) {
+        this.id = id;
         this.operator = operator;
         this.weapon = weapon;
-        this.gear = gears;
+        this.gear = new ArrayList<Gear>(gears);
     }
 
     public Build() {
-        this.operator = null;
-        this.weapon = null;
-        this.gear = null;
+        this.gear = new ArrayList<Gear>();
     }
 
     public Operator getOperator() {
@@ -44,6 +46,14 @@ public class Build {
 
     public void setGear(List<Gear> gears) {
         this.gear = gears;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     
