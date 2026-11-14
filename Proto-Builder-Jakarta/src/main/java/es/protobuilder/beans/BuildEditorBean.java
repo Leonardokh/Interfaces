@@ -13,12 +13,15 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Named("buildEditorBean")
 @ViewScoped
 public class BuildEditorBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(BuildEditorBean.class.getName());
 
     @Inject
     private EndfieldServiceBean endfieldService;
@@ -99,8 +102,18 @@ public class BuildEditorBean implements Serializable {
         buildEnEdicion.setOperator(operator);
         buildEnEdicion.setWeapon(weapon);
         buildEnEdicion.setGear(gear);
-        endfieldService.guardarBuild(buildEnEdicion);
-        limpiarEdicion();
+        try {
+            endfieldService.guardarBuild(buildEnEdicion);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Build guardada",
+                            "La build se guardó correctamente para tu usuario."));
+            limpiarEdicion();
+        } catch (RuntimeException e) {
+            LOGGER.log(Level.SEVERE, "No se pudo guardar la build del usuario actual.", e);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                            "No se pudo guardar la build. Comprueba que has iniciado sesión e inténtalo de nuevo."));
+        }
     }
 
     public void cancelarEdicion() {
@@ -115,10 +128,17 @@ public class BuildEditorBean implements Serializable {
             return;
         }
 
-        endfieldService.eliminarBuild(id);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Build eliminada",
-                        "Se eliminó la build de " + build.getOperator().getName() + "."));
+        try {
+            endfieldService.eliminarBuild(id);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Build eliminada",
+                            "Se eliminó la build de " + build.getOperator().getName() + "."));
+        } catch (RuntimeException e) {
+            LOGGER.log(Level.SEVERE, "No se pudo eliminar la build del usuario actual.", e);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                            "No se pudo eliminar la build. Inténtalo de nuevo."));
+        }
     }
 
     private void limpiarEdicion() {

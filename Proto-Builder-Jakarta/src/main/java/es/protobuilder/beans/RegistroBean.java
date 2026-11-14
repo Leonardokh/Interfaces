@@ -95,12 +95,13 @@ public class RegistroBean implements Serializable {
              * tokenConfirmacion);
              */
 
-            FacesContext.getCurrentInstance().addMessage(null,
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro Exitoso",
                             "Usuario " + username + " guardado correctamente en la base de datos."));
+            facesContext.getExternalContext().getFlash().setKeepMessages(true);
 
-            // Redirige directamente al dashboard o home sin esperar verificación por correo
-            return "dashboard?faces-redirect=true";
+            return "home?faces-redirect=true";
 
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
