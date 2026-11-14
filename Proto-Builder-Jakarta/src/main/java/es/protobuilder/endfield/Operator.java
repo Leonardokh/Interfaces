@@ -6,23 +6,34 @@ public class Operator implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String name;
     private String archetype;
     private String element;
     private String description;
 
     public Operator() {
+        this.id = "";
         this.name = "";
         this.archetype = "";
         this.element = "";
         this.description = "";
     }
 
-    public Operator(String name, String archetype, String element, String description) {
+    public Operator(String id, String name, String archetype, String element, String description) {
+        this.id = id;
         this.name = name;
         this.archetype = archetype;
         this.element = element;
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

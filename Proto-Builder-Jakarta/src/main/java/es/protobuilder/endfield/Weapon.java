@@ -6,20 +6,31 @@ public class Weapon implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String name;
     private String type;
     private String description;
 
     public Weapon() {
+        this.id = "";
         this.name = "";
         this.type = "";
         this.description = "";
     }
 
-    public Weapon(String name, String type, String description) {
+    public Weapon(String id, String name, String type, String description) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

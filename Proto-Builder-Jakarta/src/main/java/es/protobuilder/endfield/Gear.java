@@ -6,6 +6,7 @@ public class Gear implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
+    private String id;
     private String set;
     private String name;
     private String stat1;
@@ -13,16 +14,26 @@ public class Gear implements Serializable {
 
     public Gear() {
         
+        this.id = "";
         this.set = "";
         this.name = "";
         this.stat1 = "";
         this.stat2 = "";
     }
-    public Gear(String set, String name, String stat1, String stat2) {
+    public Gear(String id, String set, String name, String stat1, String stat2) {
+        this.id = id;
         this.set = set;
         this.name = name;
         this.stat1 = stat1;
         this.stat2 = stat2;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStat2() {

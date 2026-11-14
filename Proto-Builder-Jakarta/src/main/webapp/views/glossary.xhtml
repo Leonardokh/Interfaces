@@ -16,35 +16,68 @@
 
                 <!-- Pestaña 1: Operadores -->
                 <p:tab title="Operadores">
-                    <div class="row g-3">
-                        <ui:repeat value="#{endfieldService.operators}" var="operator">
-                            <div class="col-12 col-sm-6 col-xl-4">
-                                <app:operatorCard value="#{operator}" />
-                            </div>
-                        </ui:repeat>
-                    </div>
+                    <p:inputText value="#{glosarioBean.busquedaOperadores}"
+                                 placeholder="Buscar operador por nombre"
+                                 styleClass="form-control glossary-search mb-3">
+                        <p:ajax event="keyup" delay="300" process="@this" update="operatorResults" />
+                    </p:inputText>
+                    <p:outputPanel id="operatorResults" layout="block">
+                        <h:panelGroup layout="block" rendered="#{empty glosarioBean.operadoresFiltrados}"
+                                      styleClass="text-white-50 mb-3">
+                            No se encontraron operadores.
+                        </h:panelGroup>
+                        <div class="row g-3">
+                            <ui:repeat value="#{glosarioBean.operadoresFiltrados}" var="operator">
+                                <div class="col-12 col-sm-6 col-xl-4">
+                                    <app:operatorCard value="#{operator}" />
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </p:outputPanel>
                 </p:tab>
 
                 <!-- Pestaña 2: Armas -->
                 <p:tab title="Armas">
-                    <div class="row g-3">
-                        <ui:repeat value="#{endfieldService.weapons}" var="weapon">
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-                                <app:weaponCard value="#{weapon}" />
-                            </div>
-                        </ui:repeat>
-                    </div>
+                    <p:inputText value="#{glosarioBean.busquedaArmas}"
+                                 placeholder="Buscar arma por nombre"
+                                 styleClass="form-control glossary-search mb-3">
+                        <p:ajax event="keyup" delay="300" process="@this" update="weaponResults" />
+                    </p:inputText>
+                    <p:outputPanel id="weaponResults" layout="block">
+                        <h:panelGroup layout="block" rendered="#{empty glosarioBean.armasFiltradas}"
+                                      styleClass="text-white-50 mb-3">
+                            No se encontraron armas.
+                        </h:panelGroup>
+                        <div class="row g-3">
+                            <ui:repeat value="#{glosarioBean.armasFiltradas}" var="weapon">
+                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                                    <app:weaponCard value="#{weapon}" />
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </p:outputPanel>
                 </p:tab>
 
                 <!-- Pestaña 3: Artefactos -->
                 <p:tab title="Equipamiento">
-                    <div class="row g-3">
-                        <ui:repeat value="#{endfieldService.gears}" var="gear">
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-                                <app:gearCard value="#{gear}" />
-                            </div>
-                        </ui:repeat>
-                    </div>
+                    <p:inputText value="#{glosarioBean.busquedaGear}"
+                                 placeholder="Buscar pieza por nombre"
+                                 styleClass="form-control glossary-search mb-3">
+                        <p:ajax event="keyup" delay="300" process="@this" update="gearResults" />
+                    </p:inputText>
+                    <p:outputPanel id="gearResults" layout="block">
+                        <h:panelGroup layout="block" rendered="#{empty glosarioBean.gearFiltrado}"
+                                      styleClass="text-white-50 mb-3">
+                            No se encontraron piezas de equipamiento.
+                        </h:panelGroup>
+                        <div class="row g-3">
+                            <ui:repeat value="#{glosarioBean.gearFiltrado}" var="gear">
+                                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                                    <app:gearCard value="#{gear}" />
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </p:outputPanel>
                 </p:tab>
 
             </p:tabView>

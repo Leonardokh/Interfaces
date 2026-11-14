@@ -137,6 +137,21 @@ body .ui-panel .ui-button {
     gap: 0.75rem;
 }
 
+.glossary-card {
+    min-width: 0;
+}
+
+.glossary-search {
+    max-width: 32rem;
+}
+
+.glossary-card .card-title,
+.glossary-card .card-subtitle,
+.glossary-card-description {
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
 .glossary-card-image-frame {
     display: flex;
     min-height: 150px;
@@ -425,8 +440,22 @@ body .ui-panel .ui-button {
     padding: 0.85rem;
 }
 
+.build-card {
+    min-width: 0;
+}
+
 .build-card-title {
     font-size: 1.15rem;
+    min-width: 0;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.build-card .badge,
+.build-card-gear h6 {
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
 }
 
 .build-card-image-frame {

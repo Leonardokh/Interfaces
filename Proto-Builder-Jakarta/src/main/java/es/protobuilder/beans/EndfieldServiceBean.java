@@ -12,7 +12,9 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Named("endfieldService")
 @SessionScoped
@@ -21,8 +23,11 @@ public class EndfieldServiceBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private List<Operator> operators;
+    private Map<String, Operator> operatorsById;
     private List<Weapon> weapons;
+    private Map<String, Weapon> weaponsById;
     private List<Gear> gears;
+    private Map<String, Gear> gearsById;
     private List<Build> builds;
 
     private Long buildId = 1L;
@@ -32,44 +37,52 @@ public class EndfieldServiceBean implements Serializable {
 
         // OPERATORS
         operators = new ArrayList<>();
+        operatorsById = new HashMap<>();
 
         Operator endministrator = new Operator(
+            "endministrator",
             "Endministrator",
             "Guard",
             "Physical",
             "The protagonist of Endfield..."
         );
 
-        operators.add(endministrator);
+        agregarOperador(endministrator);
 
-        operators.add(new Operator(
+        agregarOperador(new Operator(
+            "perlica",
             "Perlica", "Caster", "Electric",
             "Supervisor and official spokesperson..."
         ));
 
-        operators.add(new Operator(
+        agregarOperador(new Operator(
+            "xaihi",
             "Xaihi", "Supporter", "Cryo",
             "A researcher dispatched from Laterano..."
         ));
 
         // WEAPONS
         weapons = new ArrayList<>();
+        weaponsById = new HashMap<>();
 
         Weapon complexedIndustry = new Weapon(
+            "complexed-industry",
             "Complexed Industry",
             "Sword",
             "An all-new product from the Northmarch Support Hub..."
         );
 
-        weapons.add(complexedIndustry);
+        agregarArma(complexedIndustry);
 
-        weapons.add(new Weapon(
+        agregarArma(new Weapon(
+            "khravengger",
             "Khravengger",
             "Great Sword",
             "A strange weapon released by Witching Hour..."
         ));
 
-        weapons.add(new Weapon(
+        agregarArma(new Weapon(
+            "blessing-of-lustrous-carmine",
             "Blessing of Lustrous Carmine",
             "Polearm",
             "One of the polearms produced by the Witching Hour..."
@@ -77,17 +90,18 @@ public class EndfieldServiceBean implements Serializable {
 
         // GEARS DISPONIBLES
         gears = new ArrayList<>();
+        gearsById = new HashMap<>();
 
-        gears.add(new Gear("Swordmancer", "Heavy Armor",
+        agregarGear(new Gear("swordmancer-heavy-armor", "Swordmancer", "Heavy Armor",
             "AGILITY", "STRENGTH"));
 
-        gears.add(new Gear("Swordmancer", "TAC Gloves",
+        agregarGear(new Gear("swordmancer-tac-gloves", "Swordmancer", "TAC Gloves",
             "STRENGTH", "WILL"));
 
-        gears.add(new Gear("Swordmancer", "TAC Gauntlets",
+        agregarGear(new Gear("swordmancer-tac-gauntlets", "Swordmancer", "TAC Gauntlets",
             "AGILITY", "STRENGTH"));
 
-        gears.add(new Gear("Swordmancer", "Flint",
+        agregarGear(new Gear("swordmancer-flint", "Swordmancer", "Flint",
             "AGILITY", "STRENGTH"));
 
         // BUILD MOCK
@@ -95,6 +109,7 @@ public class EndfieldServiceBean implements Serializable {
 
         for (Gear gear : gears) {
             gearsBuild.add(new Gear(
+                gear.getId(),
                 gear.getSet(),
                 gear.getName(),
                 gear.getStat1(),
@@ -121,6 +136,33 @@ public class EndfieldServiceBean implements Serializable {
             .filter(b -> b.getId().equals(id))
             .findFirst()
             .orElse(null);
+    }
+
+    private void agregarOperador(Operator operator) {
+        operators.add(operator);
+        operatorsById.put(operator.getId(), operator);
+    }
+
+    public Operator buscarOperador(String id) {
+        return operatorsById.get(id);
+    }
+
+    private void agregarArma(Weapon weapon) {
+        weapons.add(weapon);
+        weaponsById.put(weapon.getId(), weapon);
+    }
+
+    public Weapon buscarArma(String id) {
+        return weaponsById.get(id);
+    }
+
+    private void agregarGear(Gear gear) {
+        gears.add(gear);
+        gearsById.put(gear.getId(), gear);
+    }
+
+    public Gear buscarGear(String id) {
+        return gearsById.get(id);
     }
 
     // GUARDAR BUILD
