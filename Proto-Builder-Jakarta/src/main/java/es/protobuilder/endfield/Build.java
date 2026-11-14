@@ -2,10 +2,13 @@ package es.protobuilder.endfield;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
 import jakarta.inject.Inject;
 
-public class Build {
+public class Build implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

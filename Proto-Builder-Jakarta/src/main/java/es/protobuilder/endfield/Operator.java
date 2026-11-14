@@ -1,6 +1,11 @@
 package es.protobuilder.endfield;
 
-public class Operator {
+import java.io.Serializable;
+
+public class Operator implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String archetype;
     private String element;

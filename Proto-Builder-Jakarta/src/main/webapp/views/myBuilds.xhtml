@@ -1,7 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-    xmlns:app="jakarta.faces.composite/components">
+    xmlns:p="primefaces" xmlns:app="jakarta.faces.composite/components">
 
     <div class="container-fluid">
+
+        <p:messages id="messages" showDetail="true" closable="true" />
 
         <div class="d-flex justify-content-between align-items-center mb-4">
 
@@ -13,23 +15,26 @@
 
         </div>
 
-        <h:form id="myBuildsForm">
+        <div class="row g-4">
 
-            <div class="row g-4">
+            <ui:repeat value="#{endfieldService.builds}" var="build">
 
-                <ui:repeat value="#{endfieldService.builds}" var="build">
+                <div class="col-12 col-sm-6 col-xxl-4">
 
-                    <div class="col-12 col-md-6 col-xl-4">
+                    <app:buildCard value="#{build}" />
 
-                        <app:buildCard value="#{build}" />
+                </div>
 
-                    </div>
+            </ui:repeat>
 
-                </ui:repeat>
+        </div>
 
-            </div>
-
-        </h:form>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="400">
+            <p:commandButton value="Cancelar" type="button"
+                styleClass="ui-confirmdialog-no btn btn-outline-light" />
+            <p:commandButton value="Eliminar" type="button"
+                styleClass="ui-confirmdialog-yes btn btn-danger" />
+        </p:confirmDialog>
 
     </div>
 

@@ -11,7 +11,11 @@ public class VistaBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // Sección inicial por defecto
-    private String seccion = "myBuilds";
+    private String seccion = "news";
+
+    public void mostrarEditarBuild() {
+        this.seccion = "editBuild";
+    }
 
     public void mostrarNuevaBuild() {
         this.seccion = "newBuild";
@@ -23,6 +27,10 @@ public class VistaBean implements Serializable {
 
     public void mostrarGlosario() {
         this.seccion = "glossary";
+    }
+
+    public void mostrarNoticias() {
+        this.seccion = "news";
     }
 
     // Getters y Setters

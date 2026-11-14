@@ -10,12 +10,15 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Named("endfieldService")
 @SessionScoped
-public class EndfieldServiceBean {
+public class EndfieldServiceBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private List<Operator> operators;
     private List<Weapon> weapons;

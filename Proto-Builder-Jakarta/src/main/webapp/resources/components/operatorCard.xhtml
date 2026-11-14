@@ -16,13 +16,13 @@
 
     <!-- 2. IMPLEMENTACIÓN: Diseño visual de la tarjeta del operador -->
     <cc:implementation>
-        <div class="card bg-dark text-white border-secondary h-100">
+        <div class="card bg-dark text-white border-secondary h-100 glossary-card">
             <div class="card-body">
 
                 <!--<h:outputText value="#{cc.attrs.value.image}" />-->
                 
                 <!-- Imagen del operador -->
-                <div class="text-center mb-3">
+                <div class="glossary-card-image-frame text-center mb-3">
                     <h:graphicImage library="img"
                         name="#{not empty cc.attrs.value ? cc.attrs.value.image : cc.attrs.image}"
                         alt="#{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}"
@@ -31,22 +31,24 @@
                 </div>
 
                 <!-- Nombre del operador -->
-                <h5 class="card-title text-warning">
-                    #{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}
-                </h5>
+                <div class="glossary-card-details">
+                    <h5 class="card-title text-warning">
+                        #{not empty cc.attrs.value ? cc.attrs.value.name : cc.attrs.name}
+                    </h5>
 
-                <!-- Arquetipo -->
-                <h6 class="card-subtitle mb-1">
-                    Arquetipo: #{not empty cc.attrs.value ? cc.attrs.value.archetype : cc.attrs.archetype}
-                </h6>
+                    <!-- Arquetipo -->
+                    <h6 class="card-subtitle mb-1">
+                        Arquetipo: #{not empty cc.attrs.value ? cc.attrs.value.archetype : cc.attrs.archetype}
+                    </h6>
 
-                <!-- Elemento -->
-                <h6 class="card-subtitle mb-2 text-info small">
-                    Elemento: #{not empty cc.attrs.value ? cc.attrs.value.element : cc.attrs.element}
-                </h6>
+                    <!-- Elemento -->
+                    <h6 class="card-subtitle mb-2 text-info small">
+                        Elemento: #{not empty cc.attrs.value ? cc.attrs.value.element : cc.attrs.element}
+                    </h6>
+                </div>
 
                 <!-- Descripción -->
-                <p class="card-text small mt-2">
+                <p class="glossary-card-description card-text small mt-2">
                     #{not empty cc.attrs.value ? cc.attrs.value.description : cc.attrs.description}
                 </p>
             </div>

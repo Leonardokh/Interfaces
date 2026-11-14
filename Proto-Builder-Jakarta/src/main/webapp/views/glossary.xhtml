@@ -18,7 +18,7 @@
                 <p:tab title="Operadores">
                     <div class="row g-3">
                         <ui:repeat value="#{endfieldService.operators}" var="operator">
-                            <div class="col-md-4">
+                            <div class="col-12 col-sm-6 col-xl-4">
                                 <app:operatorCard value="#{operator}" />
                             </div>
                         </ui:repeat>
@@ -29,7 +29,7 @@
                 <p:tab title="Armas">
                     <div class="row g-3">
                         <ui:repeat value="#{endfieldService.weapons}" var="weapon">
-                            <div class="col-md-4">
+                            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
                                 <app:weaponCard value="#{weapon}" />
                             </div>
                         </ui:repeat>
@@ -40,7 +40,7 @@
                 <p:tab title="Equipamiento">
                     <div class="row g-3">
                         <ui:repeat value="#{endfieldService.gears}" var="gear">
-                            <div class="col-md-4">
+                            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
                                 <app:gearCard value="#{gear}" />
                             </div>
                         </ui:repeat>

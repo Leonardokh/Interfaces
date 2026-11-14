@@ -115,3 +115,370 @@ body .ui-panel .ui-button {
     -webkit-backdrop-filter: blur(10px);                    /* Soporte para Safari */
     border: 1px solid rgba(255, 255, 255, 0.1);           /* Borde sutil */
 }
+
+.dashboard-sidebar {
+    min-width: 0;
+}
+
+.dashboard-sidebar .ui-button {
+    box-sizing: border-box;
+    max-width: 100%;
+    white-space: normal;
+}
+
+.dashboard-sidebar .ui-button-text {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.glossary-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.glossary-card-image-frame {
+    display: flex;
+    min-height: 150px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.glossary-card-image-frame img {
+    max-height: 180px;
+    object-fit: contain;
+}
+
+.glossary-card-details {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.4rem;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.glossary-card-details > :last-child {
+    margin-bottom: 0;
+}
+
+.glossary-card-description {
+    margin-bottom: 0;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 0.4rem;
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.news-image-frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: clamp(90px, 12vw, 300px);
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.news-image-frame .news-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100% !important;
+    min-width: 100%;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.build-editor .build-selection-section {
+    min-width: 0;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.build-editor .build-selection-section .build-card-image-frame {
+    position: relative;
+    height: 180px !important;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.build-editor .build-image-change-position {
+    position: absolute !important;
+    z-index: 2;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    line-height: 1;
+}
+
+.build-editor .build-image-change {
+    position: static !important;
+    width: auto !important;
+    min-width: 2rem;
+    max-width: none !important;
+    margin: 0;
+    padding: 0.35rem;
+    background: rgba(15, 15, 15, 0.82);
+}
+
+.build-editor .build-image-change:hover,
+.build-editor .build-image-change:focus {
+    background: rgba(15, 15, 15, 0.96);
+}
+
+.build-editor .build-editor-operator-image,
+.build-editor .build-editor-weapon-image {
+    display: block;
+    max-height: 164px;
+    object-fit: contain;
+}
+
+.build-editor .build-selection-footer {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.build-editor .build-selection-footer > div {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.build-editor .ui-button {
+    width: auto !important;
+    max-width: none !important;
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+.build-editor .build-selection-footer .ui-button {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.75rem;
+}
+
+.build-editor .build-gear-current-card {
+    height: 100%;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.build-editor .build-gear-current-image-frame {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 104px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    padding: 0.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.4rem;
+    background: rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.build-editor .build-gear-current-image {
+    display: block;
+    width: 78%;
+    height: 78%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.build-editor .build-gear-current-footer {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.build-editor .build-gear-current-footer > div {
+    min-width: 0;
+}
+
+.build-editor .build-gear-current-footer .ui-button {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.75rem;
+}
+
+.build-editor .build-option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.build-editor .build-option-item {
+    min-width: 0;
+}
+
+.build-editor .build-option-card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 150px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.build-editor .build-option-card:hover,
+.build-editor .build-option-card:focus {
+    border-color: #ffc144;
+    background: rgba(255, 193, 68, 0.12);
+    color: #fff;
+    text-decoration: none;
+}
+
+.build-editor .build-option-card:focus-visible {
+    outline: 2px solid #ffc144;
+    outline-offset: 2px;
+}
+
+.build-editor .build-option-image-frame {
+    display: flex;
+    width: 100%;
+    height: 104px;
+    flex: 0 0 104px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.build-editor .build-option-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 575.98px) {
+    .build-editor .build-selection-section .build-card-image-frame {
+        height: 132px !important;
+    }
+
+    .build-editor .build-editor-operator-image,
+    .build-editor .build-editor-weapon-image {
+        max-height: 116px;
+    }
+
+    .build-editor .build-selection-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .build-editor .build-gear-current-image-frame {
+        height: 88px;
+    }
+
+    .build-editor .build-gear-current-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .build-editor .build-option-card {
+        min-height: 128px;
+        padding: 0.45rem;
+        font-size: 0.9rem;
+    }
+
+    .build-editor .build-option-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 125px), 1fr));
+        gap: 0.65rem;
+    }
+
+    .build-editor .build-option-image-frame {
+        height: 86px;
+        flex-basis: 86px;
+    }
+}
+
+.build-card .card-body {
+    padding: 0.85rem;
+}
+
+.build-card-title {
+    font-size: 1.15rem;
+}
+
+.build-card-image-frame {
+    height: 145px !important;
+    min-height: 0;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.build-card-operator-image,
+.build-card-weapon-image {
+    display: block;
+    max-height: 130px;
+    object-fit: contain;
+}
+
+.build-card-gear {
+    padding: 0.4rem !important;
+    overflow: hidden;
+}
+
+.build-card-gear-image {
+    display: block;
+    width: 100%;
+    height: 64px;
+    object-fit: contain;
+}
+
+.build-card-gear h6 {
+    font-size: 0.75rem;
+    line-height: 1.15;
+}
+
+.build-card-gear .badge {
+    font-size: 0.65rem;
+    white-space: normal;
+}
+
+.build-card-actions .ui-button {
+    width: auto !important;
+    max-width: none !important;
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .build-card-image-frame {
+        height: 120px !important;
+    }
+
+    .build-card-operator-image,
+    .build-card-weapon-image {
+        max-height: 108px;
+    }
+}

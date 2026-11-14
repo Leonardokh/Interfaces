@@ -1,6 +1,10 @@
 package es.protobuilder.endfield;
 
-public class Gear {
+import java.io.Serializable;
+
+public class Gear implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     
     private String set;
     private String name;
