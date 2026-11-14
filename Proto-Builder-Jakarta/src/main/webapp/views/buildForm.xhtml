@@ -1,0 +1,194 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces">
+
+    <div class="container-fluid build-editor">
+        <h:form id="formBuild">
+            <p:messages id="messages" showDetail="true" closable="true" />
+
+            <p:outputPanel id="buildEditor" layout="block">
+                <p:outputPanel rendered="#{not empty buildEditorBean.buildEnEdicion}">
+                    <div class="card bg-dark text-white border-secondary">
+                        <div class="card-header bg-black border-secondary">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="text-warning mb-0">
+                                    <h:outputText value="#{buildEditorBean.nuevaBuild ? 'Nueva build' : 'Editar build'}" />
+                                </h4>
+                                <h:panelGroup rendered="#{not buildEditorBean.nuevaBuild}">
+                                    <span class="badge bg-secondary">ID: #{buildEditorBean.buildEnEdicion.id}</span>
+                                </h:panelGroup>
+                            </div>
+                        </div>
+
+                        <div class="card-body p-3">
+                            <section class="mb-3">
+                                <h5 class="text-warning mb-2">Personaje y arma</h5>
+                                <div class="row g-2 align-items-stretch">
+                                    <div class="col-8">
+                                        <div class="build-selection-section">
+                                            <div class="build-card-image-frame border border-secondary rounded p-2 d-flex align-items-center justify-content-center"
+                                                 style="position: relative;">
+                                                <h:graphicImage library="img" name="#{buildEditorBean.imagenOperadorSeleccionado}"
+                                                                rendered="#{not empty buildEditorBean.imagenOperadorSeleccionado}"
+                                                                styleClass="img-fluid w-100 build-editor-operator-image" />
+                                                <div class="build-image-change-position"
+                                                     style="position: absolute; right: 0.5rem; bottom: 0.5rem; z-index: 2;">
+                                                    <p:commandButton icon="pi pi-pencil" title="Cambiar personaje"
+                                                                     action="#{buildEditorBean.mostrarOperadores}"
+                                                                     process="@this" update="@form"
+                                                                     styleClass="build-image-change btn btn-outline-warning btn-sm" />
+                                                </div>
+                                            </div>
+                                            <div class="build-selection-footer">
+                                                <div class="text-truncate">
+                                                    <span class="small text-white-50">Personaje</span>
+                                                    <div>#{empty buildEditorBean.nombreOperadorSeleccionado ? 'Sin seleccionar' : buildEditorBean.nombreOperadorSeleccionado}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="build-selection-section">
+                                            <div class="build-card-image-frame border border-secondary rounded p-2 d-flex align-items-center justify-content-center"
+                                                 style="position: relative;">
+                                                <h:graphicImage library="img" name="#{buildEditorBean.imagenArmaSeleccionada}"
+                                                                rendered="#{not empty buildEditorBean.imagenArmaSeleccionada}"
+                                                                styleClass="img-fluid w-100 build-editor-weapon-image" />
+                                                <div class="build-image-change-position"
+                                                     style="position: absolute; right: 0.5rem; bottom: 0.5rem; z-index: 2;">
+                                                    <p:commandButton icon="pi pi-pencil" title="Cambiar arma"
+                                                                     action="#{buildEditorBean.mostrarArmas}"
+                                                                     process="@this" update="@form"
+                                                                     styleClass="build-image-change btn btn-outline-warning btn-sm" />
+                                                </div>
+                                            </div>
+                                            <div class="build-selection-footer">
+                                                <div class="text-truncate">
+                                                    <span class="small text-white-50">Arma</span>
+                                                    <div>#{empty buildEditorBean.nombreArmaSeleccionada ? 'Sin seleccionar' : buildEditorBean.nombreArmaSeleccionada}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <hr class="border-secondary" />
+
+                            <section>
+                                <h5 class="text-success mb-2">Piezas de equipamiento</h5>
+                                <div class="row g-2">
+                                    <ui:repeat value="#{buildEditorBean.buildEnEdicion.gear}" var="item" varStatus="status">
+                                        <div class="col-12 col-sm-6 col-xl-3">
+                                            <div class="build-gear-current-card">
+                                                <div class="build-gear-current-image-frame" style="position: relative;">
+                                                    <h:graphicImage library="img"
+                                                                    name="#{buildEditorBean.getImagenGearSeleccionado(status.index)}"
+                                                                    rendered="#{not empty buildEditorBean.getImagenGearSeleccionado(status.index)}"
+                                                                    styleClass="build-gear-current-image" />
+                                                    <div class="build-image-change-position"
+                                                         style="position: absolute; right: 0.5rem; bottom: 0.5rem; z-index: 2;">
+                                                        <p:commandButton icon="pi pi-pencil" title="Cambiar pieza #{status.index + 1}"
+                                                                         action="#{buildEditorBean.mostrarGear(status.index)}"
+                                                                         process="@this" update="@form"
+                                                                         styleClass="build-image-change btn btn-outline-warning btn-sm" />
+                                                    </div>
+                                                </div>
+                                                <div class="build-gear-current-footer">
+                                                    <div class="text-truncate">
+                                                        <span class="small text-white-50">Pieza #{status.index + 1}</span>
+                                                        <div>#{empty buildEditorBean.getNombreGearSeleccionado(status.index) ? 'Sin seleccionar' : buildEditorBean.getNombreGearSeleccionado(status.index)}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </section>
+
+                            <section class="mt-3 pt-2 border-top border-secondary">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <p:commandButton value="Cancelar" action="#{buildEditorBean.cancelarEdicion}"
+                                                     process="@this" update=":contenido"
+                                                     styleClass="btn btn-outline-light px-4" />
+                                    <p:commandButton value="#{buildEditorBean.nuevaBuild ? 'Crear build' : 'Guardar cambios'}"
+                                                     action="#{buildEditorBean.guardarBuild}"
+                                                     update=":contenido" styleClass="btn btn-primary px-4" />
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </p:outputPanel>
+
+                <p:outputPanel id="selectionList" layout="block"
+                               rendered="#{not empty buildEditorBean.selectorActivo}"
+                               styleClass="card bg-dark text-white border-secondary mt-3">
+                    <div class="card-header bg-black border-secondary d-flex justify-content-between align-items-center">
+                        <h5 class="text-warning mb-0">
+                            <h:outputText value="#{buildEditorBean.selectorActivo eq 'operators' ? 'Selecciona un personaje' :
+                                                   buildEditorBean.selectorActivo eq 'weapons' ? 'Selecciona un arma' :
+                                                   'Selecciona una pieza'}" />
+                        </h5>
+                        <p:commandButton value="Cerrar" action="#{buildEditorBean.cerrarSelector}"
+                                         process="@this" update="@form" styleClass="btn btn-outline-light btn-sm" />
+                    </div>
+
+                    <div class="card-body">
+                        <p:outputPanel rendered="#{buildEditorBean.selectorActivo eq 'operators'}" layout="block">
+                            <div class="build-option-grid">
+                                <ui:repeat value="#{buildEditorBean.operadoresDisponibles}" var="operator">
+                                    <div class="build-option-item">
+                                        <p:commandLink action="#{buildEditorBean.seleccionarOperador(operator.id)}"
+                                                       process="@this" update="@form"
+                                                       styleClass="build-option-card">
+                                            <span class="build-option-image-frame">
+                                                <h:graphicImage library="img" name="#{operator.image}" styleClass="build-option-image" />
+                                            </span>
+                                            <span>#{operator.name}</span>
+                                        </p:commandLink>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </p:outputPanel>
+
+                        <p:outputPanel rendered="#{buildEditorBean.selectorActivo eq 'weapons'}" layout="block">
+                            <div class="build-option-grid">
+                                <ui:repeat value="#{buildEditorBean.armasDisponibles}" var="weapon">
+                                    <div class="build-option-item">
+                                        <p:commandLink action="#{buildEditorBean.seleccionarArma(weapon.id)}"
+                                                       process="@this" update="@form"
+                                                       styleClass="build-option-card">
+                                            <span class="build-option-image-frame">
+                                                <h:graphicImage library="img" name="#{weapon.image}" styleClass="build-option-image" />
+                                            </span>
+                                            <span>#{weapon.name}</span>
+                                        </p:commandLink>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </p:outputPanel>
+
+                        <p:outputPanel rendered="#{buildEditorBean.selectorActivo eq 'gear'}" layout="block">
+                            <div class="build-option-grid">
+                                <ui:repeat value="#{buildEditorBean.gearDisponible}" var="gear">
+                                    <div class="build-option-item">
+                                        <p:commandLink action="#{buildEditorBean.seleccionarGear(buildEditorBean.indiceGearActivo, gear.id)}"
+                                                       process="@this" update="@form"
+                                                       styleClass="build-option-card">
+                                            <span class="build-option-image-frame">
+                                                <h:graphicImage library="img" name="#{gear.image}" styleClass="build-option-image" />
+                                            </span>
+                                            <span>#{gear.name}</span>
+                                        </p:commandLink>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </p:outputPanel>
+                    </div>
+                </p:outputPanel>
+            </p:outputPanel>
+        </h:form>
+    </div>
+
+</ui:composition>
