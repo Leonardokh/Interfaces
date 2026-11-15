@@ -7,6 +7,8 @@
         <h:form id="formBuild">
             <p:messages id="messages" showDetail="true" closable="true" />
 
+            <!--Panel de Edición -->
+
             <p:outputPanel id="buildEditor" layout="block">
                 <p:outputPanel rendered="#{not empty buildEditorBean.buildEnEdicion}">
                     <div class="card bg-dark text-white border-secondary">
@@ -120,6 +122,8 @@
                         </div>
                     </div>
                 </p:outputPanel>
+
+                <!--Panel de Selección -->
 
                 <p:outputPanel id="selectionList" layout="block"
                                rendered="#{not empty buildEditorBean.selectorActivo}"
