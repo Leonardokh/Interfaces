@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:cc="jakarta.faces.composite"
+                xmlns:p="primefaces">
+
+    <cc:interface>
+        <cc:attribute name="title" type="java.lang.String" required="true" />
+        <cc:attribute name="value" type="java.lang.String" required="true" />
+        <cc:attribute name="ariaLabel" type="java.lang.String" required="true" />
+    </cc:interface>
+
+    <cc:implementation>
+        <article class="card bg-dark text-white border-secondary h-100 popularity-chart-card">
+            <div class="card-body">
+                <h4 class="h6 text-accent text-left">#{cc.attrs.title}</h4>
+                <div class="popularity-chart-container">
+                    <p:chart value="#{cc.attrs.value}"
+                             ariaLabel="#{cc.attrs.ariaLabel}"
+                             styleClass="popularity-chart"
+                             canvasStyle="width: 100%; height: 100%" />
+                </div>
+            </div>
+        </article>
+    </cc:implementation>
+</ui:composition>
