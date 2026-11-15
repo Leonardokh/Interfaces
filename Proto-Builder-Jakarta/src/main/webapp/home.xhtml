@@ -20,40 +20,40 @@
             <div></div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <h:form id="login">
-                        <p:panel header="Iniciar sesión" id="login-panel" styleClass="panel-transparente auth-panel">
-                            <div class="ui-fluid flex flex-column align-items-center gap-3">
+        <section class="auth-page"
+                 style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-height: calc(100vh - 4rem); padding: 2rem 1rem;">
+            <h:form id="login" styleClass="auth-form auth-login-form"
+                    style="display: block; width: 100%; max-width: 26rem; margin: 0 auto;">
+                <p:panel header="Iniciar sesión" id="login-panel" styleClass="auth-panel"
+                         style="width: 100%; background: rgba(12, 16, 25, 0.82); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 1rem; box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.42);">
+                    <p:messages id="loginMessages" showDetail="true" closable="true" />
+                    <div class="d-flex flex-column gap-3">
+                        <div>
+                            <p:outputLabel for="username" value="Usuario" styleClass="form-label" />
+                            <p:inputText id="username" value="#{loginBean.username}" styleClass="w-100" />
+                        </div>
 
-                                <div class="w-full" style="max-width: 300px;">
-                                    <p:outputLabel for="username" value="Usuario:" styleClass="block mb-2" />
-                                    <p:inputText id="username" value="#{loginBean.username}" />
-                                </div>
+                        <div>
+                            <p:outputLabel for="password" value="Contraseña" styleClass="form-label" />
+                            <p:password id="password" value="#{loginBean.password}" styleClass="w-100" />
+                        </div>
 
-                                <div class="w-full" style="max-width: 300px;">
-                                    <p:outputLabel for="password" value="Contraseña:" styleClass="block mb-2" />
-                                    <p:password id="password" value="#{loginBean.password}" />
-                                </div>
-
-                                <div class="w-full" style="max-width: 300px;">
-                                    <p:commandButton value="Login" action="#{loginBean.login}" update="@form :mensajes"
-                                                     styleClass="w-full mt-2" />
-                                </div>
-
-                                <div class="w-full" style="max-width: 300px;">
-                                    <!-- Se añade process="@this" e immediate="true" para omitir las validaciones de los inputs de login al ir a registro -->
-                                    <p:commandButton value="Registrarse" action="#{loginBean.irARegistro}" process="@this" immediate="true" update=":mensajes"
-                                                     styleClass="w-full mt-2" />
-                                </div>
-
-                            </div>
-                        </p:panel>
-                    </h:form>
-                </div>
-            </div>
-        </div>
+                        <div class="d-flex flex-column gap-2 pt-2">
+                            <p:commandButton value="Iniciar sesión"
+                                             action="#{loginBean.login}"
+                                             update="@form :mensajes"
+                                             styleClass="w-100" />
+                            <p:commandButton value="Crear cuenta"
+                                             action="#{loginBean.irARegistro}"
+                                             process="@this"
+                                             immediate="true"
+                                             update=":mensajes"
+                                             styleClass="ui-button-secondary w-100" />
+                        </div>
+                    </div>
+                </p:panel>
+            </h:form>
+        </section>
 
     </ui:define>
 

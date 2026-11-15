@@ -38,6 +38,8 @@ public class EndfieldServiceBean implements Serializable {
     private Map<String, Weapon> weaponsById;
     private List<Gear> gears;
     private Map<String, Gear> gearsById;
+    private List<Build> demoBuilds;
+    private long nextDemoBuildId = -2L;
 
     private static EntityManagerFactory emf;
 
@@ -113,6 +115,18 @@ public class EndfieldServiceBean implements Serializable {
         agregarGear(new Gear("swordmancer-flint", "Swordmancer", "Flint",
             "AGILITY", "STRENGTH"));
 
+        demoBuilds = new ArrayList<>();
+        Build buildDemo = new Build();
+        buildDemo.setId(-1L);
+        buildDemo.setOperator(buscarOperador("endministrator"));
+        buildDemo.setWeapon(buscarArma("complexed-industry"));
+        buildDemo.setGear(List.of(
+            buscarGear("swordmancer-heavy-armor"),
+            buscarGear("swordmancer-tac-gloves"),
+            buscarGear("swordmancer-tac-gauntlets"),
+            buscarGear("swordmancer-flint")
+        ));
+        demoBuilds.add(buildDemo);
     }
 
     private synchronized EntityManagerFactory getEmf() {
@@ -123,6 +137,11 @@ public class EndfieldServiceBean implements Serializable {
     }
 
     private Long getUsuarioAutenticadoId() {
+        Usuario usuario = getUsuarioAutenticado();
+        return usuario == null ? null : usuario.getId();
+    }
+
+    private Usuario getUsuarioAutenticado() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (facesContext == null) {
             return null;
@@ -130,10 +149,12 @@ public class EndfieldServiceBean implements Serializable {
 
         Object usuarioSesion = facesContext.getExternalContext()
                 .getSessionMap().get("usuarioLogueado");
-        if (usuarioSesion instanceof Usuario usuario) {
-            return usuario.getId();
-        }
-        return null;
+        return usuarioSesion instanceof Usuario usuario ? usuario : null;
+    }
+
+    private boolean esUsuarioDemo() {
+        Usuario usuario = getUsuarioAutenticado();
+        return usuario != null && usuario.getId() == null && "demo".equalsIgnoreCase(usuario.getUsername());
     }
 
     private Usuario obtenerUsuario(EntityManager em, Long usuarioId) {
@@ -150,6 +171,10 @@ public class EndfieldServiceBean implements Serializable {
 
     // BUSCAR BUILDS DEL USUARIO ACTUAL
     public List<Build> getBuilds() {
+        if (esUsuarioDemo()) {
+            return new ArrayList<>(demoBuilds);
+        }
+
         Long usuarioId = getUsuarioAutenticadoId();
         if (usuarioId == null) {
             return List.of();
@@ -213,8 +238,18 @@ public class EndfieldServiceBean implements Serializable {
 
     // BUSCAR BUILD PROPIA
     public Build buscarBuild(Long id) {
+        if (id == null) {
+            return null;
+        }
+        if (esUsuarioDemo()) {
+            return demoBuilds.stream()
+                    .filter(build -> id.equals(build.getId()))
+                    .findFirst()
+                    .orElse(null);
+        }
+
         Long usuarioId = getUsuarioAutenticadoId();
-        if (id == null || usuarioId == null) {
+        if (usuarioId == null) {
             return null;
         }
 
@@ -265,6 +300,11 @@ public class EndfieldServiceBean implements Serializable {
 
     // GUARDAR BUILD EN LA BASE DE DATOS
     public void guardarBuild(Build build) {
+        if (esUsuarioDemo()) {
+            guardarBuildDemo(build);
+            return;
+        }
+
         Long usuarioId = getUsuarioAutenticadoId();
         EntityManager em = getEmf().createEntityManager();
         EntityTransaction transaction = em.getTransaction();
@@ -308,6 +348,26 @@ public class EndfieldServiceBean implements Serializable {
         }
     }
 
+    private void guardarBuildDemo(Build build) {
+        if (build == null || build.getOperator() == null || build.getWeapon() == null || build.getGear() == null) {
+            throw new IllegalArgumentException("La build debe incluir personaje, arma y equipamiento.");
+        }
+
+        if (build.getId() == null) {
+            build.setId(nextDemoBuildId--);
+            demoBuilds.add(build);
+            return;
+        }
+
+        for (int i = 0; i < demoBuilds.size(); i++) {
+            if (build.getId().equals(demoBuilds.get(i).getId())) {
+                demoBuilds.set(i, build);
+                return;
+            }
+        }
+        throw new IllegalStateException("No se encontró una build demo para actualizar.");
+    }
+
     private void actualizarEntidad(PersonajeBuild entidad, Build build) {
         if (build.getOperator() == null || build.getWeapon() == null || build.getGear() == null) {
             throw new IllegalArgumentException("La build debe incluir personaje, arma y equipamiento.");
@@ -343,6 +403,14 @@ public class EndfieldServiceBean implements Serializable {
 
     // ELIMINAR BUILD PROPIA DE LA BASE DE DATOS
     public void eliminarBuild(Long id) {
+        if (esUsuarioDemo()) {
+            boolean eliminada = demoBuilds.removeIf(build -> id != null && id.equals(build.getId()));
+            if (!eliminada) {
+                throw new IllegalStateException("No se encontró una build demo para eliminar.");
+            }
+            return;
+        }
+
         Long usuarioId = getUsuarioAutenticadoId();
         EntityManager em = getEmf().createEntityManager();
         EntityTransaction transaction = em.getTransaction();
