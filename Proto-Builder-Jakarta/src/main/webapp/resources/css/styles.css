@@ -7,6 +7,27 @@
     border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
+.text-accent {
+    color: #ffc144 !important;
+}
+
+.popularity-chart-card,
+.popularity-chart-card .card-body {
+    min-width: 0;
+}
+
+.popularity-chart-container {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    min-width: 0;
+}
+
+.popularity-chart-container .popularity-chart {
+    width: 100%;
+    height: 100%;
+}
+
 
 .btn-primary {
     background-color: #ffc144 !important;

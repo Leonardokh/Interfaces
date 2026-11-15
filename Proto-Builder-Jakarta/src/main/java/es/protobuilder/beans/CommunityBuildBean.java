@@ -17,6 +17,15 @@ import java.util.List;
 public class CommunityBuildBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final String OPERATOR_CHART = """
+            {"type":"bar","data":{"labels":["Endministrator (42%)","Perlica (35%)","Xaihi (23%)"],"datasets":[{"label":"Popularidad (%)","data":[42,35,23],"backgroundColor":["#f0ad4e","#4dabf7","#8b72e8"],"borderRadius":6}]}, "options":{"indexAxis":"y","maintainAspectRatio":false,"responsive":true,"plugins":{"legend":{"display":false}},"scales":{"x":{"min":0,"max":100}}}}
+            """;
+    private static final String WEAPON_CHART = """
+            {"type":"bar","data":{"labels":[["Complexed Industry","(46%)"],"Khravengger (31%)",["Blessing of Lustrous","Carmine (23%)"]],"datasets":[{"label":"Popularidad (%)","data":[46,31,23],"backgroundColor":["#f0ad4e","#4dabf7","#8b72e8"],"borderRadius":6}]}, "options":{"indexAxis":"y","maintainAspectRatio":false,"responsive":true,"plugins":{"legend":{"display":false}},"scales":{"x":{"min":0,"max":100}}}}
+            """;
+    private static final String GEAR_CHART = """
+            {"type":"bar","data":{"labels":[["Swordmancer","Heavy Armor (38%)"],["Swordmancer","TAC Gloves (27%)"],["Swordmancer","TAC Gauntlets (21%)"],["Swordmancer Flint (14%)"]],"datasets":[{"label":"Popularidad (%)","data":[38,27,21,14],"backgroundColor":["#f0ad4e","#4dabf7","#8b72e8","#53b987"],"borderRadius":6}]}, "options":{"indexAxis":"y","maintainAspectRatio":false,"responsive":true,"plugins":{"legend":{"display":false}},"scales":{"x":{"min":0,"max":100}}}}
+            """;
 
     @Inject
     private EndfieldServiceBean endfieldService;
@@ -76,6 +85,18 @@ public class CommunityBuildBean implements Serializable {
 
     public List<CommunityBuild> getBuilds() {
         return builds;
+    }
+
+    public String getOperatorChart() {
+        return OPERATOR_CHART;
+    }
+
+    public String getWeaponChart() {
+        return WEAPON_CHART;
+    }
+
+    public String getGearChart() {
+        return GEAR_CHART;
     }
 
     public static class CommunityBuild implements Serializable {

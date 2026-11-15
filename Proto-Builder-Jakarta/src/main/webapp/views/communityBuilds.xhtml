@@ -8,6 +8,27 @@
             <p class="text-light mb-0">Selección de builds de muestra creadas por la comunidad.</p>
         </div>
 
+        <section class="mb-4" aria-labelledby="community-popularity-title">
+            <h3 id="community-popularity-title" class="h5 text-white mb-3">Más populares</h3>
+            <div class="row g-3">
+                <div class="col-12 col-xl-4">
+                    <app:popularityChart title="Operadores"
+                                         value="#{communityBuildBean.operatorChart}"
+                                         ariaLabel="Popularidad de operadores" />
+                </div>
+                <div class="col-12 col-xl-4">
+                    <app:popularityChart title="Armas"
+                                         value="#{communityBuildBean.weaponChart}"
+                                         ariaLabel="Popularidad de armas" />
+                </div>
+                <div class="col-12 col-xl-4">
+                    <app:popularityChart title="Gear"
+                                         value="#{communityBuildBean.gearChart}"
+                                         ariaLabel="Popularidad de gear" />
+                </div>
+            </div>
+        </section>
+
         <div class="row g-4">
             <ui:repeat value="#{communityBuildBean.builds}" var="communityBuild">
                 <div class="col-12 col-md-6 col-xxl-4">
