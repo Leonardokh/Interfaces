@@ -25,6 +25,10 @@ public class VistaBean implements Serializable {
         this.seccion = "myBuilds";
     }
 
+    public void mostrarCommunityBuilds() {
+        this.seccion = "communityBuilds";
+    }
+
     public void mostrarGlosario() {
         this.seccion = "glossary";
     }

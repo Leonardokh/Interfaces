@@ -550,6 +550,10 @@ body .auth-panel .ui-messages {
     min-width: 0;
 }
 
+.community-build-description {
+    color: #d1d5db;
+}
+
 .build-card-title {
     font-size: 1.15rem;
     min-width: 0;

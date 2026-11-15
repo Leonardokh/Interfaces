@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:cc="jakarta.faces.composite">
+
+    <cc:interface>
+        <cc:attribute name="build" type="es.protobuilder.endfield.Build" required="true" />
+        <cc:attribute name="category" type="java.lang.String" required="true" />
+        <cc:attribute name="author" type="java.lang.String" required="true" />
+        <cc:attribute name="description" type="java.lang.String" required="true" />
+    </cc:interface>
+
+    <cc:implementation>
+        <article class="card bg-dark text-white border-secondary h-100 build-card community-build-card">
+            <div class="card-header bg-black border-secondary">
+                <span class="badge bg-warning text-dark mb-2">#{cc.attrs.category}</span>
+                <div class="d-flex justify-content-between align-items-center gap-2">
+                    <h3 class="h5 text-warning mb-1">#{cc.attrs.build.operator.name}</h3>
+                    <span class="badge bg-secondary text-light">#{cc.attrs.build.operator.element}</span>
+                </div>
+                <span class="text-white small">Creada por #{cc.attrs.author}</span>
+            </div>
+
+            <div class="card-body">
+                <p class="community-build-description">#{cc.attrs.description}</p>
+
+                <div class="row g-2 align-items-stretch mb-3">
+                    <div class="col-8">
+                        <div class="build-card-image-frame border border-secondary rounded p-2 h-100 d-flex align-items-center">
+                            <h:graphicImage library="img"
+                                            name="#{cc.attrs.build.operator.image}"
+                                            alt="#{cc.attrs.build.operator.name}"
+                                            styleClass="img-fluid w-100 build-card-operator-image" />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="build-card-image-frame border border-secondary rounded p-2 h-100 d-flex align-items-center">
+                            <h:graphicImage library="img"
+                                            name="#{cc.attrs.build.weapon.image}"
+                                            alt="#{cc.attrs.build.weapon.name}"
+                                            styleClass="img-fluid w-100 build-card-weapon-image" />
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="h6 text-success mb-2">Equipamiento</h4>
+                <div class="row g-2">
+                    <ui:repeat value="#{cc.attrs.build.gear}" var="item">
+                        <div class="col-6 col-xl-3">
+                            <div class="build-card-gear border border-secondary rounded p-2 h-100 text-center d-flex flex-column justify-content-between">
+                                <h:graphicImage library="img"
+                                                name="#{item.image}"
+                                                alt="#{item.name}"
+                                                styleClass="build-card-gear-image img-fluid rounded mb-2" />
+                                <h5 class="small text-success mb-2">#{item.name}</h5>
+                                <div class="d-flex flex-column gap-1">
+                                    <span class="badge bg-secondary">#{item.stat1}</span>
+                                    <span class="badge bg-secondary">#{item.stat2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
+        </article>
+    </cc:implementation>
+</ui:composition>

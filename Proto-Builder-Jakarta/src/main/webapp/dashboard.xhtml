@@ -26,6 +26,12 @@
                     </div>
 
                     <div class="col-6">
+                        <p:commandButton value="Community Builds" action="#{vistaBean.mostrarCommunityBuilds}"
+                            update=":contenido" icon="pi pi-users"
+                            styleClass="btn btn-primary w-100" />
+                    </div>
+
+                    <div class="col-6">
                         <p:commandButton value="Glosario" action="#{vistaBean.mostrarGlosario}" update=":contenido"
                             icon="pi pi-book"
                             styleClass="btn btn-primary w-100" />
@@ -65,6 +71,10 @@
                             icon="pi pi-folder"
                             styleClass="btn btn-primary w-100" />
 
+                        <p:commandButton value="Community Builds" action="#{vistaBean.mostrarCommunityBuilds}"
+                            update=":contenido" icon="pi pi-users"
+                            styleClass="btn btn-primary w-100" />
+
                         <p:commandButton value="Glosario" action="#{vistaBean.mostrarGlosario}" update=":contenido"
                             icon="pi pi-book"
                             styleClass="btn btn-primary w-100" />
@@ -86,6 +96,11 @@
                     <!-- Vista 2: Mis Builds -->
                     <p:outputPanel rendered="#{vistaBean.seccion eq 'myBuilds'}">
                         <ui:include src="/views/myBuilds.xhtml" />
+                    </p:outputPanel>
+
+                    <!-- Community build showcase -->
+                    <p:outputPanel rendered="#{vistaBean.seccion eq 'communityBuilds'}">
+                        <ui:include src="/views/communityBuilds.xhtml" />
                     </p:outputPanel>
 
                     <!-- Vista 3: Glosario -->

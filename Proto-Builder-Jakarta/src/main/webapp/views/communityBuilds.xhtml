@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:app="jakarta.faces.composite/components">
+
+    <div class="container-fluid">
+        <div class="mb-4">
+            <h2 class="text-white mb-1">Community Builds</h2>
+            <p class="text-light mb-0">Selección de builds de muestra creadas por la comunidad.</p>
+        </div>
+
+        <div class="row g-4">
+            <ui:repeat value="#{communityBuildBean.builds}" var="communityBuild">
+                <div class="col-12 col-md-6 col-xxl-4">
+                    <app:communityCard build="#{communityBuild.build}"
+                                       category="#{communityBuild.category}"
+                                       author="#{communityBuild.author}"
+                                       description="#{communityBuild.description}" />
+                </div>
+            </ui:repeat>
+        </div>
+    </div>
+</ui:composition>
