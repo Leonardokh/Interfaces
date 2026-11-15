@@ -63,6 +63,27 @@ public class EndfieldServiceBean implements Serializable {
             "A researcher dispatched from Laterano..."
         ));
 
+        agregarOperador(new Operator(
+            "chen-qianyu",
+            "Chen Qianyu", "Guard", "Physical",
+            "A Guard operator with the Physical element.",
+            "endfield/operators/chen-qianyu.webp"
+        ));
+
+        agregarOperador(new Operator(
+            "ardelia",
+            "Ardelia", "Supporter", "Nature",
+            "A Supporter operator with the Nature element.",
+            "endfield/operators/ardelia.webp"
+        ));
+
+        agregarOperador(new Operator(
+            "laevatain",
+            "Laevatain", "Striker", "Heat",
+            "A Striker operator with the Heat element.",
+            "endfield/operators/laevatain.webp"
+        ));
+
         // WEAPONS
         weapons = new ArrayList<>();
         weaponsById = new HashMap<>();
@@ -90,6 +111,22 @@ public class EndfieldServiceBean implements Serializable {
             "One of the polearms produced by the Witching Hour..."
         ));
 
+        agregarArma(new Weapon(
+            "thermite-cutter",
+            "Thermite Cutter",
+            "Sword",
+            "Sword-class weapon included as a catalog mock.",
+            "endfield/weapons/placeholder.webp"
+        ));
+
+        agregarArma(new Weapon(
+            "forgeborn-scathe",
+            "Forgeborn Scathe",
+            "Sword",
+            "Sword-class weapon included as a catalog mock.",
+            "endfield/weapons/placeholder.webp"
+        ));
+
         // GEARS DISPONIBLES
         gears = new ArrayList<>();
         gearsById = new HashMap<>();
@@ -105,6 +142,15 @@ public class EndfieldServiceBean implements Serializable {
 
         agregarGear(new Gear("swordmancer-flint", "Swordmancer", "Flint",
             "AGILITY", "STRENGTH"));
+
+        agregarGear(new Gear("frontiers-heavy-armor", "Frontiers", "Heavy Armor",
+            "STRENGTH +87", "ULTIMATE DMG +25.9%", "endfield/gears/placeholder.webp"));
+
+        agregarGear(new Gear("hot-work-tac-gloves", "Hot Work", "TAC Gloves",
+            "INTELLECT +87", "HEAT & NATURE DMG +11.5%", "endfield/gears/placeholder.webp"));
+
+        agregarGear(new Gear("grizzled-edge-flint", "Grizzled Edge", "Flint",
+            "STRENGTH +87", "PHYSICAL DMG +11.5%", "endfield/gears/placeholder.webp"));
 
         buildsByUsername = new HashMap<>();
         List<Build> demoBuilds = new ArrayList<>();

@@ -10,6 +10,7 @@ public class Weapon implements Serializable {
     private String name;
     private String type;
     private String description;
+    private String image;
 
     public Weapon() {
         this.id = "";
@@ -19,10 +20,15 @@ public class Weapon implements Serializable {
     }
 
     public Weapon(String id, String name, String type, String description) {
+        this(id, name, type, description, null);
+    }
+
+    public Weapon(String id, String name, String type, String description, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.description = description;
+        this.image = image;
     }
 
     public String getId() {
@@ -58,6 +64,6 @@ public class Weapon implements Serializable {
     }
 
     public String getImage(){
-        return "endfield/weapons/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
+        return image != null ? image : "endfield/weapons/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
     }
 }

@@ -11,6 +11,7 @@ public class Operator implements Serializable {
     private String archetype;
     private String element;
     private String description;
+    private String image;
 
     public Operator() {
         this.id = "";
@@ -21,11 +22,16 @@ public class Operator implements Serializable {
     }
 
     public Operator(String id, String name, String archetype, String element, String description) {
+        this(id, name, archetype, element, description, null);
+    }
+
+    public Operator(String id, String name, String archetype, String element, String description, String image) {
         this.id = id;
         this.name = name;
         this.archetype = archetype;
         this.element = element;
         this.description = description;
+        this.image = image;
     }
 
     public String getId() {
@@ -69,6 +75,6 @@ public class Operator implements Serializable {
     }
 
     public String getImage(){
-        return "endfield/operators/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
+        return image != null ? image : "endfield/operators/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
     }
 }

@@ -324,6 +324,11 @@ body .auth-panel .ui-messages {
     overflow: hidden;
 }
 
+.news-article-image-frame {
+    height: clamp(150px, 20vw, 420px);
+    max-height: 420px;
+}
+
 .news-image-frame .news-image {
     position: absolute;
     top: 0;

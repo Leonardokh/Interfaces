@@ -20,17 +20,19 @@ public class NewsBean implements Serializable {
 
     private String selectedArticleId;
 
-    public void openArticle(String id) {
+    public String openArticle(String id) {
         if (newsService.findById(id) == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "No se encontró la noticia seleccionada."));
-            return;
+            return null;
         }
         selectedArticleId = id;
+        return null;
     }
 
-    public void showList() {
+    public String showList() {
         selectedArticleId = null;
+        return null;
     }
 
     public boolean isShowingArticle() {

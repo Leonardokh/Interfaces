@@ -1,7 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="jakarta.faces.html"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:p="primefaces">
+                xmlns:p="primefaces"
+                xmlns:app="jakarta.faces.composite/components">
 
     <h:form id="formNoticias">
         <p:messages id="messages" showDetail="true" closable="true" />
@@ -19,29 +20,7 @@
                 <div class="row g-4">
                     <ui:repeat value="#{newsBean.newsService.articles}" var="article">
                         <div class="col-12 col-lg-6">
-                            <article class="card bg-dark text-white border-secondary h-100 overflow-hidden">
-                                <div class="news-image-frame bg-black d-flex align-items-center justify-content-center">
-                                    <h:graphicImage library="img" name="#{article.image}"
-                                                    alt="#{article.title}"
-                                                    rendered="#{not empty article.image}"
-                                                    styleClass="news-image" />
-                                    <h:panelGroup rendered="#{empty article.image}">
-                                        <span class="text-muted small">Imagen no disponible</span>
-                                    </h:panelGroup>
-                                </div>
-                                <div class="card-body d-flex flex-column">
-                                    <div>
-                                        <span class="badge bg-primary mb-2">#{article.category}</span>
-                                        <h3 class="h5 text-accent">#{article.title}</h3>
-                                        <p class="text-light mb-3">#{article.summary}</p>
-                                        <span class="text-muted small">#{article.author} · #{article.publishedAt}</span>
-                                    </div>
-                                    <p:commandButton value="Leer artículo" icon="pi pi-arrow-right" iconPos="right"
-                                                     action="#{newsBean.openArticle(article.id)}"
-                                                     process="@this" update=":contenido"
-                                                     styleClass="btn btn-primary mt-3 align-self-start" />
-                                </div>
-                            </article>
+                            <app:newsPreview article="#{article}" />
                         </div>
                     </ui:repeat>
                 </div>
@@ -49,36 +28,8 @@
 
             <ui:fragment rendered="#{newsBean.showingArticle}">
                 <ui:fragment rendered="#{not empty newsBean.selectedArticle}">
-                    <article class="card bg-dark text-white border-secondary overflow-hidden">
-                        <div class="news-image-frame bg-black d-flex align-items-center justify-content-center">
-                            <h:graphicImage library="img" name="#{newsBean.selectedArticle.image}"
-                                            alt="#{newsBean.selectedArticle.title}"
-                                            rendered="#{not empty newsBean.selectedArticle.image}"
-                                            styleClass="news-image" />
-                            <h:panelGroup rendered="#{empty newsBean.selectedArticle.image}">
-                                <span class="text-muted small">Imagen no disponible</span>
-                            </h:panelGroup>
-                        </div>
-                        <div class="card-body p-3 p-md-4">
-                            <div>
-                                <span class="badge bg-primary mb-2">#{newsBean.selectedArticle.category}</span>
-                                <h1 class="h2 text-accent">#{newsBean.selectedArticle.title}</h1>
-                                <p class="lead text-light">#{newsBean.selectedArticle.summary}</p>
-                                <p class="text-muted small mb-4">#{newsBean.selectedArticle.author} · #{newsBean.selectedArticle.publishedAt}</p>
-                            </div>
-                            <div class="news-article-content">
-                                <ui:repeat value="#{newsBean.selectedArticle.content}" var="paragraph">
-                                    <p class="text-light">#{paragraph}</p>
-                                </ui:repeat>
-                            </div>
-                            <hr class="border-secondary my-4" />
-                            <div class="d-flex justify-content-end">
-                                <p:commandButton value="Volver a noticias" icon="pi pi-arrow-left"
-                                                 action="#{newsBean.showList}" process="@this" update=":contenido"
-                                                 styleClass="btn btn-outline-light" />
-                            </div>
-                        </div>
-                    </article>
+                    <app:newsArticle article="#{newsBean.selectedArticle}"
+                                     backAction="#{newsBean.showList}" />
                 </ui:fragment>
             </ui:fragment>
         </div>

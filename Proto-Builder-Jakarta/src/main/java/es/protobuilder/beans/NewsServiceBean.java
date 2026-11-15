@@ -40,7 +40,7 @@ public class NewsServiceBean implements Serializable {
                         "Investigación",
                         "Oficina de investigación",
                         "13 nov 2026 · 16:00",
-                        null,
+                        "news/perlica.webp",
                         List.of(
                                 "Perlica ha puesto en marcha una revisión conjunta de los informes recibidos tras las últimas operaciones. El objetivo es que los datos recogidos por los distintos equipos puedan compararse con un mismo criterio.",
                                 "Cada registro incluirá la ubicación aproximada, la duración de la observación y las condiciones presentes. Cuando una medición no pueda confirmarse, se marcará como provisional en lugar de tratarse como un resultado definitivo.",
@@ -54,7 +54,7 @@ public class NewsServiceBean implements Serializable {
                         "Equipamiento",
                         "Centro de apoyo de Northmarch",
                         "11 nov 2026 · 09:15",
-                        null,
+                        "news/weapons.webp",
                         List.of(
                                 "El centro de apoyo de Northmarch ha terminado una primera serie de prototipos destinados a pruebas controladas. La evaluación medirá su respuesta en distintos escenarios y su compatibilidad con el equipo que ya utilizan los operadores.",
                                 "Las pruebas se realizarán en un entorno supervisado y con objetivos definidos. Los participantes documentarán el manejo, el rendimiento y cualquier incidencia, evitando conclusiones basadas en una única sesión.",

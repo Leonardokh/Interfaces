@@ -11,6 +11,7 @@ public class Gear implements Serializable {
     private String name;
     private String stat1;
     private String stat2;
+    private String image;
 
     public Gear() {
         
@@ -21,11 +22,16 @@ public class Gear implements Serializable {
         this.stat2 = "";
     }
     public Gear(String id, String set, String name, String stat1, String stat2) {
+        this(id, set, name, stat1, stat2, null);
+    }
+
+    public Gear(String id, String set, String name, String stat1, String stat2, String image) {
         this.id = id;
         this.set = set;
         this.name = name;
         this.stat1 = stat1;
         this.stat2 = stat2;
+        this.image = image;
     }
 
     public String getId() {
@@ -68,6 +74,6 @@ public class Gear implements Serializable {
     }
 
     public String getImage(){
-            return "endfield/gears/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
+            return image != null ? image : "endfield/gears/"+ this.name.toLowerCase().replace(" ","-") + ".webp";
     }
 }

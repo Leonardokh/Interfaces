@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class BuildEditorBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final int GEAR_SLOT_COUNT = 4;
     private static final Logger LOGGER = Logger.getLogger(BuildEditorBean.class.getName());
 
     @Inject
@@ -44,7 +45,7 @@ public class BuildEditorBean implements Serializable {
         cerrarSelector();
 
         List<Gear> espaciosGear = new ArrayList<>();
-        for (int i = 0; i < endfieldService.getGears().size(); i++) {
+        for (int i = 0; i < GEAR_SLOT_COUNT; i++) {
             espaciosGear.add(new Gear("", "", "", "", ""));
             gearSeleccionado.add("");
         }

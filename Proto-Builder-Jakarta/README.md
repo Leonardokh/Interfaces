@@ -40,7 +40,7 @@ src/main/webapp/
 └── dashboard.xhtml
 ```
 
-`home.xhtml` y `registro.xhtml` usan la plantilla `WEB-INF/templates/template.xhtml`. El dashboard conserva la navegación y cambia el contenido de forma parcial con `p:outputPanel` y `ui:include`. Las tarjetas se reutilizan como componentes Facelets: `buildCard` para las builds propias, `communityCard` para las de comunidad y `popularityChart` para las gráficas de popularidad.
+`home.xhtml` y `registro.xhtml` usan la plantilla `WEB-INF/templates/template.xhtml`. El dashboard conserva la navegación y cambia el contenido de forma parcial con `p:outputPanel` y `ui:include`. Las tarjetas se reutilizan como componentes Facelets: `buildCard` para las builds propias, `communityCard` para las de comunidad, `popularityChart` para las gráficas, `newsPreview` para el resumen de cada noticia y `newsArticle` para su detalle ampliado.
 
 Los títulos usan la clase de estilo propia `text-accent` para el color de marca, evitando usar clases contextuales de Bootstrap como `text-warning` cuando no representan un estado de aviso.
 
@@ -108,11 +108,11 @@ En cada JSON, `type` define el tipo de gráfico, `data.labels` los nombres de la
 
 #### Glosario
 
-`glossary.xhtml` consulta `GlossaryBean` para mostrar operadores, armas y equipamiento. Cada pestaña enlaza su campo de búsqueda a una propiedad distinta del bean. Un `p:ajax` procesa los cambios de teclado con un pequeño retraso y actualiza solo los resultados de esa categoría. Los getters filtrados usan los catálogos de `EndfieldServiceBean` y la comparación ignora mayúsculas y acentos. Las tarjetas `operatorCard`, `weaponCard` y `gearCard` presentan los elementos.
+`glossary.xhtml` consulta `GlossaryBean` para mostrar operadores, armas y equipamiento. Cada pestaña enlaza su campo de búsqueda a una propiedad distinta del bean. Un `p:ajax` procesa los cambios de teclado con un pequeño retraso y actualiza solo los resultados de esa categoría. Los getters filtrados usan los catálogos de `EndfieldServiceBean` y la comparación ignora mayúsculas y acentos. Las tarjetas `operatorCard`, `weaponCard` y `gearCard` presentan los elementos. Los catálogos incluyen ejemplos adicionales basados en nombres reales de Endfield, como Chen Qianyu, Ardelia, Laevatain, Thermite Cutter y Forgeborn Scathe. Los nuevos operadores ya tienen imágenes propias; las armas y piezas añadidas usan placeholders hasta incorporar sus ilustraciones. Los valores de atributos de los sets Frontiers, Hot Work y Grizzled Edge son ejemplos representativos para el mock, no estadísticas calculadas.
 
 #### Noticias
 
-`NewsServiceBean` ofrece el catálogo de artículos de muestra y permite localizar uno por ID. `NewsBean` conserva el ID seleccionado: `openArticle` valida la selección y activa el detalle, mientras `showList` vuelve al listado. `news.xhtml` muestra una u otra sección según `showingArticle`; las acciones actualizan `:contenido` mediante AJAX.
+`NewsServiceBean` ofrece el catálogo de artículos de muestra y permite localizar uno por ID. `NewsBean` conserva el ID seleccionado: `openArticle` valida la selección y activa el detalle, mientras `showList` vuelve al listado. `news.xhtml` muestra una u otra sección según `showingArticle`; las tarjetas reducidas se presentan con `newsPreview` y el detalle ampliado con `newsArticle`. Ambos componentes reciben el mismo objeto `NewsArticle` del catálogo; el botón de `newsPreview` invoca `newsBean.openArticle` y el de `newsArticle` invoca la acción recibida para volver. Las acciones actualizan `:contenido` mediante AJAX.
 
 ## Datos en memoria
 
