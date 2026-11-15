@@ -18,7 +18,6 @@ La cuenta de demostración es `demo` con contraseña `demo123`. Los usuarios que
 - Java 17 y Maven.
 - Jakarta Faces 4, CDI (Weld) y PrimeFaces.
 - XHTML/Facelets y Bootstrap para las vistas y estilos.
-- Jakarta Persistence (JPA), Hibernate y MySQL para las builds persistidas.
 - Tomcat 11 como contenedor web.
 
 ## Estructura principal
@@ -27,7 +26,7 @@ La cuenta de demostración es `demo` con contraseña `demo123`. Los usuarios que
 src/main/java/es/protobuilder/
 ├── beans/       # Beans CDI/JSF: estado de vistas y lógica de aplicación
 ├── endfield/    # Modelos de dominio usados por las vistas (Build, Operator, Gear...)
-└── model/       # Entidades JPA y modelos asociados a persistencia
+└── model/       # Modelos de usuario usados por la autenticación mock
 
 src/main/webapp/
 ├── WEB-INF/templates/  # Plantilla común de la aplicación
@@ -69,7 +68,7 @@ Los beans se exponen a Facelets con `@Named`; por ejemplo, `@Named("loginBean")`
 | Bean | Alcance | Responsabilidad |
 |---|---|---|
 | `VistaBean` (`vistaBean`) | Vista | Selecciona la sección visible del dashboard: noticias, glosario, builds, etc. |
-| `EndfieldServiceBean` (`endfieldService`) | Sesión | Carga los catálogos de operadores, armas y equipamiento. Consulta y persiste builds propias con JPA; para `demo`, mantiene las builds en memoria. |
+| `EndfieldServiceBean` (`endfieldService`) | Sesión | Carga los catálogos de operadores, armas y equipamiento y mantiene en memoria las builds propias de cada usuario. |
 | `BuildEditorBean` (`buildEditorBean`) | Vista | Mantiene el formulario de creación/edición, valida las selecciones y delega guardar o eliminar en `EndfieldServiceBean`. |
 | `CommunityBuildBean` (`communityBuildBean`) | Vista | Prepara las builds ficticias que se muestran en la sección Community Builds. |
 | `GlossaryBean` (`glossaryBean`) | Vista | Filtra operadores, armas y equipamiento del catálogo, ignorando mayúsculas y acentos. |
@@ -84,7 +83,7 @@ Las páginas Facelets enlazan componentes visuales con propiedades y métodos de
 
 1. En `home.xhtml`, los campos de usuario y contraseña se enlazan con `LoginBean.username` y `LoginBean.password`.
 2. Al iniciar sesión, `LoginBean` valida que los campos estén completos y llama a `UsuarioMockBean.autenticar`. Si las credenciales son válidas, guarda el objeto `Usuario` en el mapa de sesión de Faces, actualiza `UsuarioBean` para mostrar el nombre y redirige al dashboard. Si no, envía un `FacesMessage` a la vista.
-3. `registro.xhtml` enlaza los campos con `RegistroBean`. El bean verifica que ambas contraseñas coincidan y solicita el alta a `UsuarioMockBean`; este valida los datos y evita duplicados. El registro queda en memoria, no en MySQL.
+3. `registro.xhtml` enlaza los campos con `RegistroBean`. El bean verifica que ambas contraseñas coincidan y solicita el alta a `UsuarioMockBean`; este valida los datos y evita duplicados. El registro queda únicamente en memoria y no se conserva al reiniciar la aplicación.
 4. `UsuarioBean` alimenta el menú de usuario de la plantilla y su acción de cerrar sesión invalida la sesión web.
 
 #### Navegación del dashboard
@@ -95,15 +94,17 @@ Las páginas Facelets enlazan componentes visuales con propiedades y métodos de
 
 1. **Crear:** el botón «Nueva build» llama a `BuildEditorBean.crearNueva()`. El bean crea un objeto `Build` y prepara los espacios de equipamiento vacíos a partir del catálogo de `EndfieldServiceBean`.
 2. **Seleccionar:** las acciones para cambiar personaje, arma o pieza activan un selector en `BuildEditorBean`. La vista obtiene las opciones mediante sus getters (`operadoresDisponibles`, `armasDisponibles`, `gearDisponible`). Al seleccionar una opción, el bean guarda su identificador y la petición AJAX actualiza el formulario.
-3. **Guardar:** `BuildEditorBean.guardarBuild()` resuelve los identificadores seleccionados contra el catálogo, valida personaje, arma y cada pieza, y delega la operación en `EndfieldServiceBean`. Para cuentas persistidas, el servicio convierte la build en entidades JPA y escribe en MySQL; para `demo`, modifica su lista en memoria. Tras guardar, el editor se limpia y `VistaBean` vuelve a «Mis builds».
+3. **Guardar:** `BuildEditorBean.guardarBuild()` resuelve los identificadores seleccionados contra el catálogo, valida personaje, arma y cada pieza, y delega la operación en `EndfieldServiceBean`, que crea o actualiza la build en memoria para el usuario actual. Tras guardar, el editor se limpia y `VistaBean` vuelve a «Mis builds».
 4. **Consultar y editar:** `myBuilds.xhtml` itera sobre `endfieldService.builds` y pasa cada objeto al componente `buildCard`. Sus botones llaman a `BuildEditorBean.editar(id)` o `eliminar(id)`. La edición obtiene la build mediante `EndfieldServiceBean.buscarBuild`; la eliminación delega en `eliminarBuild`.
-5. **Persistencia:** el servicio restringe las consultas y cambios JPA al usuario de sesión. Las builds de `demo` son locales a la instancia de servicio y no sobreviven a un reinicio.
+5. **Aislamiento:** cada usuario solo consulta y modifica sus propias builds. Tanto las builds como las cuentas de prueba se mantienen en memoria y se pierden al reiniciar la aplicación.
 
 #### Community Builds
 
 `CommunityBuildBean` prepara tres ejemplos usando los catálogos de `EndfieldServiceBean`; no los registra como builds de usuario ni los persiste. `communityBuilds.xhtml` recorre esa lista y entrega cada build, categoría, autor y descripción a `communityCard`. El componente se ocupa únicamente de presentar los datos, sin acciones de edición o borrado.
 
-La sección también muestra gráficas horizontales de popularidad para operadores, armas y gear. `popularityChart` es un componente Facelets reutilizable que recibe el título, la configuración JSON de Chart.js y una etiqueta accesible; mantiene el estilo de tarjeta compartido y adapta el gráfico al ancho disponible. Los ratios actuales son datos de ejemplo definidos en `CommunityBuildBean`, no estadísticas calculadas a partir de builds reales.
+La sección también muestra gráficas horizontales de popularidad para operadores, armas y gear. Las configuraciones están definidas como los `String` `OPERATOR_CHART`, `WEAPON_CHART` y `GEAR_CHART` en `CommunityBuildBean`; cada uno contiene un objeto JSON de Chart.js escrito en un bloque de texto Java (`"""`). Los getters `getOperatorChart()`, `getWeaponChart()` y `getGearChart()` exponen esas cadenas a `communityBuilds.xhtml`, que las entrega como atributo `value` al componente reutilizable `popularityChart`. Este componente pasa el JSON a `<p:chart>` de PrimeFaces, que dibuja el gráfico.
+
+En cada JSON, `type` define el tipo de gráfico, `data.labels` los nombres de las categorías y `data.datasets` las series con valores y colores. `options.indexAxis: "y"` muestra las barras en horizontal, y `options.scales.x.min`/`max` fijan el rango del eje. Las etiquetas pueden ser arrays de cadenas para repartir su texto en varias líneas. Los porcentajes son datos de ejemplo escritos a mano: no se calculan a partir de las Community Builds ni se actualizan al crear o editar builds. Al modificarlos, hay que mantener un JSON válido.
 
 #### Glosario
 
@@ -113,11 +114,9 @@ La sección también muestra gráficas horizontales de popularidad para operador
 
 `NewsServiceBean` ofrece el catálogo de artículos de muestra y permite localizar uno por ID. `NewsBean` conserva el ID seleccionado: `openArticle` valida la selección y activa el detalle, mientras `showList` vuelve al listado. `news.xhtml` muestra una u otra sección según `showingArticle`; las acciones actualizan `:contenido` mediante AJAX.
 
-## Datos y persistencia
+## Datos en memoria
 
-La unidad de persistencia `ProtoBuilderPU` está definida en `src/main/resources/META-INF/persistence.xml`. Configura Hibernate y MySQL para las entidades JPA. Antes de ejecutar la aplicación con persistencia, prepara una base de datos local y configura sus credenciales en el entorno de ejecución; no publiques credenciales en el repositorio.
-
-Actualmente, el registro y login usan usuarios mock, pero las builds de usuarios con persistencia JPA siguen necesitando un usuario existente en la base de datos. Por tanto, las cuentas creadas mediante el formulario mock no tienen todavía una identidad de base de datos que permita asociarles builds persistidas. La cuenta `demo` es la excepción: sus builds se mantienen en memoria y se pierden al reiniciar.
+La aplicación no usa base de datos ni conserva datos de forma permanente. `UsuarioMockBean` mantiene las cuentas de prueba durante la ejecución de la aplicación; `EndfieldServiceBean` mantiene las builds por usuario durante la sesión. La cuenta `demo` incluye una build de ejemplo. Las cuentas, builds y demás datos de muestra se pierden al reiniciar la aplicación.
 
 ## Compilar y desplegar
 

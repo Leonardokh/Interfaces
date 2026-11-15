@@ -22,7 +22,6 @@
         <jakarta.faces.version>4.1.4</jakarta.faces.version>
         <primefaces.version>15.0.9</primefaces.version>
         <weld.version>6.0.3.Final</weld.version>
-        <hibernate.version>6.6.1.Final</hibernate.version>
     </properties>
 
     <!-- =========================================================
@@ -80,32 +79,6 @@
 
 
         <!-- =====================================================
-             Jakarta Persistence API & Hibernate ORM
-             ===================================================== -->
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>6.4.4.Final</version>
-        </dependency>
-
-
-        <!-- =====================================================
-             Jakarta Transactions API (@Transactional)
-             ===================================================== -->
-        <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-
-
-        <!-- =====================================================
              Google Gson (Para procesar las respuestas JSON de Enka API)
              ===================================================== -->
         <dependency>
@@ -128,14 +101,6 @@
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>10.0.0</version> <!-- Jakarta EE 10 incluye Jakarta Faces 4.0 -->
         </dependency>
-
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.3.0</version>
-        </dependency>
-
-
 
         <dependency>
             <groupId>org.glassfish</groupId>
